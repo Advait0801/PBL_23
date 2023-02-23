@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct LoginPageView: View {
+struct LoginView: View {
     @State var password = ""
     @State var email = ""
+    @State var isShowingSheet = false
     var body: some View {
         ZStack {
             Color.red.ignoresSafeArea()
@@ -74,18 +75,21 @@ struct LoginPageView: View {
                 }
                 HStack {
                     Text("Are you new here?")
-                    Button("Sign Up") { }
+                    Button("Sign Up") { isShowingSheet = true }
                 }
                 .padding()
             }
+        }
+        .sheet(isPresented: $isShowingSheet) {
+            RegistrationView()
         }
         .tint(.red)
     }
 }
 
-struct LoginPageView_Previews: PreviewProvider {
+struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginPageView()
+        LoginView()
     }
 }
 
