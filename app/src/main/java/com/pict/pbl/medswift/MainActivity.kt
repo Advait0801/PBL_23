@@ -81,15 +81,16 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun EmailId( modifier: Modifier ){
         var email by remember{ mutableStateOf("") }
-        TextField(
+        OutlinedTextField(
             modifier = modifier ,
             value = email,
             onValueChange = { it -> email = it } ,
-            placeholder = { Text("Enter your EmailID")} ,
+            placeholder = { Text("Enter your EmailID" , color = Color.Black) } ,
             leadingIcon = { Icon( imageVector = Icons.Default.Email , contentDescription = "Email Address" ) }  ,
-            colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.White ,
-                cursorColor = Color.Blue
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.Blue,
+                focusedLeadingIconColor = Color.Blue,
+                containerColor = Color.White
             )
         )
     }
@@ -98,14 +99,14 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun Password( modifier : Modifier ){
         var password by remember{ mutableStateOf("") }
-        TextField(
+        OutlinedTextField(
             modifier = modifier,
             value = password,
             onValueChange = { it -> password = it} ,
-            colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.White ,
-                cursorColor = Color.Blue
-            ) ,
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.Blue,
+                containerColor = Color.White
+            ),
             keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Password )
         )
     }
