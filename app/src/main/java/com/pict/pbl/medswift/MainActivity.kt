@@ -1,34 +1,39 @@
 package com.pict.pbl.medswift
 
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.MutableLiveData
 import com.pict.pbl.medswift.login.LoginManager
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
+
 
 class MainActivity : ComponentActivity() {
 
@@ -63,6 +68,11 @@ class MainActivity : ComponentActivity() {
                 drawCircle( color = Color.White , radius = 240.dp.toPx() )
             }) {
             // TODO: Add app icon here, with Image( ... )
+            val image = painterResource(id = R.drawable.app_icon)
+            Image(
+                painter = image ,
+                contentDescription = "App Icon"
+            )
             EmailId( modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 32.dp, end = 32.dp) )
@@ -81,6 +91,7 @@ class MainActivity : ComponentActivity() {
         OutlinedTextField(
             modifier = modifier ,
             value = email,
+            singleLine = true,
             onValueChange = { it ->
                 email = it
                 isLoginButtonEnabled.value = LoginManager.checkEmailAddress( it )
@@ -100,15 +111,29 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun Password( modifier : Modifier ){
         var password by remember{ mutableStateOf("") }
+        var passwordVisible by rememberSaveable { mutableStateOf(false) }
         // TODO: Add singleLine = true attribute here
         // TODO: Implement 'Tap to show password' button here, refer
         //       https://stackoverflow.com/a/66998457/13546426
         OutlinedTextField(
             modifier = modifier,
             value = password,
+            singleLine = true,
             onValueChange = { it -> password = it} ,
             placeholder = { Text("Password" , color = Color.Black) } ,
             leadingIcon = { Icon( imageVector = Icons.Default.Lock , contentDescription = "Email Address" ) } ,
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                val image = if (passwordVisible)
+                    Icons.Filled.Visibility
+                else Icons.Filled.VisibilityOff
+
+                val description = if (passwordVisible) "Hide password" else "Show password"
+
+                IconButton(onClick = {passwordVisible = !passwordVisible}){
+                    Icon(imageVector  = image, description)
+                }
+            },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.Blue,
                 containerColor = Color.White
@@ -131,6 +156,7 @@ class MainActivity : ComponentActivity() {
             Text(text = "Login")
         }
     }
-
 }
+
+
 
