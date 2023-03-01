@@ -1,4 +1,2 @@
-- Created separate `Composable` for `LoginButton` in MainActivity.kt
-- Added icon to `Password` composable
-- Added `keyboardType = KeyboardType.Email` to `EmailId` composable
-- Added check for valid email address in `LoginManager.kt`
+- Added Firebase in Android Project
+- Added Email Validation

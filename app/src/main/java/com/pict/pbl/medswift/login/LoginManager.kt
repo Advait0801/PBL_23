@@ -1,11 +1,14 @@
 package com.pict.pbl.medswift.login
 
-class LoginManager {
+import java.util.regex.Pattern
 
+class LoginManager {
     companion object {
+        private val emailRegex = Pattern.compile( "[a-zA-Z]+@[a-zA-Z]+\\.com" )
+
         fun checkEmailAddress( emailAddress: String ) : Boolean {
             // TODO: Check if email address is well-formed, use RegEx
-            return true
+            return emailRegex.matcher(emailAddress).matches()
         }
     }
 
