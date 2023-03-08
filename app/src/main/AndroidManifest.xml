@@ -12,6 +12,9 @@
         android:theme="@style/Theme.MedSwift"
         tools:targetApi="31">
         <activity
+            android:name=".screens.RegisterScreen"
+            android:exported="false" />
+        <activity
             android:name=".LoginScreen"
             android:exported="false"
             android:label="@string/title_activity_login_screen"

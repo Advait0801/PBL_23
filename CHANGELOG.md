@@ -1,2 +1,2 @@
-- Added Firebase in Android Project
-- Added Email Validation
+- Added `RegisterScreen.kt` in `screens` package
+- Added `HomeScreen.kt` in `screens` package
