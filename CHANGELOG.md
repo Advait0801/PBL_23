@@ -1,2 +1,2 @@
-- Added `RegisterScreen.kt` in `screens` package
-- Added `HomeScreen.kt` in `screens` package
+- Shifted code from `MainActivity.kt` to `LoginScreen.kt`
+- Optimized imports
