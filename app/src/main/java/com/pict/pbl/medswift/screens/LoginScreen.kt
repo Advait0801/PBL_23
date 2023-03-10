@@ -36,19 +36,16 @@ class LoginScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            com.pict.pbl.medswift.ui.theme.MedSwiftTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = Color.White
-                ) {
-                    ActivityUI()
-                }
+            // A surface container using the 'background' color from the theme
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = Color.White
+            ) {
+                ActivityUI()
             }
         }
     }
 
-    @Preview
     @Composable
     private fun ActivityUI(){
         Column (
@@ -84,7 +81,7 @@ class LoginScreen : ComponentActivity() {
             modifier = modifier ,
             value = email,
             singleLine = true,
-            onValueChange = { it ->
+            onValueChange = {
                 email = it
                 isLoginButtonEnabled.value = LoginManager.checkEmailAddress( it )
             } ,
