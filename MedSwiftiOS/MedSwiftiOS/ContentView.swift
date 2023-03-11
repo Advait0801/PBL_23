@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var loginVM: LoginViewModel
+    let api = SymptomAnalyser()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        switch loginVM.state {
+            case .loggedOut: LoginView()
+            case .loggedIn: ProfileView(userEntity: loginVM.currentUserEntity!)
+        }   
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(LoginViewModel())
     }
 }
