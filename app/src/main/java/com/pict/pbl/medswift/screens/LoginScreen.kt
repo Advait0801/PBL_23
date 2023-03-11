@@ -1,66 +1,103 @@
 package com.pict.pbl.medswift.screens
 
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+//import androidx.compose.material.icons.fille
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.times
+import androidx.constraintlayout.solver.widgets.Rectangle
 import androidx.lifecycle.MutableLiveData
 import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.login.LoginManager
+import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 
 
 class LoginScreen : ComponentActivity() {
 
-    val blue1 = Color( 0xFF2055f5 )
-    val blue2 = Color( 0xFF6185f2 )
     private val isLoginButtonEnabled = MutableLiveData( false )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             // A surface container using the 'background' color from the theme
-            Surface(
-                modifier = Modifier.fillMaxSize(),
-                color = Color.White
-            ) {
-                ActivityUI()
+            MedSwiftTheme() {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = Color.White
+                ) {
+                    ActivityUI()
+                }
             }
+
         }
     }
 
-    @Preview(showSystemUi = true)
+    //@Preview(showSystemUi = true)
     @Composable
     private fun ActivityUI(){
+        val screenConfig = LocalConfiguration.current
+        val screenWidth = screenConfig.screenWidthDp.dp
+        println(screenWidth)
         Box(
             modifier = Modifier,
             contentAlignment = Alignment.CenterEnd
         ) {
+            Surface(
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+
+            }
+            Surface(
+                color = MaterialTheme.colorScheme.primaryContainer,
+                modifier = Modifier
+                    .width(screenWidth)
+                    .height(screenWidth)
+                    .scale(1.7f)
+                    .clip(CircleShape)
+            ) { }
+            Surface(
+                color = MaterialTheme.colorScheme.background,
+                modifier = Modifier
+                    .width(screenWidth)
+                    .height(screenWidth)
+                    .scale(1.4f)
+                    .clip(CircleShape)
+            ) { }
             Column (
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.drawBehind {
-                    drawCircle( color = blue1 , radius = 512.dp.toPx() )
-                    drawCircle( color = blue2 , radius = 320.dp.toPx() )
-                    drawCircle( color = Color.White , radius = 240.dp.toPx() )
-                }) {
+                modifier = Modifier
+            ) {
                 // TODO: Add app icon here, with Image( ... )
                 val image = painterResource(id = R.drawable.app_icon )
                 Image(
@@ -69,13 +106,17 @@ class LoginScreen : ComponentActivity() {
                 )
                 EmailId( modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 32.dp, end = 32.dp) )
-                Spacer(modifier = Modifier.height(16.dp))
+                    .padding(start = 32.dp, end = 32.dp)
+                )
+                Spacer(modifier = Modifier.height(24.dp))
                 Password( modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 32.dp, end = 32.dp) )
             }
-            LoginButton(modifier = Modifier.padding(top = 50.dp))
+            LoginButton(
+                modifier = Modifier
+                    .padding(top = 50.dp, end = 10.dp)
+            )
         }
 
     }
@@ -93,13 +134,8 @@ class LoginScreen : ComponentActivity() {
                 email = it
                 isLoginButtonEnabled.value = LoginManager.checkEmailAddress( it )
             } ,
-            placeholder = { Text("Enter your EmailID" , color = Color.Black) } ,
+            placeholder = { Text("Enter your EmailID") } ,
             leadingIcon = { Icon( imageVector = Icons.Default.Email , contentDescription = "Email Address" ) }  ,
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Blue,
-                focusedLeadingIconColor = Color.Blue,
-                containerColor = Color.White
-            ) ,
             keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Email )
         )
     }
@@ -117,7 +153,7 @@ class LoginScreen : ComponentActivity() {
             value = password,
             singleLine = true,
             onValueChange = { it -> password = it} ,
-            placeholder = { Text("Password" , color = Color.Black) } ,
+            placeholder = { Text("Password") } ,
             leadingIcon = { Icon( imageVector = Icons.Default.Lock , contentDescription = "Email Address" ) } ,
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
@@ -131,10 +167,6 @@ class LoginScreen : ComponentActivity() {
                     Icon(imageVector  = image, description)
                 }
             },
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Blue,
-                containerColor = Color.White
-            ),
             keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Password )
         )
     }
@@ -144,12 +176,46 @@ class LoginScreen : ComponentActivity() {
         val isEnabled by isLoginButtonEnabled.observeAsState()
         Button(
             onClick = {  } ,
-            modifier = modifier,
-            enabled = true ,
-            colors = ButtonDefaults.buttonColors(
-                containerColor = blue1
-            )) {
-            Icon( imageVector = Icons.Default.ArrowForward , contentDescription = "Login" )
+            modifier = modifier
+                .defaultMinSize(minHeight = 0.2.dp , minWidth = 0.2.dp),
+            enabled = true,
+            contentPadding = PaddingValues(8.dp),
+            border = BorderStroke(width = 2.dp, color = MaterialTheme.colorScheme.background)
+        ) {
+            Icon(
+                modifier = Modifier.size(32.dp),
+                imageVector = Icons.Default.ArrowForward,
+                contentDescription = "Login"
+            )
+        }
+    }
+
+    @Preview
+    @Composable
+    private fun MedSwiftLogo(modifier: Modifier = Modifier) {
+        Box(
+            contentAlignment = Alignment.TopEnd,
+            modifier = modifier
+                .padding(24.dp)
+        ){
+           Text(
+               "MedSwift",
+               color = MaterialTheme.colorScheme.onTertiaryContainer,
+               style = MaterialTheme.typography.headlineLarge.copy(
+                   fontWeight = FontWeight.Bold
+               )
+//               fontStyle = MaterialTheme.typography.headlineLarge,
+           )
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = null,
+
+                modifier = Modifier
+                    .size(40.dp)
+                    .offset(x = 30.dp , y = -25.dp),
+
+
+            )
         }
     }
 
