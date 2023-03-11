@@ -96,11 +96,7 @@ class LoginScreen : ComponentActivity() {
             Column (
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.drawBehind {
-                    drawCircle( color = blue1 , radius = 512.dp.toPx() )
-                    drawCircle( color = blue2 , radius = 320.dp.toPx() )
-                    drawCircle( color = Color.White , radius = 240.dp.toPx() )
-                }) {
+            ) {
                 val image = painterResource(id = R.drawable.app_icon )
                 Image(
                     painter = image ,
