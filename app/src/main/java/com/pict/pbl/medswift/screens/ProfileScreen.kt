@@ -8,6 +8,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -108,7 +111,10 @@ class ProfileScreen : ComponentActivity() {
             modifier = Modifier.fillMaxWidth() ,
             color = MaterialTheme.colorScheme.primary
         ) {
-            Column {
+            Column(
+                modifier = Modifier.padding(24.dp) ,
+                verticalArrangement = Arrangement.spacedBy( 16.dp )
+            ) {
                 OtherDetail()
                 OtherDetail()
             }
@@ -118,17 +124,23 @@ class ProfileScreen : ComponentActivity() {
     @Preview
     @Composable
     private fun OtherDetail() {
-        Surface(
+        Row(
             modifier = Modifier
-                .padding(8.dp)
                 .background(
                     color = MaterialTheme.colorScheme.primaryContainer,
                     shape = RoundedCornerShape(24.dp)
                 )
-
+                .fillMaxWidth()
+                .padding(16.dp) ,
+            horizontalArrangement = Arrangement.spacedBy( 8.dp )
         ) {
-            Text(text = "Hello World")
+            Icon(imageVector = Icons.Default.Call, contentDescription = "Phone number")
+            Text(
+                text = "Hello World" ,
+                color = Color.Black
+            )
         }
+
     }
 
 }
