@@ -140,7 +140,7 @@ class LoginScreen : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     private fun Password( modifier : Modifier ){
-        var password by remember{ mutableStateOf("") }
+        var password by rememberSaveable{ mutableStateOf("") }
         var passwordVisible by rememberSaveable { mutableStateOf(false) }
         OutlinedTextField(
             modifier = modifier,
@@ -167,12 +167,17 @@ class LoginScreen : ComponentActivity() {
 
     @Composable
     private fun LoginButton( modifier: Modifier ) {
-        val isEnabled by isLoginButtonEnabled.observeAsState()
         Button(
-            onClick = {  } ,
+            onClick = {
+               if( LoginManager.isUserLoggedIn() ) {
+
+               }
+               else {
+
+               }
+            } ,
             modifier = modifier
                 .defaultMinSize(minHeight = 0.2.dp , minWidth = 0.2.dp),
-            enabled = true,
             contentPadding = PaddingValues(8.dp),
             border = BorderStroke(width = 2.dp, color = MaterialTheme.colorScheme.background)
         ) {
@@ -206,7 +211,7 @@ class LoginScreen : ComponentActivity() {
 
                 modifier = Modifier
                     .size(40.dp)
-                    .offset(x = 30.dp , y = -25.dp),
+                    .offset(x = 30.dp, y = -25.dp),
 
 
             )
