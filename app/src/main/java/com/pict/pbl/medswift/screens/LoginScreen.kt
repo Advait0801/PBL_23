@@ -46,30 +46,38 @@ class LoginScreen : ComponentActivity() {
         }
     }
 
+    @Preview(showSystemUi = true)
     @Composable
     private fun ActivityUI(){
-        Column (
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.drawBehind {
-                drawCircle( color = blue1 , radius = 512.dp.toPx() )
-                drawCircle( color = blue2 , radius = 320.dp.toPx() )
-                drawCircle( color = Color.White , radius = 240.dp.toPx() )
-            }) {
-            // TODO: Add app icon here, with Image( ... )
-            val image = painterResource(id = R.drawable.app_icon )
-            Image(
-                painter = image ,
-                contentDescription = "App Icon"
-            )
-            EmailId( modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 32.dp, end = 32.dp) )
-            Password( modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 32.dp, end = 32.dp) )
-            LoginButton(modifier = Modifier.padding(16.dp))
+        Box(
+            modifier = Modifier,
+            contentAlignment = Alignment.CenterEnd
+        ) {
+            Column (
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.drawBehind {
+                    drawCircle( color = blue1 , radius = 512.dp.toPx() )
+                    drawCircle( color = blue2 , radius = 320.dp.toPx() )
+                    drawCircle( color = Color.White , radius = 240.dp.toPx() )
+                }) {
+                // TODO: Add app icon here, with Image( ... )
+                val image = painterResource(id = R.drawable.app_icon )
+                Image(
+                    painter = image ,
+                    contentDescription = "App Icon"
+                )
+                EmailId( modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 32.dp, end = 32.dp) )
+                Spacer(modifier = Modifier.height(16.dp))
+                Password( modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 32.dp, end = 32.dp) )
+            }
+            LoginButton(modifier = Modifier.padding(top = 50.dp))
         }
+
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -137,12 +145,11 @@ class LoginScreen : ComponentActivity() {
         Button(
             onClick = {  } ,
             modifier = modifier,
-            enabled = isEnabled ?: false ,
+            enabled = true ,
             colors = ButtonDefaults.buttonColors(
                 containerColor = blue1
             )) {
             Icon( imageVector = Icons.Default.ArrowForward , contentDescription = "Login" )
-            Text(text = "Login")
         }
     }
 
