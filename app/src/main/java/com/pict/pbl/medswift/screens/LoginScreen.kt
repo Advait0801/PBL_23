@@ -96,9 +96,11 @@ class LoginScreen : ComponentActivity() {
             Column (
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-            ) {
-                // TODO: Add app icon here, with Image( ... )
+                modifier = Modifier.drawBehind {
+                    drawCircle( color = blue1 , radius = 512.dp.toPx() )
+                    drawCircle( color = blue2 , radius = 320.dp.toPx() )
+                    drawCircle( color = Color.White , radius = 240.dp.toPx() )
+                }) {
                 val image = painterResource(id = R.drawable.app_icon )
                 Image(
                     painter = image ,
@@ -125,7 +127,6 @@ class LoginScreen : ComponentActivity() {
     @Composable
     private fun EmailId( modifier: Modifier ){
         var email by remember{ mutableStateOf("") }
-        // TODO: Add singleLine = true attribute here
         OutlinedTextField(
             modifier = modifier ,
             value = email,
@@ -145,9 +146,6 @@ class LoginScreen : ComponentActivity() {
     private fun Password( modifier : Modifier ){
         var password by remember{ mutableStateOf("") }
         var passwordVisible by rememberSaveable { mutableStateOf(false) }
-        // TODO: Add singleLine = true attribute here
-        // TODO: Implement 'Tap to show password' button here, refer
-        //       https://stackoverflow.com/a/66998457/13546426
         OutlinedTextField(
             modifier = modifier,
             value = password,
