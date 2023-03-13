@@ -1,1 +1,10 @@
-- Removed Enabled from `LoginScreen.kt`
+- Added `symptoms_output.json` in `assets` folder
+- Created `Symptoms.kt` in `data` package
+- Created `SymptomsScreen.kt` in `screens` package
+- Created `SymptomsJSONReader.kt` in `symptoms` package to read symptoms
+- Added Kotlin Serialization
+- Upgraded Kotlin version from `1.7.0` to `1.8.10`
+- Upgraded Compose compiler version from `1.2.0` to `1.4.3`
+- Created `HomeScreen.kt`
+- Added `Utils` in `api` package
+- Optimized imports (Removed unnecessary imports)

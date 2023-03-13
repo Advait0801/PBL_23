@@ -1,6 +1,5 @@
 package com.pict.pbl.medswift.login
 
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import java.util.regex.Pattern

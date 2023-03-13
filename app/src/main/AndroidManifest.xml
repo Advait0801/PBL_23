@@ -20,6 +20,9 @@
             android:name=".screens.RegisterScreen"
             android:exported="false" />
         <activity
+            android:name=".screens.SymptomsScreen"
+            android:exported="true" />
+        <activity
             android:name=".screens.LoginScreen"
             android:exported="true"
             android:label="@string/title_activity_login_screen"
