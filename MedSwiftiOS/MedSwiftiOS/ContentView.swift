@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         switch loginVM.state {
             case .loggedOut: LoginView()
-            case .loggedIn: ProfileView(userEntity: loginVM.currentUserEntity!)
+            case .loggedIn: HomeView().transition(.slide)
         }   
     }
 }

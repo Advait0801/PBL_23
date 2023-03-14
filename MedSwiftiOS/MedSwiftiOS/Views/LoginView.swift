@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var password = "ANNPP3131B"
-    @State var email = "crpatil1901@gmail.com"
+    @State var password = ""
+    @State var email = ""
     @State var isShowingSheet = false
     @State var isShowingVerificationScreen = false
     @EnvironmentObject var loginVM: LoginViewModel

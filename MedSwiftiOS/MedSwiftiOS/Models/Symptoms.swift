@@ -14,7 +14,7 @@ struct Symptom: Codable, Hashable {
     let name: String
     let type: TypeEnum
     let min, max: Double?
-    let welcomeDefault: Double
+    let defaultVal: Double
     let category: String
     let alias: String
     let wiki: String
@@ -28,7 +28,7 @@ struct Symptom: Codable, Hashable {
 
     enum CodingKeys: String, CodingKey {
         case text, laytext, name, type, min, max
-        case welcomeDefault = "default"
+        case defaultVal = "default"
         case category, alias, wiki, subcategory1, subcategory2, subcategory3, subcategory4
         case isPatientProvided = "IsPatientProvided"
         case step, choices

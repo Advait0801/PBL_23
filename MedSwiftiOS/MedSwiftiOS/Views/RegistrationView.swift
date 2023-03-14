@@ -10,7 +10,7 @@ import SwiftUI
 struct RegistrationView: View {
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject var loginVM: LoginViewModel
-    @State var userData = UserEntity.testUser
+    @State var userData = UserEntity(firstName: "", lastName: "", phoneNumber: "", email: "", bldGrp: .Ap, dateOfBirth: Date(), height: 150.0, weight: 60.0)
     @State private var password = ""
     @State var isShowingVerificationScreen = false
     @Binding var isVisible: Bool

@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  ProfileView.swift 
 //  MedSwiftiOS
 //
 //  Created by Chinmay Patil on 03/03/23.
@@ -8,7 +8,17 @@
 import SwiftUI
 
 struct ProfileView: View {
-    var userEntity = UserEntity.testUser
+    @EnvironmentObject var loginVM: LoginViewModel
+    
+    var userEntity: UserEntity {
+        if let user = loginVM.currentUserEntity {
+            return user
+        } else {
+            loginVM.state = .loggedOut
+            return UserEntity.testUser
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {

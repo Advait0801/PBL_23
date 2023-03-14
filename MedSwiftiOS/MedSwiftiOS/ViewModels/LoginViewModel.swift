@@ -20,7 +20,6 @@ class LoginViewModel: ObservableObject {
     var currentUserEntity: UserEntity?
     var errorDesc = ""
     
-    
     let manager = FirebaseManager.shared
     
     func registrationAction(_ user: UserEntity, pass: String) async {
@@ -83,6 +82,7 @@ class LoginViewModel: ObservableObject {
                 try? await manager.auth.currentUser?.sendEmailVerification()
                 self.currentUserEntity = userEntity
                 DispatchQueue.main.async {
+                    
                     self.state = .loggedOut
                     self.isLoading = false
                 }

@@ -21,7 +21,8 @@
 		822A746329A8BCFC009F3A95 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 822A746229A8BCFC009F3A95 /* FirebaseStorageCombine-Community */; };
 		822A746629A8C467009F3A95 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A746529A8C467009F3A95 /* Firebase.swift */; };
 		822A746929A8EB96009F3A95 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A746829A8EB96009F3A95 /* LoginViewModel.swift */; };
-		8262E83129BC3F490047F790 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8262E83029BC3F490047F790 /* SwiftUIView.swift */; };
+		8262E83329BF45D80047F790 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8262E83229BF45D80047F790 /* HomeView.swift */; };
+		8262E83629BF97D30047F790 /* DiagnosisBeginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8262E83529BF97D30047F790 /* DiagnosisBeginView.swift */; };
 		8264B6E229B9019500A9EDA8 /* Symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264B6E129B9019400A9EDA8 /* Symptoms.swift */; };
 		8264B6E429B9033900A9EDA8 /* EndlessMedicalAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264B6E329B9033900A9EDA8 /* EndlessMedicalAPI.swift */; };
 		8264B6E729B9037800A9EDA8 /* SymptomsOutput.json in Resources */ = {isa = PBXBuildFile; fileRef = 8264B6E629B9037800A9EDA8 /* SymptomsOutput.json */; };
@@ -43,7 +44,8 @@
 		822A745129A8BA3A009F3A95 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		822A746529A8C467009F3A95 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		822A746829A8EB96009F3A95 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		8262E83029BC3F490047F790 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		8262E83229BF45D80047F790 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		8262E83529BF97D30047F790 /* DiagnosisBeginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisBeginView.swift; sourceTree = "<group>"; };
 		8264B6E129B9019400A9EDA8 /* Symptoms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symptoms.swift; sourceTree = "<group>"; };
 		8264B6E329B9033900A9EDA8 /* EndlessMedicalAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessMedicalAPI.swift; sourceTree = "<group>"; };
 		8264B6E629B9037800A9EDA8 /* SymptomsOutput.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SymptomsOutput.json; sourceTree = "<group>"; };
@@ -105,6 +107,16 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		8262E83429BF47A50047F790 /* Diagnosis */ = {
+			isa = PBXGroup;
+			children = (
+				8264B6E829B9F2E100A9EDA8 /* SymptomSearchView.swift */,
+				8264B6EA29B9F7C500A9EDA8 /* SymptomDetailView.swift */,
+				8262E83529BF97D30047F790 /* DiagnosisBeginView.swift */,
+			);
+			path = Diagnosis;
+			sourceTree = "<group>";
+		};
 		8264B6E529B9036900A9EDA8 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,13 +169,12 @@
 		82F0192929A77A11003B33F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8262E83429BF47A50047F790 /* Diagnosis */,
 				82F0192A29A77A25003B33F4 /* LoginView.swift */,
 				82F0192C29A796DC003B33F4 /* RegistrationView.swift */,
 				820BAFE029AB641800F6D401 /* VerifyEmailView.swift */,
 				820BA3A329B268C80071CD0F /* ProfileView.swift */,
-				8264B6E829B9F2E100A9EDA8 /* SymptomSearchView.swift */,
-				8264B6EA29B9F7C500A9EDA8 /* SymptomDetailView.swift */,
-				8262E83029BC3F490047F790 /* SwiftUIView.swift */,
+				8262E83229BF45D80047F790 /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -256,6 +267,8 @@
 				820BAFE129AB641800F6D401 /* VerifyEmailView.swift in Sources */,
 				8264B6E429B9033900A9EDA8 /* EndlessMedicalAPI.swift in Sources */,
 				820BA3A429B268C80071CD0F /* ProfileView.swift in Sources */,
+				8262E83329BF45D80047F790 /* HomeView.swift in Sources */,
+				8262E83629BF97D30047F790 /* DiagnosisBeginView.swift in Sources */,
 				822A746629A8C467009F3A95 /* Firebase.swift in Sources */,
 				8264B6EB29B9F7C500A9EDA8 /* SymptomDetailView.swift in Sources */,
 				82F0191E29A77968003B33F4 /* ContentView.swift in Sources */,
@@ -267,7 +280,6 @@
 				822A745029A7D28D009F3A95 /* UserModel.swift in Sources */,
 				82F0192D29A796DC003B33F4 /* RegistrationView.swift in Sources */,
 				822A746929A8EB96009F3A95 /* LoginViewModel.swift in Sources */,
-				8262E83129BC3F490047F790 /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
