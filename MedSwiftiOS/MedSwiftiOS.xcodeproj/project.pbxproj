@@ -11,8 +11,10 @@
 		820BAFE129AB641800F6D401 /* VerifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820BAFE029AB641800F6D401 /* VerifyEmailView.swift */; };
 		821FE26029C08A3700B2A62C /* DiseasesOutput.json in Resources */ = {isa = PBXBuildFile; fileRef = 821FE25F29C08A3700B2A62C /* DiseasesOutput.json */; };
 		821FE26229C08A5400B2A62C /* Diseases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FE26129C08A5400B2A62C /* Diseases.swift */; };
+		821FE26429C1966200B2A62C /* DiseaseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FE26329C1966200B2A62C /* DiseaseCardView.swift */; };
+		821FE26629C1992A00B2A62C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 821FE26529C1992900B2A62C /* GoogleService-Info.plist */; };
+		821FE26829C1A28300B2A62C /* AnalysysResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FE26729C1A28300B2A62C /* AnalysysResponseModel.swift */; };
 		822A745029A7D28D009F3A95 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A744F29A7D28D009F3A95 /* UserModel.swift */; };
-		822A745229A8BA3A009F3A95 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 822A745129A8BA3A009F3A95 /* GoogleService-Info.plist */; };
 		822A745529A8BCFC009F3A95 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 822A745429A8BCFC009F3A95 /* FirebaseAuth */; };
 		822A745729A8BCFC009F3A95 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 822A745629A8BCFC009F3A95 /* FirebaseDatabase */; };
 		822A745929A8BCFC009F3A95 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 822A745829A8BCFC009F3A95 /* FirebaseDatabaseSwift */; };
@@ -44,8 +46,10 @@
 		820BAFE029AB641800F6D401 /* VerifyEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailView.swift; sourceTree = "<group>"; };
 		821FE25F29C08A3700B2A62C /* DiseasesOutput.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DiseasesOutput.json; sourceTree = "<group>"; };
 		821FE26129C08A5400B2A62C /* Diseases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diseases.swift; sourceTree = "<group>"; };
+		821FE26329C1966200B2A62C /* DiseaseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseCardView.swift; sourceTree = "<group>"; };
+		821FE26529C1992900B2A62C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		821FE26729C1A28300B2A62C /* AnalysysResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysysResponseModel.swift; sourceTree = "<group>"; };
 		822A744F29A7D28D009F3A95 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		822A745129A8BA3A009F3A95 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		822A746529A8C467009F3A95 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		822A746829A8EB96009F3A95 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8262E83229BF45D80047F790 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 				822A744F29A7D28D009F3A95 /* UserModel.swift */,
 				8264B6E129B9019400A9EDA8 /* Symptoms.swift */,
 				821FE26129C08A5400B2A62C /* Diseases.swift */,
+				821FE26729C1A28300B2A62C /* AnalysysResponseModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 				8264B6E829B9F2E100A9EDA8 /* SymptomSearchView.swift */,
 				8264B6EA29B9F7C500A9EDA8 /* SymptomDetailView.swift */,
 				8262E83529BF97D30047F790 /* DiagnosisBeginView.swift */,
+				821FE26329C1966200B2A62C /* DiseaseCardView.swift */,
 			);
 			path = Diagnosis;
 			sourceTree = "<group>";
@@ -153,7 +159,7 @@
 				8264B6E529B9036900A9EDA8 /* Data */,
 				822A746729A8EAE1009F3A95 /* ViewModels */,
 				822A746429A8C413009F3A95 /* Services */,
-				822A745129A8BA3A009F3A95 /* GoogleService-Info.plist */,
+				821FE26529C1992900B2A62C /* GoogleService-Info.plist */,
 				822A744E29A7D12B009F3A95 /* Models */,
 				82F0192929A77A11003B33F4 /* Views */,
 				82F0191B29A77968003B33F4 /* MedSwiftiOSApp.swift */,
@@ -257,10 +263,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8264B6E729B9037800A9EDA8 /* SymptomsOutput.json in Resources */,
+				821FE26629C1992A00B2A62C /* GoogleService-Info.plist in Resources */,
 				821FE26029C08A3700B2A62C /* DiseasesOutput.json in Resources */,
 				82F0192329A77969003B33F4 /* Preview Assets.xcassets in Resources */,
 				82F0192029A77969003B33F4 /* Assets.xcassets in Resources */,
-				822A745229A8BA3A009F3A95 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +286,7 @@
 				822A746629A8C467009F3A95 /* Firebase.swift in Sources */,
 				8264B6EB29B9F7C500A9EDA8 /* SymptomDetailView.swift in Sources */,
 				82F0191E29A77968003B33F4 /* ContentView.swift in Sources */,
+				821FE26429C1966200B2A62C /* DiseaseCardView.swift in Sources */,
 				8264B6E929B9F2E100A9EDA8 /* SymptomSearchView.swift in Sources */,
 				82F0191C29A77968003B33F4 /* MedSwiftiOSApp.swift in Sources */,
 				82D4EAC529BB31100006ACED /* SymptomAnalyzerViewModel.swift in Sources */,
@@ -287,6 +294,7 @@
 				82F0192B29A77A25003B33F4 /* LoginView.swift in Sources */,
 				822A745029A7D28D009F3A95 /* UserModel.swift in Sources */,
 				82F0192D29A796DC003B33F4 /* RegistrationView.swift in Sources */,
+				821FE26829C1A28300B2A62C /* AnalysysResponseModel.swift in Sources */,
 				822A746929A8EB96009F3A95 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

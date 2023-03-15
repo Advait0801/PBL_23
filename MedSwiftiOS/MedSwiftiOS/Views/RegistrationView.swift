@@ -10,7 +10,7 @@ import SwiftUI
 struct RegistrationView: View {
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject var loginVM: LoginViewModel
-    @State var userData = UserEntity(firstName: "", lastName: "", phoneNumber: "", email: "", bldGrp: .Ap, dateOfBirth: Date(), height: 150.0, weight: 60.0)
+    @State var userData = UserEntity(firstName: "", lastName: "", phoneNumber: "", email: "", bldGrp: .Ap, dateOfBirth: Date(), height: 150.0, weight: 60.0, gender: .male)
     @State private var password = ""
     @State var isShowingVerificationScreen = false
     @Binding var isVisible: Bool
@@ -20,8 +20,10 @@ struct RegistrationView: View {
             Section("Enter your information") {
                 TextField("First Name", text: $userData.firstName)
                     .textContentType(.givenName)
+                    .autocorrectionDisabled(true)
                 TextField("Last Name", text: $userData.lastName)
                     .textContentType(.givenName)
+                    .autocorrectionDisabled(true)
             }
             Section {
                 TextField("Email", text: $userData.email)
@@ -37,6 +39,11 @@ struct RegistrationView: View {
                 Picker("Blood Group", selection: $userData.bldGrp) {
                     ForEach(BloodGroup.allCases, id: \.self) { grp in
                         Text(grp.rawValue)
+                    }
+                }
+                Picker("Gender", selection: $userData.gender) {
+                    ForEach(Gender.allCases, id: \.self) { gender in
+                        Text(gender.rawValue)
                     }
                 }
                 DatePicker(

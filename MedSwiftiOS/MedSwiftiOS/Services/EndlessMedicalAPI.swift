@@ -10,6 +10,7 @@ import Foundation
 class SymptomAnalyser {
     
     var symptoms: [Symptom]
+    var diseases: [String : Disease]
     
     let baseURL = "https://api.endlessmedical.com/v1/dx/"
     
@@ -24,6 +25,8 @@ class SymptomAnalyser {
         } else {
             throw SymptomAnalyzerError.badResponse
         }
+        
+        
     }
     
     func acceptTermsOfUse(sessionID: String) async throws {
@@ -67,19 +70,27 @@ class SymptomAnalyser {
         }
     }
     
-    func analyze(sessionID: String) async throws {
+    func analyze(sessionID: String) async throws -> [DiseaseProbability] {
         let queryItems = [
             URLQueryItem(name: "SessionID", value: sessionID),
         ]
         guard var url = URL(string: baseURL + "Analyze") else { throw SymptomAnalyzerError.invalidURL }
         url.append(queryItems: queryItems)
+        print(url.absoluteString)
         let (data, _) = try await URLSession.shared.data(from: url)
-        guard let decodedData = try JSONSerialization
-            .jsonObject(with: data, options: .mutableContainers) as? [String : AnyObject] else { throw SymptomAnalyzerError.badResponse }
-        if decodedData["status"] as? String != "ok" {
+        guard let reponseAnalysis = try? JSONDecoder().decode(AnalysisResponse.self, from: data) else { throw SymptomAnalyzerError.analysisFailed }
+        if reponseAnalysis.status != "ok" {
             throw SymptomAnalyzerError.analysisFailed
+        } else {
+            var diagnosis = [DiseaseProbability]()
+            for pair in reponseAnalysis.diseases {
+                print(pair.keys.first!)
+                guard let disease = self.diseases[pair.keys.first!] else { continue }
+                diagnosis.append(DiseaseProbability(disease: disease, probability: Double(pair.values.first!)!))
+                
+            }
+            return diagnosis
         }
-        print(decodedData)
     }
     
     func getDiagnosis(symptoms: [Symptom : Double]) async {
@@ -90,31 +101,49 @@ class SymptomAnalyser {
                 let value = String(format: pair.key.type == .double ? "%.2f" : "%.0f", pair.value)
                 try await uploadSymptom(sessionID: sessionID, symptomName: pair.key.name, value: value)
             }
-            try await analyze(sessionID: sessionID)
+            let analysis = try await analyze(sessionID: sessionID)
+            analysis.forEach { dp in
+                print(dp.disease.name, dp.probability)
+            }
         } catch {
             print(error)
         }
     }
     
     init() {
-        let data: Data
-        let filename = "SymptomsOutput.json"
-        guard let file = Bundle.main.url(forResource: filename, withExtension: nil) else {
-            fatalError("Couldn't find \(filename) in main bundle.")
+        let symptomsData: Data
+        let diseasesData: Data
+        let symptomsFilename = "SymptomsOutput.json"
+        let diseasesFilename = "DiseasesOutput.json"
+        
+        guard let symptomsFile = Bundle.main.url(forResource: symptomsFilename, withExtension: nil) else {
+            fatalError("Couldn't find \(symptomsFilename) in main bundle.")
+        }
+        guard let diseasesFile = Bundle.main.url(forResource: diseasesFilename, withExtension: nil) else {
+            fatalError("Couldn't find \(diseasesFilename) in main bundle.")
         }
         
         do {
-            data = try Data(contentsOf: file)
+            symptomsData = try Data(contentsOf: symptomsFile)
+            diseasesData = try Data(contentsOf: diseasesFile)
         } catch {
-            fatalError("Couldn't load \(filename) from main bundle:\n\(error)")
+            fatalError("Couldn't load data from main bundle:\n\(error)")
         }
         
         do {
             let decoder = JSONDecoder()
-            self.symptoms = try decoder.decode(Symptoms.self, from: data)
+            self.symptoms = try decoder.decode(Symptoms.self, from: symptomsData)
+            let diseasesArray = try decoder.decode(Diseases.self, from: diseasesData)
+            self.diseases = [String : Disease]()
+            diseasesArray.forEach { disease in
+                self.diseases[disease.text] = disease
+            }
+            
         } catch {
-            fatalError("Couldn't parse \(filename) as \(Symptoms.self): \n\(error)")
+            fatalError("Couldn't parse \(symptomsFilename) as \(Symptoms.self): \n\(error)")
         }
+        
+        
     }
 }
 

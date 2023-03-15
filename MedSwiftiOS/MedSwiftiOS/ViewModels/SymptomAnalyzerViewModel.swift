@@ -23,9 +23,17 @@ class SymptomAnalyzerViewModel: ObservableObject {
         
         let age = Int((-userEntity.dateOfBirth.timeIntervalSinceNow) / (3600 * 24 * 365.25))
         let bmi = userEntity.weight * 10000 / (userEntity.height * userEntity.height)
+        let gender = api.symptoms.first { $0.name == "Gender" }!
         
         selectedSymptoms[api.symptoms[1]] = bmi
         selectedSymptoms[api.symptoms[0]] = Double(age)
+        if userEntity.gender == .male {
+            selectedSymptoms[gender] = 2.0
+        } else if userEntity.gender == .female {
+            selectedSymptoms[gender] = 3.0
+        } else {
+            selectedSymptoms[gender] = 1.0
+        }
         
     }
 }

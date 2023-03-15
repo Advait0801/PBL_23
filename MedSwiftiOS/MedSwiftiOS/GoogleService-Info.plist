@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>512908320957-mudshtc3l0i6g4kl8ei9fsaffqngc79s.apps.googleusercontent.com</string>
+	<string>35222755716-lnpi7om50fo4liidp7pisg49f1gg0ovu.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.512908320957-mudshtc3l0i6g4kl8ei9fsaffqngc79s</string>
+	<string>com.googleusercontent.apps.35222755716-lnpi7om50fo4liidp7pisg49f1gg0ovu</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDY4fHK5IEtaDQf3N-FrjB8dhJZhru0ZNU</string>
+	<string>AIzaSyClgkg0GnP9MyAQQ6Tw1tt_R-JvDoeJs24</string>
 	<key>GCM_SENDER_ID</key>
-	<string>512908320957</string>
+	<string>35222755716</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.crpatil1901.MedSwiftiOS</string>
 	<key>PROJECT_ID</key>
-	<string>hehehehehe-f1b43</string>
+	<string>pbl23-70059</string>
 	<key>STORAGE_BUCKET</key>
-	<string>hehehehehe-f1b43.appspot.com</string>
+	<string>pbl23-70059.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:512908320957:ios:778beaf406e930350f57d4</string>
+	<string>1:35222755716:ios:00b2e348a970784418a5d1</string>
 </dict>
 </plist>
