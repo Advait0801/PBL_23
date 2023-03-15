@@ -1,9 +1,13 @@
 package com.pict.pbl.medswift.screens
 
 //import androidx.compose.material.icons.fille
+import android.content.DialogInterface
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -20,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -31,11 +36,17 @@ import androidx.lifecycle.MutableLiveData
 import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.login.LoginManager
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
+import com.pict.pbl.medswift.viewmodels.LoginViewModel
 
 
 class LoginScreen : ComponentActivity() {
 
     private val isLoginButtonEnabled = MutableLiveData( false )
+    private val loginViewModel : LoginViewModel by viewModels()
+    private lateinit var loginManager: LoginManager
+
+    private var userEmail = mutableStateOf( "" )
+    private var userPassword = mutableStateOf( "" )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,12 +59,29 @@ class LoginScreen : ComponentActivity() {
                 ) {
                     ActivityUI()
                 }
+
+
+
             }
 
         }
-        /*
-        TODO: Listen for changes in internet connection, if the internet is off, show a warning to the user
-         */
+
+        loginManager = LoginManager( loginViewModel )
+
+        loginViewModel.errorMessageFlag.observe( this ) {
+            if( it ) {
+                val errorMessage = loginViewModel.errorMessage.value
+                val dialog = AlertDialog.Builder( this ).apply {
+                    title = "Error"
+                    setMessage( errorMessage )
+                    setPositiveButton( "CANCEL") { dialog, which ->
+                        dialog.dismiss()
+                    }
+                }
+                dialog.show()
+            }
+        }
+
     }
 
     @Composable
@@ -69,9 +97,7 @@ class LoginScreen : ComponentActivity() {
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
                     .fillMaxSize()
-            ) {
-
-            }
+            ) { }
             Surface(
                 color = MaterialTheme.colorScheme.primaryContainer,
                 modifier = Modifier
@@ -117,7 +143,7 @@ class LoginScreen : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     private fun EmailId( modifier: Modifier ){
-        var email by remember{ mutableStateOf("") }
+        var email by remember{ userEmail }
         OutlinedTextField(
             modifier = modifier ,
             value = email,
@@ -135,7 +161,7 @@ class LoginScreen : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     private fun Password( modifier : Modifier ){
-        var password by rememberSaveable{ mutableStateOf("") }
+        var password by rememberSaveable{ userPassword }
         var passwordVisible by rememberSaveable { mutableStateOf(false) }
         OutlinedTextField(
             modifier = modifier,
@@ -162,14 +188,11 @@ class LoginScreen : ComponentActivity() {
 
     @Composable
     private fun LoginButton( modifier: Modifier ) {
+        val context = LocalContext.current
         Button(
             onClick = {
-               if( LoginManager.isUserLoggedIn() ) {
-                   // TODO: Manage transition to HomeScreen, else show on-boarding screen
-               }
-               else {
-                   // TODO: Manage user login error here
-               }
+                Toast.makeText( context , "Email: ${userEmail.value} and Password ${userPassword.value}" , Toast.LENGTH_LONG ).show()
+                loginManager.createUser( userEmail.value , userPassword.value )
             } ,
             modifier = modifier
                 .defaultMinSize(minHeight = 0.2.dp , minWidth = 0.2.dp),

@@ -12,10 +12,8 @@
         android:theme="@style/Theme.MedSwift"
         tools:targetApi="31" >
         <activity
-            android:name=".MedSwiftIcon"
-            android:exported="false"
-            android:label="@string/title_activity_med_swift_icon"
-            android:theme="@style/Theme.MedSwift" />
+            android:name=".screens.ProfileScreen"
+            android:exported="false" />
         <activity
             android:name=".screens.RegisterScreen"
             android:exported="false" />
@@ -29,7 +27,6 @@
             android:theme="@style/Theme.MedSwift" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

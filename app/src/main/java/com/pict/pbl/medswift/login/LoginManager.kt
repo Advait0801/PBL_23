@@ -2,9 +2,11 @@ package com.pict.pbl.medswift.login
 
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.pict.pbl.medswift.viewmodels.LoginViewModel
 import java.util.regex.Pattern
+import kotlin.math.log
 
-class LoginManager {
+class LoginManager( private val loginViewModel: LoginViewModel? = null ) {
 
     private val firebaseAuth = Firebase.auth
 
@@ -26,15 +28,20 @@ class LoginManager {
     fun createUser( emailAddress: String , password: String ) {
         firebaseAuth.createUserWithEmailAndPassword( emailAddress , password )
             .addOnSuccessListener {
+                // TODO: Send verification email
             }
             .addOnFailureListener {
-                // TODO: Handle user creation exception here
+                if( loginViewModel != null ) {
+                    loginViewModel.errorMessage.value = it.message
+                    loginViewModel.errorMessageFlag.value = true
+                }
             }
     }
 
     fun validateUser( emailAddress : String , password : String ) {
         firebaseAuth.signInWithEmailAndPassword( emailAddress , password )
             .addOnSuccessListener {
+                firebaseAuth.currentUser?.sendEmailVerification()
                 // TODO: Go to home screen
             }
             .addOnFailureListener {
