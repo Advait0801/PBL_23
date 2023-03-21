@@ -12,6 +12,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -22,11 +23,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -143,6 +147,7 @@ class LoginScreen : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     private fun EmailId( modifier: Modifier ){
+        var focusManager = LocalFocusManager.current
         var email by remember{ userEmail }
         OutlinedTextField(
             modifier = modifier ,
@@ -154,7 +159,8 @@ class LoginScreen : ComponentActivity() {
             } ,
             placeholder = { Text("Enter your EmailID") } ,
             leadingIcon = { Icon( imageVector = Icons.Default.Email , contentDescription = "Email Address" ) }  ,
-            keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Email )
+            keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Email , imeAction = ImeAction.Next),
+            keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Down)})
         )
     }
 
@@ -182,7 +188,8 @@ class LoginScreen : ComponentActivity() {
                     Icon(imageVector  = image, description)
                 }
             },
-            keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Password )
+            keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Password , imeAction = ImeAction.Done),
+            //keyboardActions = KeyboardActions()
         )
     }
 
@@ -215,14 +222,14 @@ class LoginScreen : ComponentActivity() {
             modifier = modifier
                 .padding(24.dp)
         ){
-           Text(
-               "MedSwift",
-               color = MaterialTheme.colorScheme.onTertiaryContainer,
-               style = MaterialTheme.typography.headlineLarge.copy(
-                   fontWeight = FontWeight.Bold
-               )
+            Text(
+                "MedSwift",
+                color = MaterialTheme.colorScheme.onTertiaryContainer,
+                style = MaterialTheme.typography.headlineLarge.copy(
+                    fontWeight = FontWeight.Bold
+                )
 //               fontStyle = MaterialTheme.typography.headlineLarge,
-           )
+            )
             Icon(
                 imageVector = Icons.Default.Add,
                 contentDescription = null,
@@ -232,9 +239,8 @@ class LoginScreen : ComponentActivity() {
                     .offset(x = 30.dp, y = -25.dp),
 
 
-            )
+                )
         }
     }
 
 }
-
