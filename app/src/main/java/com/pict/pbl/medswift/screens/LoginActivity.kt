@@ -1,13 +1,10 @@
 package com.pict.pbl.medswift.screens
 
-//import androidx.compose.material.icons.fille
-import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -18,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,12 +36,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
 import com.pict.pbl.medswift.R
+import com.pict.pbl.medswift.data.SymptomChoiceType
 import com.pict.pbl.medswift.login.LoginManager
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.viewmodels.LoginViewModel
 
 
-class LoginScreen : ComponentActivity() {
+class LoginActivity : ComponentActivity() {
 
     private val isLoginButtonEnabled = MutableLiveData( false )
     private val loginViewModel : LoginViewModel by viewModels()
@@ -72,52 +71,16 @@ class LoginScreen : ComponentActivity() {
 
         loginManager = LoginManager( loginViewModel )
 
-        loginViewModel.errorMessageFlag.observe( this ) {
-            if( it ) {
-                val errorMessage = loginViewModel.errorMessage.value
-                val dialog = AlertDialog.Builder( this ).apply {
-                    title = "Error"
-                    setMessage( errorMessage )
-                    setPositiveButton( "CANCEL") { dialog, which ->
-                        dialog.dismiss()
-                    }
-                }
-                dialog.show()
-            }
-        }
 
     }
 
     @Composable
     private fun ActivityUI(){
-        val screenConfig = LocalConfiguration.current
-        val screenWidth = screenConfig.screenWidthDp.dp
-        println(screenWidth)
         Box(
             modifier = Modifier,
             contentAlignment = Alignment.CenterEnd
         ) {
-            Surface(
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier
-                    .fillMaxSize()
-            ) { }
-            Surface(
-                color = MaterialTheme.colorScheme.primaryContainer,
-                modifier = Modifier
-                    .width(screenWidth)
-                    .height(screenWidth)
-                    .scale(1.7f)
-                    .clip(CircleShape)
-            ) { }
-            Surface(
-                color = MaterialTheme.colorScheme.background,
-                modifier = Modifier
-                    .width(screenWidth)
-                    .height(screenWidth)
-                    .scale(1.4f)
-                    .clip(CircleShape)
-            ) { }
+            ConcentricCirclesBackground()
             Column (
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -140,9 +103,52 @@ class LoginScreen : ComponentActivity() {
                 modifier = Modifier
                     .padding(top = 50.dp, end = 10.dp)
             )
+            AlertDialog()
         }
-
     }
+
+    @Composable
+    private fun ConcentricCirclesBackground() {
+        val screenConfig = LocalConfiguration.current
+        val screenWidth = screenConfig.screenWidthDp.dp
+        Surface(
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier
+                .fillMaxSize()
+        ) { }
+        Surface(
+            color = MaterialTheme.colorScheme.primaryContainer,
+            modifier = Modifier
+                .width(screenWidth)
+                .height(screenWidth)
+                .scale(1.7f)
+                .clip(CircleShape)
+        ) { }
+        Surface(
+            color = MaterialTheme.colorScheme.background,
+            modifier = Modifier
+                .width(screenWidth)
+                .height(screenWidth)
+                .scale(1.4f)
+                .clip(CircleShape)
+        ) { }
+    }
+
+    @Composable
+    private fun AlertDialog() {
+        val errorMessageFlag by loginViewModel.errorMessageFlag.observeAsState()
+        var openDialog by rememberSaveable{ mutableStateOf( true ) }
+        if( errorMessageFlag == true && openDialog ){
+            AlertDialog(
+                onDismissRequest = { openDialog = false } ,
+                title = { Text( "Error Message" ) } ,
+                text = { Text( loginViewModel.errorMessage.value ?: "" ) } ,
+                confirmButton = {
+                    Button(onClick = { openDialog = false } ){ Text(text = "CANCEL")} } ,
+            )
+        }
+    }
+
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable

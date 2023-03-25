@@ -4,7 +4,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.pict.pbl.medswift.viewmodels.LoginViewModel
 import java.util.regex.Pattern
-import kotlin.math.log
 
 class LoginManager( private val loginViewModel: LoginViewModel? = null ) {
 

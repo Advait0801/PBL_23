@@ -1,5 +1,9 @@
 package com.pict.pbl.medswift.data
 
+import kotlinx.serialization.Transient
+
+data class AnalyzeSymptom( val name : String , var value : String )
+
 @kotlinx.serialization.Serializable
 enum class SymptomChoiceType( val value : String ) {
     categorical( "categorical" ),
@@ -36,5 +40,6 @@ data class Symptom(
     val subcategory4 : String ,
     val IsPatientProvided : Boolean,
     val step : Double? = null,
-    val choices : Array<SymptomChoice>? = null
+    val choices : Array<SymptomChoice>? = null ,
+    @Transient var isUserSelected : Boolean = false
 )
