@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Disease
-struct Disease: Codable {
+struct Disease: Codable, Hashable {
     let name, text, laytext: String
     let category: Category
     let alias: String?

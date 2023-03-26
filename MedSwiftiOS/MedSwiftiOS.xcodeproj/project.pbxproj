@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8207B75C29CAE18F0030622F /* Syringe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8207B75B29CAE18F0030622F /* Syringe.swift */; };
 		820BA3A429B268C80071CD0F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820BA3A329B268C80071CD0F /* ProfileView.swift */; };
 		820BAFE129AB641800F6D401 /* VerifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820BAFE029AB641800F6D401 /* VerifyEmailView.swift */; };
+		821E58C429C221540051BCAB /* DiagnosisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821E58C329C221540051BCAB /* DiagnosisView.swift */; };
 		821FE26029C08A3700B2A62C /* DiseasesOutput.json in Resources */ = {isa = PBXBuildFile; fileRef = 821FE25F29C08A3700B2A62C /* DiseasesOutput.json */; };
 		821FE26229C08A5400B2A62C /* Diseases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FE26129C08A5400B2A62C /* Diseases.swift */; };
 		821FE26429C1966200B2A62C /* DiseaseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FE26329C1966200B2A62C /* DiseaseCardView.swift */; };
 		821FE26629C1992A00B2A62C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 821FE26529C1992900B2A62C /* GoogleService-Info.plist */; };
 		821FE26829C1A28300B2A62C /* AnalysysResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FE26729C1A28300B2A62C /* AnalysysResponseModel.swift */; };
+		8223985629CC6F0B00E19BF1 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223985529CC6F0B00E19BF1 /* EditProfileView.swift */; };
 		822A745029A7D28D009F3A95 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A744F29A7D28D009F3A95 /* UserModel.swift */; };
 		822A745529A8BCFC009F3A95 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 822A745429A8BCFC009F3A95 /* FirebaseAuth */; };
 		822A745729A8BCFC009F3A95 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 822A745629A8BCFC009F3A95 /* FirebaseDatabase */; };
@@ -25,6 +28,7 @@
 		822A746329A8BCFC009F3A95 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 822A746229A8BCFC009F3A95 /* FirebaseStorageCombine-Community */; };
 		822A746629A8C467009F3A95 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A746529A8C467009F3A95 /* Firebase.swift */; };
 		822A746929A8EB96009F3A95 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A746829A8EB96009F3A95 /* LoginViewModel.swift */; };
+		822EC9E029CD943B0083886B /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822EC9DF29CD943B0083886B /* CircularProgressView.swift */; };
 		8262E83329BF45D80047F790 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8262E83229BF45D80047F790 /* HomeView.swift */; };
 		8262E83629BF97D30047F790 /* DiagnosisBeginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8262E83529BF97D30047F790 /* DiagnosisBeginView.swift */; };
 		8264B6E229B9019500A9EDA8 /* Symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264B6E129B9019400A9EDA8 /* Symptoms.swift */; };
@@ -32,6 +36,9 @@
 		8264B6E729B9037800A9EDA8 /* SymptomsOutput.json in Resources */ = {isa = PBXBuildFile; fileRef = 8264B6E629B9037800A9EDA8 /* SymptomsOutput.json */; };
 		8264B6E929B9F2E100A9EDA8 /* SymptomSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264B6E829B9F2E100A9EDA8 /* SymptomSearchView.swift */; };
 		8264B6EB29B9F7C500A9EDA8 /* SymptomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264B6EA29B9F7C500A9EDA8 /* SymptomDetailView.swift */; };
+		82872F9229CEA6D800AD8735 /* DiagnosisHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82872F9129CEA6D800AD8735 /* DiagnosisHistory.swift */; };
+		82872F9529CEDC5C00AD8735 /* HistoryHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82872F9429CEDC5C00AD8735 /* HistoryHomeView.swift */; };
+		82872F9729CEF27700AD8735 /* HistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82872F9629CEF27700AD8735 /* HistoryDetailView.swift */; };
 		82D4EAC529BB31100006ACED /* SymptomAnalyzerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D4EAC429BB31100006ACED /* SymptomAnalyzerViewModel.swift */; };
 		82F0191C29A77968003B33F4 /* MedSwiftiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0191B29A77968003B33F4 /* MedSwiftiOSApp.swift */; };
 		82F0191E29A77968003B33F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0191D29A77968003B33F4 /* ContentView.swift */; };
@@ -39,19 +46,25 @@
 		82F0192329A77969003B33F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82F0192229A77969003B33F4 /* Preview Assets.xcassets */; };
 		82F0192B29A77A25003B33F4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0192A29A77A25003B33F4 /* LoginView.swift */; };
 		82F0192D29A796DC003B33F4 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F0192C29A796DC003B33F4 /* RegistrationView.swift */; };
+		82F6E73729C2011400EC6A13 /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F6E73629C2011400EC6A13 /* Chip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8207B75A29CAB74A0030622F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8207B75B29CAE18F0030622F /* Syringe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syringe.swift; sourceTree = "<group>"; };
 		820BA3A329B268C80071CD0F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		820BAFE029AB641800F6D401 /* VerifyEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailView.swift; sourceTree = "<group>"; };
+		821E58C329C221540051BCAB /* DiagnosisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisView.swift; sourceTree = "<group>"; };
 		821FE25F29C08A3700B2A62C /* DiseasesOutput.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DiseasesOutput.json; sourceTree = "<group>"; };
 		821FE26129C08A5400B2A62C /* Diseases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diseases.swift; sourceTree = "<group>"; };
 		821FE26329C1966200B2A62C /* DiseaseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiseaseCardView.swift; sourceTree = "<group>"; };
 		821FE26529C1992900B2A62C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		821FE26729C1A28300B2A62C /* AnalysysResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysysResponseModel.swift; sourceTree = "<group>"; };
+		8223985529CC6F0B00E19BF1 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		822A744F29A7D28D009F3A95 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		822A746529A8C467009F3A95 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		822A746829A8EB96009F3A95 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		822EC9DF29CD943B0083886B /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		8262E83229BF45D80047F790 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8262E83529BF97D30047F790 /* DiagnosisBeginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisBeginView.swift; sourceTree = "<group>"; };
 		8264B6E129B9019400A9EDA8 /* Symptoms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symptoms.swift; sourceTree = "<group>"; };
@@ -59,6 +72,9 @@
 		8264B6E629B9037800A9EDA8 /* SymptomsOutput.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SymptomsOutput.json; sourceTree = "<group>"; };
 		8264B6E829B9F2E100A9EDA8 /* SymptomSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomSearchView.swift; sourceTree = "<group>"; };
 		8264B6EA29B9F7C500A9EDA8 /* SymptomDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomDetailView.swift; sourceTree = "<group>"; };
+		82872F9129CEA6D800AD8735 /* DiagnosisHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisHistory.swift; sourceTree = "<group>"; };
+		82872F9429CEDC5C00AD8735 /* HistoryHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHomeView.swift; sourceTree = "<group>"; };
+		82872F9629CEF27700AD8735 /* HistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailView.swift; sourceTree = "<group>"; };
 		82D4EAC429BB31100006ACED /* SymptomAnalyzerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomAnalyzerViewModel.swift; sourceTree = "<group>"; };
 		82F0191829A77968003B33F4 /* MedSwiftiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedSwiftiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F0191B29A77968003B33F4 /* MedSwiftiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedSwiftiOSApp.swift; sourceTree = "<group>"; };
@@ -67,6 +83,7 @@
 		82F0192229A77969003B33F4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		82F0192A29A77A25003B33F4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		82F0192C29A796DC003B33F4 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		82F6E73629C2011400EC6A13 /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +105,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8223985229CC6EB600E19BF1 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				82F0192A29A77A25003B33F4 /* LoginView.swift */,
+				820BAFE029AB641800F6D401 /* VerifyEmailView.swift */,
+				82F0192C29A796DC003B33F4 /* RegistrationView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8223985429CC6EF200E19BF1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				820BA3A329B268C80071CD0F /* ProfileView.swift */,
+				8223985529CC6F0B00E19BF1 /* EditProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		822A744E29A7D12B009F3A95 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +131,7 @@
 				8264B6E129B9019400A9EDA8 /* Symptoms.swift */,
 				821FE26129C08A5400B2A62C /* Diseases.swift */,
 				821FE26729C1A28300B2A62C /* AnalysysResponseModel.swift */,
+				82872F9129CEA6D800AD8735 /* DiagnosisHistory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -120,10 +157,12 @@
 		8262E83429BF47A50047F790 /* Diagnosis */ = {
 			isa = PBXGroup;
 			children = (
+				82872F9329CEDC4B00AD8735 /* History */,
 				8264B6E829B9F2E100A9EDA8 /* SymptomSearchView.swift */,
 				8264B6EA29B9F7C500A9EDA8 /* SymptomDetailView.swift */,
 				8262E83529BF97D30047F790 /* DiagnosisBeginView.swift */,
 				821FE26329C1966200B2A62C /* DiseaseCardView.swift */,
+				821E58C329C221540051BCAB /* DiagnosisView.swift */,
 			);
 			path = Diagnosis;
 			sourceTree = "<group>";
@@ -135,6 +174,15 @@
 				821FE25F29C08A3700B2A62C /* DiseasesOutput.json */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		82872F9329CEDC4B00AD8735 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				82872F9429CEDC5C00AD8735 /* HistoryHomeView.swift */,
+				82872F9629CEF27700AD8735 /* HistoryDetailView.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		82F0190F29A77968003B33F4 = {
@@ -156,10 +204,11 @@
 		82F0191A29A77968003B33F4 /* MedSwiftiOS */ = {
 			isa = PBXGroup;
 			children = (
+				8207B75A29CAB74A0030622F /* Info.plist */,
+				821FE26529C1992900B2A62C /* GoogleService-Info.plist */,
 				8264B6E529B9036900A9EDA8 /* Data */,
 				822A746729A8EAE1009F3A95 /* ViewModels */,
 				822A746429A8C413009F3A95 /* Services */,
-				821FE26529C1992900B2A62C /* GoogleService-Info.plist */,
 				822A744E29A7D12B009F3A95 /* Models */,
 				82F0192929A77A11003B33F4 /* Views */,
 				82F0191B29A77968003B33F4 /* MedSwiftiOSApp.swift */,
@@ -181,14 +230,23 @@
 		82F0192929A77A11003B33F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8223985429CC6EF200E19BF1 /* Profile */,
+				8223985229CC6EB600E19BF1 /* Login */,
+				82F6E73529C2007A00EC6A13 /* Utilities */,
 				8262E83429BF47A50047F790 /* Diagnosis */,
-				82F0192A29A77A25003B33F4 /* LoginView.swift */,
-				82F0192C29A796DC003B33F4 /* RegistrationView.swift */,
-				820BAFE029AB641800F6D401 /* VerifyEmailView.swift */,
-				820BA3A329B268C80071CD0F /* ProfileView.swift */,
 				8262E83229BF45D80047F790 /* HomeView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		82F6E73529C2007A00EC6A13 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				82F6E73629C2011400EC6A13 /* Chip.swift */,
+				8207B75B29CAE18F0030622F /* Syringe.swift */,
+				822EC9DF29CD943B0083886B /* CircularProgressView.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,21 +338,29 @@
 				820BAFE129AB641800F6D401 /* VerifyEmailView.swift in Sources */,
 				8264B6E429B9033900A9EDA8 /* EndlessMedicalAPI.swift in Sources */,
 				820BA3A429B268C80071CD0F /* ProfileView.swift in Sources */,
+				821E58C429C221540051BCAB /* DiagnosisView.swift in Sources */,
 				8262E83329BF45D80047F790 /* HomeView.swift in Sources */,
 				821FE26229C08A5400B2A62C /* Diseases.swift in Sources */,
 				8262E83629BF97D30047F790 /* DiagnosisBeginView.swift in Sources */,
 				822A746629A8C467009F3A95 /* Firebase.swift in Sources */,
 				8264B6EB29B9F7C500A9EDA8 /* SymptomDetailView.swift in Sources */,
 				82F0191E29A77968003B33F4 /* ContentView.swift in Sources */,
+				822EC9E029CD943B0083886B /* CircularProgressView.swift in Sources */,
 				821FE26429C1966200B2A62C /* DiseaseCardView.swift in Sources */,
 				8264B6E929B9F2E100A9EDA8 /* SymptomSearchView.swift in Sources */,
+				82872F9729CEF27700AD8735 /* HistoryDetailView.swift in Sources */,
 				82F0191C29A77968003B33F4 /* MedSwiftiOSApp.swift in Sources */,
 				82D4EAC529BB31100006ACED /* SymptomAnalyzerViewModel.swift in Sources */,
+				82F6E73729C2011400EC6A13 /* Chip.swift in Sources */,
+				8207B75C29CAE18F0030622F /* Syringe.swift in Sources */,
 				8264B6E229B9019500A9EDA8 /* Symptoms.swift in Sources */,
 				82F0192B29A77A25003B33F4 /* LoginView.swift in Sources */,
+				8223985629CC6F0B00E19BF1 /* EditProfileView.swift in Sources */,
+				82872F9229CEA6D800AD8735 /* DiagnosisHistory.swift in Sources */,
 				822A745029A7D28D009F3A95 /* UserModel.swift in Sources */,
 				82F0192D29A796DC003B33F4 /* RegistrationView.swift in Sources */,
 				821FE26829C1A28300B2A62C /* AnalysysResponseModel.swift in Sources */,
+				82872F9529CEDC5C00AD8735 /* HistoryHomeView.swift in Sources */,
 				822A746929A8EB96009F3A95 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +493,10 @@
 				DEVELOPMENT_TEAM = 6VD343QVV6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MedSwiftiOS/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app needs your location to show nearby services";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This app needs your location to show nearby services";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location to show nearby services";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -456,6 +526,10 @@
 				DEVELOPMENT_TEAM = 6VD343QVV6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MedSwiftiOS/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app needs your location to show nearby services";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This app needs your location to show nearby services";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location to show nearby services";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
