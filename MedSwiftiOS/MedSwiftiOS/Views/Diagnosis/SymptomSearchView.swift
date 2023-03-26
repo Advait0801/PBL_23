@@ -10,6 +10,7 @@ import SwiftUI
 struct SymptomSearchView: View {
     
     @EnvironmentObject var symptomVM: SymptomAnalyzerViewModel
+    @Binding var path: [String]
     @State var searchText = ""
     
     var filteredSymptoms: [Symptom] {
@@ -19,6 +20,7 @@ struct SymptomSearchView: View {
             return symptomVM.api.symptoms.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
     }
+    
     var body: some View {
         List {
             Section("Selected Symptoms") {
@@ -35,6 +37,21 @@ struct SymptomSearchView: View {
                 }
             }
             
+            if !symptomVM.suggestedSymptoms.isEmpty && self.searchText.isEmpty {
+                Section("Suggested Symptoms") {
+                    ForEach(symptomVM.suggestedSymptoms, id: \.self) { symptom in
+                        if !Array(symptomVM.selectedSymptoms.keys).contains(where: { s in
+                           s == symptom
+                        }) {
+                            NavigationLink {
+                                SymptomDetailView(symptom: symptom)
+                            } label: {
+                                Text(symptom.text)
+                            }
+                        }
+                    }
+                }
+            }
             Section("Add New Symptoms") {
                 ForEach(filteredSymptoms, id: \.self.name) { symptom in
                     NavigationLink {
@@ -55,24 +72,28 @@ struct SymptomSearchView: View {
         }
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button("Print") {
-                    symptomVM.selectedSymptoms.forEach { pair in
-                        print(pair.key.name, pair.value)
+                Button("Diagnose") {
+                    if path.count > 1 {
+                        let _ = path.popLast()
+                    } else {
+                        path.append("diagnosis")
                     }
                     Task {
-                        await symptomVM.api.getDiagnosis(symptoms: symptomVM.selectedSymptoms)
+                        await symptomVM.getAnalysis()
                     }
                 }
             }
         }
         .searchable(text: $searchText)
+        .navigationTitle("Add Symptoms")
+        
     }
 }
 
 struct SymptomSearchView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SymptomSearchView()
+            SymptomSearchView(path: .constant(["symptom"]))
                 .environmentObject(SymptomAnalyzerViewModel(UserEntity.testUser))
         }
     }

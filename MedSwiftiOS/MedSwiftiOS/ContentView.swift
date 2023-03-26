@@ -9,11 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var loginVM: LoginViewModel
-    let api = SymptomAnalyser()
     var body: some View {
         switch loginVM.state {
             case .loggedOut: LoginView()
-            case .loggedIn: HomeView().transition(.slide)
+            case .loggedIn: HomeView()
         }   
     }
 }

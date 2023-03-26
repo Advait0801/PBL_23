@@ -48,7 +48,7 @@ struct RegistrationView: View {
                 }
                 DatePicker(
                     "DOB",
-                    selection: .constant(.now),
+                    selection: $userData.dateOfBirth,
                     in: ...Date(),
                     displayedComponents: .date
                 )
@@ -127,11 +127,11 @@ struct RegistrationView: View {
         }
         
         .tint(.red)
-        .alert(loginVM.errorDesc, isPresented: $loginVM.isShowingError, actions: {
+        .alert(loginVM.errorDesc, isPresented: $loginVM.isShowingError) {
             Button("Okay") {
                 loginVM.isShowingError = false
             }
-        })
+        }
     }
 }
 

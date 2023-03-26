@@ -26,7 +26,6 @@ class SymptomAnalyser {
             throw SymptomAnalyzerError.badResponse
         }
         
-        
     }
     
     func acceptTermsOfUse(sessionID: String) async throws {
@@ -76,7 +75,6 @@ class SymptomAnalyser {
         ]
         guard var url = URL(string: baseURL + "Analyze") else { throw SymptomAnalyzerError.invalidURL }
         url.append(queryItems: queryItems)
-        print(url.absoluteString)
         let (data, _) = try await URLSession.shared.data(from: url)
         guard let reponseAnalysis = try? JSONDecoder().decode(AnalysisResponse.self, from: data) else { throw SymptomAnalyzerError.analysisFailed }
         if reponseAnalysis.status != "ok" {
@@ -84,7 +82,6 @@ class SymptomAnalyser {
         } else {
             var diagnosis = [DiseaseProbability]()
             for pair in reponseAnalysis.diseases {
-                print(pair.keys.first!)
                 guard let disease = self.diseases[pair.keys.first!] else { continue }
                 diagnosis.append(DiseaseProbability(disease: disease, probability: Double(pair.values.first!)!))
                 
@@ -93,20 +90,58 @@ class SymptomAnalyser {
         }
     }
     
-    func getDiagnosis(symptoms: [Symptom : Double]) async {
+    func suggestedQuestions(sessionID: String) async throws -> [Symptom] {
+        let queryItems = [
+            URLQueryItem(name: "SessionID", value: sessionID),
+        ]
+        guard var url = URL(string: baseURL + "GetSuggestedFeatures_PatientProvided") else { throw SymptomAnalyzerError.invalidURL }
+        url.append(queryItems: queryItems)
+        let (data, _) = try await URLSession.shared.data(from: url)
+        guard let response = try? JSONDecoder().decode(SuggestedQuestionsResponse.self, from: data) else { throw SymptomAnalyzerError.analysisFailed }
+        if response.status == "ok" {
+            let suggestedFeatureNames = response.suggestedFeatures.map { $0[0] }
+            let questionObjects = self.symptoms.filter { smptm in suggestedFeatureNames.contains { strng in
+                    smptm.name == strng
+                }
+            }
+            return questionObjects
+        } else {
+            throw SymptomAnalyzerError.analysisFailed
+        }
+    }
+    
+    func getDiagnosis(symptoms: [Symptom : Double], incrementer: @escaping () -> ()) async -> ([DiseaseProbability], [Symptom]) {
         do {
             let sessionID = try await getSessionID()
+            DispatchQueue.main.async {
+                incrementer()
+            }
             try await acceptTermsOfUse(sessionID: sessionID)
-            for pair in symptoms {
-                let value = String(format: pair.key.type == .double ? "%.2f" : "%.0f", pair.value)
-                try await uploadSymptom(sessionID: sessionID, symptomName: pair.key.name, value: value)
+            DispatchQueue.main.async {
+                incrementer()
+            }
+            try await withThrowingTaskGroup(of: Void.self) { group in
+                for pair in symptoms {
+                    let value = String(format: pair.key.type == .double ? "%.2f" : "%.0f", pair.value)
+                    group.addTask {
+                        return try await self.uploadSymptom(sessionID: sessionID, symptomName: pair.key.name, value: value)
+                    }
+                }
+                for try await _ in group {
+                    DispatchQueue.main.async {
+                        incrementer()
+                    }
+                }
             }
             let analysis = try await analyze(sessionID: sessionID)
-            analysis.forEach { dp in
-                print(dp.disease.name, dp.probability)
+            DispatchQueue.main.async {
+                incrementer()
             }
+            let suggestedQuestions = try await suggestedQuestions(sessionID: sessionID)
+            return (analysis, suggestedQuestions)
         } catch {
             print(error)
+            return ([], [])
         }
     }
     

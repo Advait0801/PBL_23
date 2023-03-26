@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var password = ""
-    @State var email = ""
+    @State var password = "password"
+    @State var email = "crpatil1901@gmail.com"
     @State var isShowingSheet = false
     @State var isShowingVerificationScreen = false
     @EnvironmentObject var loginVM: LoginViewModel
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Color.red.ignoresSafeArea()
                 Circle()
                     .foregroundColor(.primary.opacity(0.3))
-                    .scaleEffect(1.7)
+                    .scaleEffect(loginVM.animating ? 4.0 : 1.7)
                     .colorInvert()
                 Circle()
                     .foregroundColor(.primary)
-                    .scaleEffect(1.4)
+                    .scaleEffect(loginVM.animating ? 4.0 : 1.4)
                     .colorInvert()
                 VStack {
                     HStack {
@@ -85,33 +85,28 @@ struct LoginView: View {
                                     .bold()
                                     .foregroundColor(.white)
                             }
-                            .padding(.top, 8)
                         }
                         .buttonStyle(LoginButtonStyle())
                         .padding(24)
+                        .padding(.top, 8)
                     }
                     HStack {
                         Text("Are you new here?")
                         Button("Sign Up") { isShowingSheet = true }
                     }
                     .padding()
-                }
+                } // UI
+                .opacity(loginVM.animating ? 0.0 : 1.0)
                 if loginVM.isLoading {
                     ZStack {
                         Color.black.opacity(0.3).ignoresSafeArea()
                         ProgressView()
                             .padding()
                             .tint(.white)
-                            .background { RoundedRectangle(cornerRadius: 16) }
+                            .background { RoundedRectangle(cornerRadius: 16).foregroundColor(.black) }
                     }
                 }
             }
-//            .overlay {
-//                NavigationLink(destination: VerifyEmailView(isVisible: .constant(true)), isActive: self.$isShowingVerificationScreen) {
-//                     EmptyView()
-//                }
-//                .hidden()
-//            }
         }
         .navigationViewStyle(.stack)
         .sheet(isPresented: $isShowingSheet) {

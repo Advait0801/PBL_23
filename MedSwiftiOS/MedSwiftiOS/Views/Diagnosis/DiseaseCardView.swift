@@ -21,6 +21,7 @@ struct DiseaseCardView: View {
                 HStack {
                     Text(data.disease.name)
                         .font(.callout)
+                        .lineLimit(1)
                     .foregroundColor(.primary.opacity(0.5))
                     Spacer()
                     Text("\(data.probability * 100, specifier: "%.2f")%")

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - AnalysisResponse
 struct AnalysisResponse: Codable {
     let status: String
     let diseases: [[String : String]]
@@ -18,7 +17,17 @@ struct AnalysisResponse: Codable {
     }
 }
 
-struct DiseaseProbability {
+struct DiseaseProbability: Codable, Hashable {
     let disease: Disease
     let probability: Double
+}
+ 
+struct SuggestedQuestionsResponse: Codable {
+    let status: String
+    let suggestedFeatures: [[String]]
+
+    enum CodingKeys: String, CodingKey {
+        case status
+        case suggestedFeatures = "SuggestedFeatures"
+    }
 }
