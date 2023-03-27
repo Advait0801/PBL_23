@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "35222755716",
+    "project_id": "pbl23-70059",
+    "storage_bucket": "pbl23-70059.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35222755716:android:ce499242809b668518a5d1",
+        "android_client_info": {
+          "package_name": "com.example.pbl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35222755716-v4bq7f4531u5anf5q1r7p9cevqpfjjbi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvxM3-PJSAoC8JLcRbAPkoryqMXw3wfpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35222755716-v4bq7f4531u5anf5q1r7p9cevqpfjjbi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "35222755716-lnpi7om50fo4liidp7pisg49f1gg0ovu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.crpatil1901.MedSwiftiOS"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35222755716:android:47bc6ae35d0a216b18a5d1",
+        "android_client_info": {
+          "package_name": "com.pict.pbl.medswift"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35222755716-v4bq7f4531u5anf5q1r7p9cevqpfjjbi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvxM3-PJSAoC8JLcRbAPkoryqMXw3wfpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35222755716-v4bq7f4531u5anf5q1r7p9cevqpfjjbi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "35222755716-lnpi7om50fo4liidp7pisg49f1gg0ovu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.crpatil1901.MedSwiftiOS"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
