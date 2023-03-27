@@ -20,14 +20,14 @@
 * Chinmay - Completed Profile Screen, Started work of EndlessMedical API
 * Soaham  - 
 * Shubham - Completed UI of profile screen
-* Advait  - 
+* Advait  - Improved LoginScreen and ProfileScreen by adding background colors and animation, learnt LazyColumn in Jetpack Compose 
 
 ## 13th March and 15th March
 
 * Chinmay - Implemented Diagnosis Feature.
 * Soaham  - 
 * Shubham - Started building SymptomsScreen and functionality to send API requests to EndlessMedicalAPI 
-* Advait  - Improved LoginScreen and ProfileScreen by adding background colors and animation, learnt LazyColumn in Jetpack Compose
+* Advait  - Completed Jetpack Compose for Android developers course for UI-designing (https://developer.android.com/courses/jetpack-compose/course)
 
 ## 20th March and 22nd March
 
@@ -35,3 +35,10 @@
 * Soaham  - 
 * Shubham - Built screen for users to select symptoms and send them to server, learnt Ktor
 * Advait  - Solved problem of AlertDialog in LoginScreen.kt
+
+## 27th March and 29th March
+
+* Chinmay -
+* Soaham  -
+* Shubham -
+* Advait  -
