@@ -3,22 +3,17 @@ package com.pict.pbl.medswift.api
 
 import android.util.Log
 import com.pict.pbl.medswift.data.AnalyzeSymptom
-import com.pict.pbl.medswift.data.Symptom
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 
 class DiagnosisAPI( private val client : OkHttpClient ) {
-
-    private val baseURL = "https://api.endlessmedical.com/v1/dx/"
-    private val SESSION_URL = "https://api.endlessmedical.com/v1/dx/InitSession"
-    private val ACCEPT_TOU_URL = "https://api.endlessmedical.com/v1/dx/InitSession"
 
     private val passPhrase = "I have read, understood and I accept and agree to comply with the Terms of Use of EndlessMedicalAPI and Endless Medical services. The Terms of Use are available on endlessmedical.com"
 
@@ -91,24 +86,60 @@ class DiagnosisAPI( private val client : OkHttpClient ) {
         return Json.decodeFromString( responseJson )
     }
 
-    fun getAnalysis( symptoms : List<AnalyzeSymptom> = ArrayList() ) {
-        CoroutineScope( Dispatchers.IO ).launch {
-            val sessionResponse = getSessionId()
-            if( sessionResponse.status.equals( "ok" ) ) {
-                val sessionID = sessionResponse.SessionID
-                val acceptTOUStatus = acceptTermsOfUse( sessionID )
-                if( acceptTOUStatus.status == "ok" ) {
-                    for( symptom in symptoms ) {
-                        uploadSymptom( symptom , sessionID )
+    private fun analyze( sessionID: String ) : Map<String,Float> {
+        val request = Request.Builder().run {
+            url( HttpUrl.Builder().run {
+                scheme( "https" )
+                host( "api.endlessmedical.com" )
+                addPathSegment( "v1" )
+                addPathSegment( "dx" )
+                addPathSegment( "Analyze" )
+                addQueryParameter( "SessionID" , sessionID )
+                build()
+            } )
+            get()
+            build()
+        }
+        val response = client.newCall( request ).execute()
+        val responseJson = response.body!!.string().trim()
+        Log.d( "DiagnosisAPI" , "Analyze Response: " + responseJson )
+        val responseObj =  JSONObject( responseJson )
+        val output = HashMap<String,Float>()
+        if( responseObj.get( "status" ) == "ok" ) {
+            val diseases = responseObj.getJSONArray( "Diseases" )
+            for( i in 0 until diseases.length() ) {
+                diseases.getJSONObject( i ).apply {
+                    for( key in this.keys() ) {
+                        output[ key ] = (this.get( key ) as String ).toFloat()
                     }
-
                 }
             }
-            else {
-                Log.d( "DiagnosisAPI" , "Session status not ok" )
+        }
+        return output
+    }
+
+    fun getAnalysis( symptoms : List<AnalyzeSymptom> ) = runBlocking( Dispatchers.IO ) {
+        Log.e( "DiagnosisAPI" , "Making calls on: ${Thread.currentThread().name}")
+        // TODO: Handle exceptions in networking here
+        val sessionResponse = getSessionId()
+        var result = HashMap<String,Float>()
+        if(sessionResponse.status == "ok") {
+            val sessionID = sessionResponse.SessionID
+            val acceptTOUStatus = acceptTermsOfUse( sessionID )
+            if( acceptTOUStatus.status == "ok" ) {
+                for( symptom in symptoms ) {
+                    uploadSymptom( symptom , sessionID )
+                }
+                result = HashMap( analyze( sessionID ) )
+                Log.e( "DiagnosisAPI" , "Diagnosis Result: $result" )
             }
         }
+        else {
+            Log.d( "DiagnosisAPI" , "Session status not ok" )
+        }
+        return@runBlocking result
     }
+
     
 }
 

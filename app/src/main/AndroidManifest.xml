@@ -18,17 +18,21 @@
             android:name=".screens.RegisterScreen"
             android:exported="false" />
         <activity
-            android:name=".screens.SymptomsActivity"
-            android:exported="true" />
-        <activity
-            android:name=".screens.LoginActivity"
+            android:name=".screens.symptoms.SymptomsActivity"
             android:exported="true"
             android:label="@string/title_activity_login_screen"
-            android:theme="@style/Theme.MedSwift" >
+            android:theme="@style/Theme.MedSwift">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".screens.user_auth.LoginActivity"
+            android:exported="true"
+            android:label="@string/title_activity_login_screen"
+            android:theme="@style/Theme.MedSwift" >
+
         </activity>
         <activity
             android:name=".MainActivity"

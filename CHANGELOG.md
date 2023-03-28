@@ -1,6 +1,4 @@
-- Fixed AlertDialog issue in `LoginScreen.kt`
-- Added symptom selection feature in `SymptomsScreen.kt`
-- Added OkHttp dependencies in `build.gradle`
-- Updated `DiagnosisAPI` to make API calls for automated diagnosis
-- Added `SelectedSymptoms.kt` and `InputSymptoms.kt` to select and input values for symptoms
-- Added `SymptomViewModel` that holds shared data through automated diagnosis process
+- Completed backend of symptoms screen
+- Removed redundant `ui.theme` packages
+- Added `User` data class 
+- 

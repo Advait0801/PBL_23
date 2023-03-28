@@ -1,4 +1,4 @@
-package com.pict.pbl.medswift.screens
+package com.pict.pbl.medswift.screens.symptoms
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
@@ -37,7 +37,7 @@ private fun ScreenUI( symptomsViewModel: SymptomsViewModel ) {
         .fillMaxSize()
         .padding(32.dp) ){
         if( symptomsViewModel.symptomsList.value != null ) {
-            val symptom = symptomsViewModel.symptomsList.value!![ symptomsViewModel.clickedSymptomIndex ]
+            val symptom = symptomsViewModel.clickedSymptom!!
             Text( text = symptom.laytext )
             when (symptom.type) {
                 SymptomChoiceType.integer -> {

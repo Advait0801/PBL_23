@@ -1,4 +1,4 @@
-package com.pict.pbl.medswift.screens
+package com.pict.pbl.medswift.screens.user_auth
 
 import android.os.Bundle
 import android.widget.Toast
@@ -53,6 +53,7 @@ class LoginActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             // A surface container using the 'background' color from the theme
             MedSwiftTheme() {
@@ -62,11 +63,7 @@ class LoginActivity : ComponentActivity() {
                 ) {
                     ActivityUI()
                 }
-
-
-
             }
-
         }
 
         loginManager = LoginManager( loginViewModel )
@@ -153,7 +150,7 @@ class LoginActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     private fun EmailId( modifier: Modifier ){
-        var focusManager = LocalFocusManager.current
+        val focusManager = LocalFocusManager.current
         var email by remember{ userEmail }
         OutlinedTextField(
             modifier = modifier ,
@@ -195,7 +192,6 @@ class LoginActivity : ComponentActivity() {
                 }
             },
             keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Password , imeAction = ImeAction.Done),
-            //keyboardActions = KeyboardActions()
         )
     }
 
@@ -234,17 +230,13 @@ class LoginActivity : ComponentActivity() {
                 style = MaterialTheme.typography.headlineLarge.copy(
                     fontWeight = FontWeight.Bold
                 )
-//               fontStyle = MaterialTheme.typography.headlineLarge,
             )
             Icon(
                 imageVector = Icons.Default.Add,
                 contentDescription = null,
-
                 modifier = Modifier
                     .size(40.dp)
                     .offset(x = 30.dp, y = -25.dp),
-
-
                 )
         }
     }
