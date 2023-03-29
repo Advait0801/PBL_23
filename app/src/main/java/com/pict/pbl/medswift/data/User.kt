@@ -1,8 +1,10 @@
 package com.pict.pbl.medswift.data
 
+import java.util.Date
+
 data class User(
     val bldGrp : String ,
-    val dateOfBirth : Long ,
+    val dateOfBirth : Date ,
     val email : String ,
     val firstName : String ,
     val gender : String ,
@@ -10,7 +12,9 @@ data class User(
     val lastName : String ,
     val phoneNumber : String ,
     val weight : Int
-)
+) {
+    constructor() : this( "" , Date() , "" , "" , "" , 0.0f , "" , "" , 0 )
+}
 
 data class UserSymptom(
     val name : String ,
@@ -28,5 +32,8 @@ data class UserPrediction(
 
 data class UserDiagnosis(
     val predictions : List<UserPrediction> ,
-    val symptoms : List<UserSymptom>
+    val symptoms : List<UserSymptom> ,
+    val lat : Double ,
+    val lng : Double ,
+    val time : Date
 )

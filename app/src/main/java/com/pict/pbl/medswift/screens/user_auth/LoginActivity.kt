@@ -39,6 +39,7 @@ import androidx.lifecycle.MutableLiveData
 import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.data.SymptomChoiceType
 import com.pict.pbl.medswift.login.LoginManager
+import com.pict.pbl.medswift.screens.HomeScreen
 import com.pict.pbl.medswift.screens.symptoms.SymptomsActivity
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.viewmodels.LoginViewModel
@@ -203,7 +204,7 @@ class LoginActivity : ComponentActivity() {
         Button(
             onClick = {
                 loginManager.loginUser( userEmail.value , userPassword.value ) {
-                    Intent( context , SymptomsActivity::class.java ).apply {
+                    Intent( context , HomeScreen::class.java ).apply {
                         startActivity( this )
                     }
                 }

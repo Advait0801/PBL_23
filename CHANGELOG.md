@@ -1,5 +1,3 @@
-- Completed backend of symptoms screen
-- Removed redundant `ui.theme` packages
-- Added `User` data class 
-- Added `api.DiagnosisHistory
-- Added `HistoryScreen` in `History.kt`
+- Integrated `CurrentUser.kt` with `Profile.kt`
+- Built bottom navigation in `HomeScreen.kt`
+- Added `lat`, `log` and `time` in `DiagnosisHistory.kt`
