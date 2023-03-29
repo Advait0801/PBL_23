@@ -1,5 +1,6 @@
 package com.pict.pbl.medswift.screens.user_auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -38,6 +39,7 @@ import androidx.lifecycle.MutableLiveData
 import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.data.SymptomChoiceType
 import com.pict.pbl.medswift.login.LoginManager
+import com.pict.pbl.medswift.screens.symptoms.SymptomsActivity
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.viewmodels.LoginViewModel
 
@@ -200,8 +202,11 @@ class LoginActivity : ComponentActivity() {
         val context = LocalContext.current
         Button(
             onClick = {
-                Toast.makeText( context , "Email: ${userEmail.value} and Password ${userPassword.value}" , Toast.LENGTH_LONG ).show()
-                loginManager.createUser( userEmail.value , userPassword.value )
+                loginManager.loginUser( userEmail.value , userPassword.value ) {
+                    Intent( context , SymptomsActivity::class.java ).apply {
+                        startActivity( this )
+                    }
+                }
             } ,
             modifier = modifier
                 .defaultMinSize(minHeight = 0.2.dp , minWidth = 0.2.dp),

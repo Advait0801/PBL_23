@@ -1,11 +1,11 @@
 package com.pict.pbl.medswift.screens.symptoms
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
@@ -14,10 +14,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.google.accompanist.navigation.animation.AnimatedNavHost
-import com.google.accompanist.navigation.animation.composable
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.pict.pbl.medswift.api.DiagnosisAPI
+import com.pict.pbl.medswift.api.DiagnosisHistory
 import com.pict.pbl.medswift.data.AnalyzeSymptom
 import com.pict.pbl.medswift.data.Symptom
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
@@ -30,7 +31,6 @@ class SymptomsActivity : ComponentActivity() {
     private lateinit var symptoms : ArrayList<Symptom>
     private val symptomsViewModel : SymptomsViewModel by viewModels()
 
-    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,25 +38,23 @@ class SymptomsActivity : ComponentActivity() {
             symptomsViewModel.symptomsList.value = parseSymptoms()
         }
 
+        val history = DiagnosisHistory().getHistory( )
+        Log.e( "APP" , "History $history")
+
         setContent {
-            val navController = rememberAnimatedNavController()
-            AnimatedNavHost(navController, startDestination = "main") {
-                // TODO: Add composable transitions here
-                composable("main") { ActivityUI() }
-                composable("selectSymptoms" ,
-                    enterTransition = {
-                        fadeIn()
-                    } ) { SelectedSymptomsScreen( symptomsViewModel ) }
-                composable( "inputSymptoms" ){ InputSymptomsScreen( symptomsViewModel ) }
-                composable( "diagnosis" ){ DiagnosisScreen( symptomsViewModel ) }
-            }
-            symptomsViewModel.navController = navController
             MedSwiftTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White
                 ) {
-                    ActivityUI()
+                    val navController = rememberNavController()
+                    NavHost(navController, startDestination = "main") {
+                        composable("main") { ActivityUI() }
+                        composable("selectSymptoms" ) { SelectSymptomsScreen( symptomsViewModel ) }
+                        composable( "inputSymptoms" ){ InputSymptomsScreen( symptomsViewModel ) }
+                        composable( "diagnosis" ){ DiagnosisScreen( symptomsViewModel ) }
+                    }
+                    symptomsViewModel.navController = navController
                 }
             }
         }
@@ -68,6 +66,8 @@ class SymptomsActivity : ComponentActivity() {
         // Improve UI of SymptomsActivity
         Column {
             Button(onClick = {
+                println( "SelectSymptoms - select symptoms" )
+                println( symptomsViewModel.navController )
                 symptomsViewModel.navController?.navigate( "selectSymptoms" )
             }) {
                 Text(text = "Select Symptoms")

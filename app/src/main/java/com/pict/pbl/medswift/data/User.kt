@@ -15,12 +15,16 @@ data class User(
 data class UserSymptom(
     val name : String ,
     val value : Int
-)
+) {
+    constructor() : this( "" , 0 )
+}
 
 data class UserPrediction(
     val name : String ,
     val value : Float
-)
+) {
+    constructor() : this( "" , 0.0f )
+}
 
 data class UserDiagnosis(
     val predictions : List<UserPrediction> ,

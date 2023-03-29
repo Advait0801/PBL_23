@@ -32,7 +32,7 @@ import com.pict.pbl.medswift.viewmodels.SymptomsViewModel
 private val searchText = MutableLiveData( "" )
 
 @Composable
-fun SelectedSymptomsScreen( symptomsViewModel: SymptomsViewModel ) {
+fun SelectSymptomsScreen( symptomsViewModel: SymptomsViewModel ) {
     MedSwiftTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),

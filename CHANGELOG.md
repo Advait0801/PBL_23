@@ -1,4 +1,5 @@
 - Completed backend of symptoms screen
 - Removed redundant `ui.theme` packages
 - Added `User` data class 
-- 
+- Added `api.DiagnosisHistory
+- Added `HistoryScreen` in `History.kt`
