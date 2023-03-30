@@ -1,6 +1,5 @@
 package com.pict.pbl.medswift.screens
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,7 +13,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -30,7 +28,7 @@ class RegisterScreen : ComponentActivity() {
             MedSwiftTheme() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color.White
+                    color = MaterialTheme.colorScheme.surface
                 ) {
                     ActivityUI()
                 }
@@ -48,12 +46,54 @@ class RegisterScreen : ComponentActivity() {
             item{
                 UserFirstName(
                     modifier = Modifier
-                        .padding(start = 32.dp, end = 32.dp, bottom = 16.dp)
+                        .padding(start = 32.dp, end = 32.dp, bottom = 16.dp, top = 16.dp)
                         .fillMaxWidth()
                 )
             }
             item {
                 UserLastName(
+                    modifier = Modifier
+                        .padding(start = 32.dp, end = 32.dp, bottom = 16.dp)
+                        .fillMaxWidth()
+                )
+            }
+            item {
+                UserPhoneNumber(
+                    modifier = Modifier
+                        .padding(start = 32.dp, end = 32.dp, bottom = 16.dp)
+                        .fillMaxWidth()
+                )
+            }
+            item {
+                UserEmailId(
+                    modifier = Modifier
+                        .padding(start = 32.dp, end = 32.dp, bottom = 16.dp)
+                        .fillMaxWidth()
+                )
+            }
+            item {
+                UserGender(
+                    modifier = Modifier
+                        .padding(start = 32.dp, end = 32.dp, bottom = 16.dp)
+                        .fillMaxWidth()
+                )
+            }
+            item {
+                UserBloodGroup(
+                    modifier = Modifier
+                        .padding(start = 32.dp, end = 32.dp, bottom = 16.dp)
+                        .fillMaxWidth()
+                )
+            }
+            item {
+                UserHeight(
+                    modifier = Modifier
+                        .padding(start = 32.dp, end = 32.dp, bottom = 16.dp)
+                        .fillMaxWidth()
+                )
+            }
+            item {
+                UserWeight(
                     modifier = Modifier
                         .padding(start = 32.dp, end = 32.dp, bottom = 16.dp)
                         .fillMaxWidth()
@@ -72,7 +112,7 @@ class RegisterScreen : ComponentActivity() {
         TextField(
             modifier = modifier,
             value = firstName,
-            onValueChange ={
+            onValueChange = {
                 it -> firstName = it
             },
             colors = TextFieldDefaults.textFieldColors(
@@ -98,7 +138,7 @@ class RegisterScreen : ComponentActivity() {
         TextField(
             modifier = modifier,
             value = lastName,
-            onValueChange ={
+            onValueChange = {
                     it -> lastName = it
             },
             placeholder = { Text(text = "Last name")},
@@ -115,18 +155,68 @@ class RegisterScreen : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    private fun UserDOB(
+    private fun UserPhoneNumber(
         modifier: Modifier = Modifier
     ){
-        var lastName by remember { mutableStateOf("") }
+        var phoneNumber by remember { mutableStateOf("") }
         val focusManager = LocalFocusManager.current
         TextField(
             modifier = modifier,
-            value = lastName,
-            onValueChange ={
-                    it -> lastName = it
+            value = phoneNumber,
+            onValueChange = {
+                    it -> phoneNumber = it
             },
-            placeholder = { Text(text = "Last name")},
+            placeholder = { Text(text = "Phone Number")},
+            colors = TextFieldDefaults.textFieldColors(
+                focusedLabelColor = MaterialTheme.colorScheme.primary,
+                unfocusedLabelColor = MaterialTheme.colorScheme.primaryContainer,
+                textColor = MaterialTheme.colorScheme.onPrimaryContainer
+            ),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone, imeAction = ImeAction.Next),
+            keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Next)})
+        )
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    private fun UserEmailId(
+        modifier: Modifier = Modifier
+    ){
+        var emailId by remember { mutableStateOf("") }
+        val focusManager = LocalFocusManager.current
+        TextField(
+            modifier = modifier,
+            value = emailId,
+            onValueChange = {
+                    it -> emailId = it
+            },
+            placeholder = { Text(text = "Email Id")},
+            colors = TextFieldDefaults.textFieldColors(
+                focusedLabelColor = MaterialTheme.colorScheme.primary,
+                unfocusedLabelColor = MaterialTheme.colorScheme.primaryContainer,
+                textColor = MaterialTheme.colorScheme.onPrimaryContainer
+            ),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Next),
+            keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Next)})
+        )
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    private fun UserGender(
+        modifier: Modifier = Modifier
+    ){
+        var gender by remember { mutableStateOf("") }
+        val focusManager = LocalFocusManager.current
+        TextField(
+            modifier = modifier,
+            value = gender,
+            onValueChange = {
+                    it -> gender = it
+            },
+            placeholder = { Text(text = "Gender")},
             colors = TextFieldDefaults.textFieldColors(
                 focusedLabelColor = MaterialTheme.colorScheme.primary,
                 unfocusedLabelColor = MaterialTheme.colorScheme.primaryContainer,
@@ -137,7 +227,79 @@ class RegisterScreen : ComponentActivity() {
             keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Next)})
         )
     }
-    
 
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    private fun UserBloodGroup(
+        modifier: Modifier = Modifier
+    ){
+        var bloodGroup by remember { mutableStateOf("") }
+        val focusManager = LocalFocusManager.current
+        TextField(
+            modifier = modifier,
+            value = bloodGroup,
+            onValueChange = {
+                    it -> bloodGroup = it
+            },
+            placeholder = { Text(text = "Blood Group")},
+            colors = TextFieldDefaults.textFieldColors(
+                focusedLabelColor = MaterialTheme.colorScheme.primary,
+                unfocusedLabelColor = MaterialTheme.colorScheme.primaryContainer,
+                textColor = MaterialTheme.colorScheme.onPrimaryContainer
+            ),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text, imeAction = ImeAction.Next),
+            keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Next)})
+        )
+    }
 
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    private fun UserWeight(
+        modifier: Modifier = Modifier
+    ){
+        var weight by remember { mutableStateOf("") }
+        val focusManager = LocalFocusManager.current
+        TextField(
+            modifier = modifier,
+            value = weight,
+            onValueChange = {
+                    it -> weight = it
+            },
+            placeholder = { Text(text = "Weight")},
+            colors = TextFieldDefaults.textFieldColors(
+                focusedLabelColor = MaterialTheme.colorScheme.primary,
+                unfocusedLabelColor = MaterialTheme.colorScheme.primaryContainer,
+                textColor = MaterialTheme.colorScheme.onPrimaryContainer
+            ),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Next),
+            keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Next)})
+        )
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    private fun UserHeight(
+        modifier: Modifier = Modifier
+    ){
+        var height by remember { mutableStateOf("") }
+        val focusManager = LocalFocusManager.current
+        TextField(
+            modifier = modifier,
+            value = height,
+            onValueChange = {
+                    it -> height = it
+            },
+            placeholder = { Text(text = "Height")},
+            colors = TextFieldDefaults.textFieldColors(
+                focusedLabelColor = MaterialTheme.colorScheme.primary,
+                unfocusedLabelColor = MaterialTheme.colorScheme.primaryContainer,
+                textColor = MaterialTheme.colorScheme.onPrimaryContainer
+            ),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Next),
+            keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Next)})
+        )
+    }
 }
