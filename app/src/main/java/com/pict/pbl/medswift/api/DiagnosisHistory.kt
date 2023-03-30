@@ -10,6 +10,7 @@ import com.pict.pbl.medswift.data.UserSymptom
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
+import java.util.Date
 
 class DiagnosisHistory {
 
@@ -40,7 +41,10 @@ class DiagnosisHistory {
                     for( symptom in symptoms.documents ) {
                         userSymptoms.add( symptom.toObject( UserSymptom::class.java )!! )
                     }
-                    allUserDiagnosis.add( UserDiagnosis( userPredictions , userSymptoms ) )
+                    val lat = it.get( "lat" , Double::class.java ) ?: 0.0
+                    val lng = it.get( "log" , Double::class.java ) ?: 0.0
+                    val time = it.get( "time" , Date::class.java ) ?: Date()
+                    allUserDiagnosis.add( UserDiagnosis( userPredictions , userSymptoms , lat , lng , time ) )
                 }
             return@runBlocking allUserDiagnosis.toList()
         }

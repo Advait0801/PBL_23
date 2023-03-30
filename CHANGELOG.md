@@ -1,1 +1,1 @@
-- Built basic layout of RegisterScreen.kt
+- Built basic layout in RegisterScreen.kt
