@@ -3,15 +3,15 @@ package com.pict.pbl.medswift.data
 import java.util.Date
 
 data class User(
-    val bldGrp : String ,
-    val dateOfBirth : Date ,
-    val email : String ,
-    val firstName : String ,
-    val gender : String ,
-    val height : Float ,
-    val lastName : String ,
-    val phoneNumber : String ,
-    val weight : Int
+    var bldGrp : String ,
+    var dateOfBirth : Date ,
+    var email : String ,
+    var firstName : String ,
+    var gender : String ,
+    var height : Float ,
+    var lastName : String ,
+    var phoneNumber : String ,
+    var weight : Int
 ) {
     constructor() : this( "" , Date() , "" , "" , "" , 0.0f , "" , "" , 0 )
 }

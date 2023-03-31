@@ -18,9 +18,12 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pict.pbl.medswift.data.User
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 
 class RegisterScreen : ComponentActivity() {
+
+    private val currentUser = User()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,6 +102,13 @@ class RegisterScreen : ComponentActivity() {
                         .fillMaxWidth()
                 )
             }
+            item {
+                Button(onClick = {
+
+                }) {
+                    Text(text = "Register")
+                }
+            }
         }
     }
 
@@ -113,7 +123,8 @@ class RegisterScreen : ComponentActivity() {
             modifier = modifier,
             value = firstName,
             onValueChange = {
-                it -> firstName = it
+                currentUser.firstName = it
+                firstName = it
             },
             colors = TextFieldDefaults.textFieldColors(
                 focusedLabelColor = MaterialTheme.colorScheme.primary,
@@ -139,7 +150,9 @@ class RegisterScreen : ComponentActivity() {
             modifier = modifier,
             value = lastName,
             onValueChange = {
-                    it -> lastName = it
+                    it ->
+                currentUser.lastName = it
+                lastName = it
             },
             placeholder = { Text(text = "Last name")},
             colors = TextFieldDefaults.textFieldColors(
@@ -164,7 +177,9 @@ class RegisterScreen : ComponentActivity() {
             modifier = modifier,
             value = phoneNumber,
             onValueChange = {
-                    it -> phoneNumber = it
+                    it ->
+                currentUser.phoneNumber = it
+                phoneNumber = it
             },
             placeholder = { Text(text = "Phone Number")},
             colors = TextFieldDefaults.textFieldColors(
@@ -189,7 +204,9 @@ class RegisterScreen : ComponentActivity() {
             modifier = modifier,
             value = emailId,
             onValueChange = {
-                    it -> emailId = it
+                    it ->
+                currentUser.email = it
+                emailId = it
             },
             placeholder = { Text(text = "Email Id")},
             colors = TextFieldDefaults.textFieldColors(
@@ -214,7 +231,9 @@ class RegisterScreen : ComponentActivity() {
             modifier = modifier,
             value = gender,
             onValueChange = {
-                    it -> gender = it
+                    it ->
+                currentUser.gender = it
+                gender = it
             },
             placeholder = { Text(text = "Gender")},
             colors = TextFieldDefaults.textFieldColors(
@@ -239,7 +258,9 @@ class RegisterScreen : ComponentActivity() {
             modifier = modifier,
             value = bloodGroup,
             onValueChange = {
-                    it -> bloodGroup = it
+                    it ->
+                currentUser.bldGrp = it
+                bloodGroup = it
             },
             placeholder = { Text(text = "Blood Group")},
             colors = TextFieldDefaults.textFieldColors(
@@ -264,7 +285,9 @@ class RegisterScreen : ComponentActivity() {
             modifier = modifier,
             value = weight,
             onValueChange = {
-                    it -> weight = it
+                    it ->
+                currentUser.weight = it.toInt()
+                weight = it
             },
             placeholder = { Text(text = "Weight")},
             colors = TextFieldDefaults.textFieldColors(
@@ -289,7 +312,9 @@ class RegisterScreen : ComponentActivity() {
             modifier = modifier,
             value = height,
             onValueChange = {
-                    it -> height = it
+                    it ->
+                currentUser.height = it.toFloat()
+                height = it
             },
             placeholder = { Text(text = "Height")},
             colors = TextFieldDefaults.textFieldColors(

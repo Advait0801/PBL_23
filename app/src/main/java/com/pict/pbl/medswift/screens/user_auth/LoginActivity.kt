@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -38,6 +39,7 @@ import androidx.lifecycle.MutableLiveData
 import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.login.LoginManager
 import com.pict.pbl.medswift.screens.HomeScreen
+import com.pict.pbl.medswift.screens.RegisterScreen
 import com.pict.pbl.medswift.screens.symptoms.SymptomsActivity
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.viewmodels.LoginViewModel
@@ -74,6 +76,7 @@ class LoginActivity : ComponentActivity() {
 
     @Composable
     private fun ActivityUI(){
+        val context = LocalContext.current
         Box(
             modifier = Modifier,
             contentAlignment = Alignment.CenterEnd
@@ -83,7 +86,7 @@ class LoginActivity : ComponentActivity() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                val image = painterResource(id = R.drawable.app_icon )
+                val image = painterResource(id = R.drawable.app_icon)
                 Image(
                     painter = image ,
                     contentDescription = "App Icon"
@@ -96,6 +99,16 @@ class LoginActivity : ComponentActivity() {
                 Password( modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 32.dp, end = 32.dp) )
+                Spacer(modifier = Modifier.height(24.dp))
+                Text(
+                    text = "Register here" ,
+                    modifier = Modifier
+                        .clickable {
+                            Intent( context , RegisterScreen::class.java ).apply {
+                                startActivity( this )
+                            }
+                        }
+                )
             }
             LoginButton(
                 modifier = Modifier

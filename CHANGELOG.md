@@ -1,1 +1,2 @@
-- Built basic layout in RegisterScreen.kt
+- Completed `HistoryScreen.kt`
+- Added Button in `RegisterScreen.kt`

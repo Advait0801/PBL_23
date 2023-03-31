@@ -33,9 +33,11 @@ fun DiagnosisScreen( symptomsViewModel: SymptomsViewModel ) {
 private fun ScreenUI( symptomsViewModel: SymptomsViewModel ) {
     // TODO: Improve the UI of DiagnosisScreen
     val result = symptomsViewModel.diagnosisResult.toList()
+    val min = result.minOf{ it.second }
+    val max = result.maxOf{ it.second }
     LazyColumn{
         items( result ) {
-            DiseaseItem(name = it.first, confidence = it.second)
+            DiseaseItem(name = it.first, confidence = ( ( it.second - min ) / ( max - min ) ) * 100 )
         }
     }
 }
@@ -50,7 +52,7 @@ private fun DiseaseItem( name : String , confidence : Float ) {
                 .weight(1.0f)
                 .padding(16.dp)
         )
-        Text(text = (confidence * 100).roundToInt().toString() ,
+        Text(text = confidence.roundToInt().toString() ,
             fontSize = 14.sp ,
             modifier = Modifier
                 .background(Color.White)

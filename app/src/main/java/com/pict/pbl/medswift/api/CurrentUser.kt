@@ -21,4 +21,9 @@ class CurrentUser {
         return@runBlocking user!!
     }
 
+    fun createUser( user : User ) = runBlocking( Dispatchers.IO ){
+        db.collection( "users" )
+        //auth.create
+    }
+
 }

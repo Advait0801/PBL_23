@@ -1,8 +1,10 @@
 package com.pict.pbl.medswift.screens
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -16,6 +18,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -26,9 +30,13 @@ import androidx.navigation.compose.rememberNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pict.pbl.medswift.screens.history.HistoryScreen
 import com.pict.pbl.medswift.screens.profile.ProfileScreen
+import com.pict.pbl.medswift.screens.symptoms.SymptomsActivity
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
+import com.pict.pbl.medswift.viewmodels.HistoryViewModel
 
 class HomeScreen : ComponentActivity() {
+
+    private val historyViewModel : HistoryViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,12 +57,15 @@ class HomeScreen : ComponentActivity() {
     @Preview
     private fun ActivityUI() {
         // TODO: Improve FAB here
+        val context = LocalContext.current
         val navController = rememberNavController()
         Scaffold(
             bottomBar = { BottomNav(navController) } ,
             floatingActionButton = {
                 FloatingActionButton(onClick = {
-
+                    Intent( context , SymptomsActivity::class.java ).apply {
+                        startActivity( this )
+                    }
                 }) {
                     Text(text = "Diagnosis")
                 }
@@ -107,7 +118,7 @@ class HomeScreen : ComponentActivity() {
         NavHost(navController = navController, startDestination = BottomNavItem.HomeScreenItem.screenRoute ) {
             composable( BottomNavItem.HomeScreenItem.screenRoute ) { RegisterScreen() }
             composable( BottomNavItem.ProfileScreenItem.screenRoute ) { ProfileScreen() }
-            composable( BottomNavItem.HistoryScreenItem.screenRoute ) { HistoryScreen() }
+            composable( BottomNavItem.HistoryScreenItem.screenRoute ) { HistoryScreen( historyViewModel ) }
         }
     }
 
