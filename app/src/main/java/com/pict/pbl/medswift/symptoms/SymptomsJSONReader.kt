@@ -3,6 +3,8 @@ package com.pict.pbl.medswift.symptoms
 import android.content.Context
 import android.util.Log
 import com.pict.pbl.medswift.data.Symptom
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.json.JSONArray
@@ -11,7 +13,7 @@ class SymptomsJSONReader( private val context : Context ){
 
     private val symptomsJsonFileName = "symptoms_output.json"
 
-    fun parseSymptoms() : ArrayList<Symptom> {
+    fun parseSymptoms() : ArrayList<Symptom> = runBlocking( Dispatchers.IO ){
         val jsonString = readJsonAsString()
         Log.d( "APP" ,"String: " + jsonString )
         val symptomsArray = JSONArray( jsonString )
@@ -20,7 +22,7 @@ class SymptomsJSONReader( private val context : Context ){
             val symptom = Json.decodeFromString<Symptom>( symptomsArray[i].toString() )
             symptomsList.add( symptom )
         }
-        return symptomsList
+        return@runBlocking symptomsList
     }
 
     private fun readJsonAsString() : String {

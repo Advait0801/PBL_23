@@ -1,4 +1,4 @@
-package com.pict.pbl.medswift.login
+package com.pict.pbl.medswift.auth
 
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -6,7 +6,7 @@ import com.pict.pbl.medswift.data.User
 import com.pict.pbl.medswift.viewmodels.LoginViewModel
 import java.util.regex.Pattern
 
-class LoginManager( private val loginViewModel: LoginViewModel? = null ) {
+class LoginManager( private val loginViewModel: LoginViewModel ) {
 
     private val firebaseAuth = Firebase.auth
 
@@ -26,6 +26,7 @@ class LoginManager( private val loginViewModel: LoginViewModel? = null ) {
     }
 
     fun loginUser( emailAddress: String , password: String , result : ( () -> Unit ) ) {
+        loginViewModel.isLoading.value = true
         firebaseAuth.signInWithEmailAndPassword( emailAddress , password )
             .addOnSuccessListener {
                 result()
@@ -35,6 +36,9 @@ class LoginManager( private val loginViewModel: LoginViewModel? = null ) {
                     loginViewModel.errorMessage.value = it.message
                     loginViewModel.errorMessageFlag.value = true
                 }
+            }
+            .addOnCompleteListener {
+                loginViewModel.isLoading.value = false
             }
     }
 

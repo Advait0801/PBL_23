@@ -19,6 +19,10 @@ class SymptomsViewModel: ViewModel() {
     var clickedSymptomIndex : Int = 0
     var clickedSymptom : Symptom? = null
 
+    val errorMessageFlag = MutableLiveData( false )
+    val errorMessage = MutableLiveData( "" )
+    val isLoading = MutableLiveData( false )
+
     fun addNewSelectedSymptom( symptom: Symptom ) {
         val selectedSymptoms = ArrayList<Symptom>()
         selectedSymptoms.addAll(selectedSymptomsList.value ?: ArrayList() )

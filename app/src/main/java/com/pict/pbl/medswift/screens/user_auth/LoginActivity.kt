@@ -7,9 +7,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -35,12 +37,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.MutableLiveData
 import com.pict.pbl.medswift.R
-import com.pict.pbl.medswift.login.LoginManager
+import com.pict.pbl.medswift.auth.LoginManager
 import com.pict.pbl.medswift.screens.HomeScreen
 import com.pict.pbl.medswift.screens.RegisterScreen
-import com.pict.pbl.medswift.screens.symptoms.SymptomsActivity
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.viewmodels.LoginViewModel
 
@@ -115,6 +118,7 @@ class LoginActivity : ComponentActivity() {
                     .padding(top = 50.dp, end = 10.dp)
             )
             AlertDialog()
+            ProgressDialog()
         }
     }
 
@@ -159,6 +163,28 @@ class LoginActivity : ComponentActivity() {
             )
         }
     }
+
+    @Composable
+    private fun ProgressDialog() {
+        val progressShowFlag by loginViewModel.isLoading.observeAsState()
+        var openDialog by rememberSaveable{ mutableStateOf( true ) }
+        if (openDialog && progressShowFlag == true ) {
+            Dialog(
+                onDismissRequest = { openDialog = false },
+                DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
+            ) {
+                Box(
+                    contentAlignment= Alignment.Center,
+                    modifier = Modifier
+                        .size(100.dp)
+                        .background(Color.White, shape = RoundedCornerShape(8.dp))
+                ) {
+                    CircularProgressIndicator()
+                }
+            }
+        }
+    }
+
 
 
     @OptIn(ExperimentalMaterial3Api::class)

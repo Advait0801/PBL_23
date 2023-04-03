@@ -1,2 +1,3 @@
-- Completed `HistoryScreen.kt`
-- Added Button in `RegisterScreen.kt`
+- Added user registration in `RegisterScreen.kt`
+- Added progress dialog in `LoginActivity.kt` and `SymptomsActivity.kt`
+- Symptoms JSON loading off-loaded from main thread in `SymptomsJSONReader`

@@ -9,21 +9,37 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.pict.pbl.medswift.auth.CurrentUser
 import com.pict.pbl.medswift.data.User
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class RegisterScreen : ComponentActivity() {
 
     private val currentUser = User()
+    private val auth = Firebase.auth
+    private var password = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +91,13 @@ class RegisterScreen : ComponentActivity() {
                 )
             }
             item {
+                UserPassword(
+                    modifier = Modifier
+                        .padding(start = 32.dp, end = 32.dp, bottom = 16.dp)
+                        .fillMaxWidth()
+                )
+            }
+            item {
                 UserGender(
                     modifier = Modifier
                         .padding(start = 32.dp, end = 32.dp, bottom = 16.dp)
@@ -104,6 +127,13 @@ class RegisterScreen : ComponentActivity() {
             }
             item {
                 Button(onClick = {
+                    CoroutineScope( Dispatchers.IO ).launch {
+                        val result = auth.createUserWithEmailAndPassword( currentUser.email , password ).await()
+                        println( "User ID : " + result.user?.uid )
+                        CurrentUser().apply {
+                            createUser( currentUser , result.user?.uid!! )
+                        }
+                    }
 
                 }) {
                     Text(text = "Register")
@@ -217,6 +247,37 @@ class RegisterScreen : ComponentActivity() {
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Next),
             keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Next)})
+        )
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    private fun UserPassword( modifier : Modifier ){
+        var password by rememberSaveable{ mutableStateOf( "" ) }
+        var passwordVisible by rememberSaveable { mutableStateOf(false) }
+        OutlinedTextField(
+            modifier = modifier,
+            value = password,
+            singleLine = true,
+            onValueChange = { it ->
+                password = it
+                this@RegisterScreen.password = it
+                            } ,
+            placeholder = { Text("Password") } ,
+            leadingIcon = { Icon( imageVector = Icons.Default.Lock , contentDescription = "Password" ) } ,
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                val image = if (passwordVisible)
+                    Icons.Filled.Visibility
+                else Icons.Filled.VisibilityOff
+
+                val description = if (passwordVisible) "Hide password" else "Show password"
+
+                IconButton(onClick = {passwordVisible = !passwordVisible}){
+                    Icon(imageVector  = image, description)
+                }
+            },
+            keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Password , imeAction = ImeAction.Done),
         )
     }
 

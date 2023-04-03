@@ -1,4 +1,4 @@
-package com.pict.pbl.medswift.api
+package com.pict.pbl.medswift.auth
 
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -21,9 +21,10 @@ class CurrentUser {
         return@runBlocking user!!
     }
 
-    fun createUser( user : User ) = runBlocking( Dispatchers.IO ){
+    fun createUser( user : User , uid : String ) = runBlocking( Dispatchers.IO ){
         db.collection( "users" )
-        //auth.create
+            .document( uid )
+            .set( user )
     }
 
 }

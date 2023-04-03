@@ -32,6 +32,7 @@ fun DiagnosisScreen( symptomsViewModel: SymptomsViewModel ) {
 @Composable
 private fun ScreenUI( symptomsViewModel: SymptomsViewModel ) {
     // TODO: Improve the UI of DiagnosisScreen
+    symptomsViewModel.isLoading.value = false
     val result = symptomsViewModel.diagnosisResult.toList()
     val min = result.minOf{ it.second }
     val max = result.maxOf{ it.second }
