@@ -35,10 +35,10 @@ fun InputSymptomsScreen( symptomsViewModel: SymptomsViewModel) {
 private fun ScreenUI( symptomsViewModel: SymptomsViewModel ) {
     Column( modifier = Modifier
         .fillMaxSize()
-        .padding(32.dp) ){
+        .padding(16.dp) ){
         if( symptomsViewModel.symptomsList.value != null ) {
             val symptom = symptomsViewModel.clickedSymptom!!
-            Text( text = symptom.laytext )
+            Text( text = symptom.laytext , modifier = Modifier.padding( bottom = 16.dp ) )
             when (symptom.type) {
                 SymptomChoiceType.integer -> {
                     IntegerInput(symptom = symptom, symptomsViewModel = symptomsViewModel)
@@ -122,7 +122,6 @@ private fun CategoricalInput(symptom : Symptom, symptomsViewModel: SymptomsViewM
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp)
                     .selectable(
                         selected = (selectedItem == label),
                         onClick = {
@@ -138,7 +137,7 @@ private fun CategoricalInput(symptom : Symptom, symptomsViewModel: SymptomsViewM
                         },
                         role = Role.RadioButton
                     )
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 16.dp , vertical = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 RadioButton(

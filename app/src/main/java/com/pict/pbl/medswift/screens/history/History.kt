@@ -1,18 +1,25 @@
 package com.pict.pbl.medswift.screens.history
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Divider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -48,6 +55,24 @@ private fun ScreenUI( historyViewModel: HistoryViewModel ) {
             .fillMaxSize()
             .background(Color.White)) {
             LazyColumn {
+                item {
+                    Text(
+                        text = "History" ,
+                        color = Color.Black ,
+                        fontWeight = FontWeight.Bold ,
+                        fontSize = 22.sp ,
+                        modifier = Modifier
+                            .padding( 24.dp )
+                            .fillMaxWidth()
+                    )
+                    Divider(
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier
+                            .padding( bottom = 8.dp )
+                            .fillMaxWidth()
+                            .width(1.dp)
+                    )
+                }
                 items( history ) {
                     HistoryItem( diagnosis = it , historyViewModel )
                 }
@@ -59,15 +84,22 @@ private fun ScreenUI( historyViewModel: HistoryViewModel ) {
 @Composable
 private fun HistoryItem( diagnosis : UserDiagnosis , historyViewModel: HistoryViewModel ) {
     // TODO: Improve history text
-    Text(
-        text = dateFormat.format( diagnosis.time ) ,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-            .clickable {
-                historyViewModel.clickedDiagnosisItem = diagnosis
-                historyViewModel.historyNavController?.navigate( "viewHistory" )
-            }
-    )
+    Surface(
+        shape = RoundedCornerShape( 10.dp ) ,
+        border = BorderStroke( 1.dp , MaterialTheme.colorScheme.primary ) ,
+        modifier = Modifier.padding( horizontal = 8.dp , vertical = 4.dp )
+    ) {
+        Text(
+            text = dateFormat.format( diagnosis.time ) ,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+                .clickable {
+                    historyViewModel.clickedDiagnosisItem = diagnosis
+                    historyViewModel.historyNavController?.navigate("viewHistory")
+                }
+        )
+    }
+
 }
 

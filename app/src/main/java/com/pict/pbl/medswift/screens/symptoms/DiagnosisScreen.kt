@@ -1,5 +1,6 @@
 package com.pict.pbl.medswift.screens.symptoms
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -34,11 +35,13 @@ private fun ScreenUI( symptomsViewModel: SymptomsViewModel ) {
     // TODO: Improve the UI of DiagnosisScreen
     symptomsViewModel.isLoading.value = false
     val result = symptomsViewModel.diagnosisResult.toList()
-    val min = result.minOf{ it.second }
-    val max = result.maxOf{ it.second }
+    //val min = result.minOf{ it.second }
+    //val max = result.maxOf{ it.second }
+    //println( "Max Min: $min $max")
     LazyColumn{
         items( result ) {
-            DiseaseItem(name = it.first, confidence = ( ( it.second - min ) / ( max - min ) ) * 100 )
+            //DiseaseItem(name = it.first, confidence = ( ( it.second - min ) / ( max - min ) ) * 100 )
+            DiseaseItem(name = it.first, confidence = ( it.second * 100 ) )
         }
     }
 }

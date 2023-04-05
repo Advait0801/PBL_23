@@ -5,16 +5,17 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -24,12 +25,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.flowlayout.FlowRow
+import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.api.DiagnosisAPI
 import com.pict.pbl.medswift.api.DiagnosisHistory
 import com.pict.pbl.medswift.data.AnalyzeSymptom
@@ -46,6 +53,7 @@ class SymptomsActivity : ComponentActivity() {
     
     private lateinit var symptoms : ArrayList<Symptom>
     private val symptomsViewModel : SymptomsViewModel by viewModels()
+    private var mappedSymptoms = HashMap<String,AnalyzeSymptom>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,37 +84,88 @@ class SymptomsActivity : ComponentActivity() {
         }
     }
 
-
+    @Preview
     @Composable
     private fun ActivityUI() {
         // Improve UI of SymptomsActivity
-        Column {
-            Button(onClick = {
-                println( "SelectSymptoms - select symptoms" )
-                println( symptomsViewModel.navController )
-                symptomsViewModel.navController?.navigate( "selectSymptoms" )
-            }) {
-                Text(text = "Select Symptoms")
+        Column( Modifier.verticalScroll( rememberScrollState() ) ) {
+            Text(
+                text = "Diagnosis" ,
+                modifier = Modifier.padding( 32.dp ) ,
+                fontSize = 24.sp ,
+                fontWeight = FontWeight.Bold
+            )
+            Box( contentAlignment = Alignment.Center ){
+                Image(painter = painterResource(id = R.drawable.symptoms_screen_pic), contentDescription = "Symptoms Screen" )
             }
-            Button(onClick = {
-                val client = OkHttpClient()
-                symptomsViewModel.isLoading.value = true
-                DiagnosisAPI(client).apply {
-                    val analyzeSymptomsList = symptomsViewModel.analyzeSymptomsList.value ?: ArrayList()
-                    val mappedSymptoms = HashMap<String,AnalyzeSymptom>()
-                    analyzeSymptomsList.forEach{
-                        mappedSymptoms[ it.name ] = it
-                    }
-                    val result = getAnalysis( mappedSymptoms.values.toList() )
-                    symptomsViewModel.diagnosisResult = result
-                    symptomsViewModel.navController!!.navigate( "diagnosis" )
+            SelectedSymptoms()
+            Row( verticalAlignment = Alignment.Bottom ){
+                Button(
+                    onClick = {
+                    println( "SelectSymptoms - select symptoms" )
+                    println( symptomsViewModel.navController )
+                    symptomsViewModel.navController?.navigate( "selectSymptoms" )
+                    } ,
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(8.dp)
+                        .fillMaxWidth()
+                ) {
+                    Text(text = "Select Symptoms")
                 }
-            }) {
-                Text(text = "Analyze")
+                Button(onClick = {
+                    val client = OkHttpClient()
+                    symptomsViewModel.isLoading.value = true
+                    DiagnosisAPI(client).apply {
+                        val analyzeSymptomsList = symptomsViewModel.analyzeSymptomsList.value ?: ArrayList()
+                        mappedSymptoms = HashMap()
+                        analyzeSymptomsList.forEach{
+                            mappedSymptoms[ it.name ] = it
+                        }
+                        val result = getAnalysis( mappedSymptoms.values.toList() )
+                        if( result.size > 0 ) {
+                            symptomsViewModel.diagnosisResult = result
+                            symptomsViewModel.navController!!.navigate( "diagnosis" )
+                        }
+                        else {
+
+                        }
+
+                    }
+                } ,
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(8.dp)
+                        .fillMaxWidth()
+                ) {
+                    Text(text = "Analyze")
+                }
             }
+
             ProgressDialog()
         }
     }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    private fun SelectedSymptoms() {
+        val analyzeSymptomList by symptomsViewModel.analyzeSymptomsList.observeAsState()
+        FlowRow(
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth() ,
+            mainAxisSpacing = 2.dp,
+            crossAxisSpacing = 2.dp,
+        ) {
+            ( analyzeSymptomList ?: ArrayList() ).forEach {
+                AssistChip(
+                    onClick = {  } ,
+                    label = { Text(text = it.name , maxLines = 1 ) } ,
+                )
+            }
+        }
+    }
+
 
     @Composable
     private fun ProgressDialog() {

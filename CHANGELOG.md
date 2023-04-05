@@ -1,3 +1,2 @@
-- Added user registration in `RegisterScreen.kt`
-- Added progress dialog in `LoginActivity.kt` and `SymptomsActivity.kt`
-- Symptoms JSON loading off-loaded from main thread in `SymptomsJSONReader`
+- Improved UI in `HomeScreen.kt`, `RegisterScreen.kt`, `History.kt` and `Profile.kt`
+- `Profile.kt` now shows all user properties

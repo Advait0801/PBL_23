@@ -1,5 +1,6 @@
 package com.pict.pbl.medswift.auth
 
+import android.graphics.Bitmap
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -26,5 +27,16 @@ class CurrentUser {
             .document( uid )
             .set( user )
     }
+
+    fun uploadImage( image : Bitmap) {
+        // TODO: Upload profile image to Storage here
+    }
+
+    fun getUserImage() : Bitmap? {
+        // TODO: Fetch user image
+        return null
+    }
+
+
 
 }

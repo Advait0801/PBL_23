@@ -2,16 +2,15 @@ package com.pict.pbl.medswift.screens.profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.WaterDrop
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,7 +25,10 @@ import androidx.compose.ui.unit.sp
 import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.auth.CurrentUser
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
+import java.text.SimpleDateFormat
+import java.util.*
 
+private val dateFormat = SimpleDateFormat( "E, dd MMM yyyy" , Locale.getDefault() )
 private val currentUser = CurrentUser().getUser()
 
 @Composable
@@ -43,7 +45,7 @@ fun ProfileScreen() {
 
 @Composable
 private fun ScreenUI() {
-    Column {
+    Column( modifier = Modifier.verticalScroll( rememberScrollState() ) ) {
         UserBasicInfo()
         OtherDetailsDrawer()
     }
@@ -64,8 +66,15 @@ private fun UserBasicInfo() {
                 fontWeight = FontWeight.Bold ,
                 fontSize = 22.sp ,
                 modifier = Modifier
-                    .padding(start = 24.dp, top = 24.dp, end = 24.dp)
+                    .padding( 24.dp )
                     .fillMaxWidth()
+            )
+            Divider(
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier
+                    .padding( bottom = 8.dp )
+                    .fillMaxWidth()
+                    .width(1.dp)
             )
             Image(
                 painter = painterResource(id = R.drawable.sample_avatar),
@@ -109,8 +118,12 @@ private fun OtherDetailsDrawer() {
             modifier = Modifier.padding(24.dp) ,
             verticalArrangement = Arrangement.spacedBy( 16.dp )
         ) {
+            OtherDetail( Icons.Default.Phone , currentUser.phoneNumber )
             OtherDetail( Icons.Default.WaterDrop , currentUser.bldGrp )
+            OtherDetail( Icons.Default.CalendarMonth , dateFormat.format( currentUser.dateOfBirth ) )
+            OtherDetail( Icons.Default.Person , currentUser.gender )
             OtherDetail( Icons.Default.Person , currentUser.weight.toString() )
+            OtherDetail( Icons.Default.Person , currentUser.height.toString() )
         }
     }
 }
