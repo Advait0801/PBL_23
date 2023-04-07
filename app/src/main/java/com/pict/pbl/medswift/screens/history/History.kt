@@ -20,22 +20,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.pict.pbl.medswift.api.DiagnosisHistory
-import com.pict.pbl.medswift.data.User
+import com.pict.pbl.medswift.api.UserDiagnosisHistory
 import com.pict.pbl.medswift.data.UserDiagnosis
-import com.pict.pbl.medswift.screens.symptoms.DiagnosisScreen
-import com.pict.pbl.medswift.screens.symptoms.InputSymptomsScreen
-import com.pict.pbl.medswift.screens.symptoms.SelectSymptomsScreen
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.viewmodels.HistoryViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-private val history = DiagnosisHistory().getHistory()
+private val history = UserDiagnosisHistory().getHistory()
 private val dateFormat = SimpleDateFormat( "E, dd MMM yyyy" , Locale.getDefault() )
 
 @Composable

@@ -16,6 +16,16 @@ data class User(
     constructor() : this( "" , Date() , "" , "" , "" , 0.0f , "" , "" , 0 )
 }
 
+data class UserPrescription(
+    var courseLength : Int ,
+    var instructions : String ,
+    var name : String ,
+    var startTime : Date ,
+    var times : List<Int>
+) {
+    constructor() : this( 0 , "" , "" , Date() , listOf( 0 ) )
+}
+
 data class UserSymptom(
     val name : String ,
     val value : Int

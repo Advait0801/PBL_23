@@ -1,2 +1,4 @@
-- Improved UI in `HomeScreen.kt`, `RegisterScreen.kt`, `History.kt` and `Profile.kt`
-- `Profile.kt` now shows all user properties
+- Added `Prescriptions.kt` in `prescriptions`
+- Modified `HomeScreen.kt` to add `Prescriptions.kt` in bottom navigation
+- Added `UserPrescriptions` in api to fetch prescriptions from Firestore
+- Added `UserPrescription` in `User.kt` in `data`

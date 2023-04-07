@@ -12,7 +12,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.util.Date
 
-class DiagnosisHistory {
+class UserDiagnosisHistory {
 
     private val auth = Firebase.auth
 

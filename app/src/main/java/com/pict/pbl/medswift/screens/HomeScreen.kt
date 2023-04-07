@@ -10,10 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.History
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.LocalHospital
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,6 +29,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pict.pbl.medswift.screens.history.HistoryScreen
+import com.pict.pbl.medswift.screens.prescriptions.PrescriptionsScreen
 import com.pict.pbl.medswift.screens.profile.ProfileScreen
 import com.pict.pbl.medswift.screens.symptoms.SymptomsActivity
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
@@ -70,7 +68,7 @@ class HomeScreen : ComponentActivity() {
                         startActivity( this )
                     }
                 }) {
-                    Row {
+                    Row( modifier = Modifier.padding( 8.dp ) ) {
                         Icon( Icons.Default.LocalHospital , contentDescription = "Diagnosis" )
                         Text(text = "Diagnosis" , modifier = Modifier.padding( 8.dp ) )
                     }
@@ -89,7 +87,8 @@ class HomeScreen : ComponentActivity() {
         val screens = listOf(
             //BottomNavItem.HomeScreenItem ,
             BottomNavItem.ProfileScreenItem ,
-            BottomNavItem.HistoryScreenItem
+            BottomNavItem.HistoryScreenItem ,
+            BottomNavItem.PrescriptionsScreenItem
         )
         NavigationBar(
             containerColor = Color.White ,
@@ -125,6 +124,7 @@ class HomeScreen : ComponentActivity() {
             composable( BottomNavItem.HomeScreenItem.screenRoute ) { RegisterScreen() }
             composable( BottomNavItem.ProfileScreenItem.screenRoute ) { ProfileScreen() }
             composable( BottomNavItem.HistoryScreenItem.screenRoute ) { HistoryScreen( historyViewModel ) }
+            composable( BottomNavItem.PrescriptionsScreenItem.screenRoute ) { PrescriptionsScreen() }
         }
     }
 
@@ -136,6 +136,7 @@ class HomeScreen : ComponentActivity() {
         object ProfileScreenItem: BottomNavItem( "Profile" , Icons.Default.Person , "profile" )
         object HomeScreenItem: BottomNavItem( "Home" , Icons.Default.Home , "home" )
         object HistoryScreenItem: BottomNavItem( "History" , Icons.Default.History , "history" )
+        object PrescriptionsScreenItem : BottomNavItem( "Prescriptions" , Icons.Default.Report , "prescriptions" )
     }
 
 }

@@ -8,10 +8,6 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -38,15 +34,12 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.flowlayout.FlowRow
 import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.api.DiagnosisAPI
-import com.pict.pbl.medswift.api.DiagnosisHistory
+import com.pict.pbl.medswift.api.UserDiagnosisHistory
 import com.pict.pbl.medswift.data.AnalyzeSymptom
 import com.pict.pbl.medswift.data.Symptom
 import com.pict.pbl.medswift.symptoms.SymptomsJSONReader
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.viewmodels.SymptomsViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 
 class SymptomsActivity : ComponentActivity() {
@@ -62,7 +55,7 @@ class SymptomsActivity : ComponentActivity() {
             symptomsViewModel.symptomsList.value = parseSymptoms()
         }
 
-        val history = DiagnosisHistory().getHistory( )
+        val history = UserDiagnosisHistory().getHistory( )
         Log.e( "APP" , "History $history")
 
         setContent {
