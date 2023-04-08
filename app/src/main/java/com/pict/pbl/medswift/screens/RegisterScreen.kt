@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.pict.pbl.medswift.auth.CurrentUser
+import com.pict.pbl.medswift.auth.CurrentUserDetails
 import com.pict.pbl.medswift.data.User
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import kotlinx.coroutines.CoroutineScope
@@ -152,7 +152,7 @@ class RegisterScreen : ComponentActivity() {
                     CoroutineScope( Dispatchers.IO ).launch {
                         val result = auth.createUserWithEmailAndPassword( currentUser.email , password ).await()
                         println( "User ID : " + result.user?.uid )
-                        CurrentUser().apply {
+                        CurrentUserDetails().apply {
                             createUser( currentUser , result.user?.uid!! )
                         }
                     }

@@ -1,4 +1,2 @@
-- Added `Prescriptions.kt` in `prescriptions`
-- Modified `HomeScreen.kt` to add `Prescriptions.kt` in bottom navigation
-- Added `UserPrescriptions` in api to fetch prescriptions from Firestore
-- Added `UserPrescription` in `User.kt` in `data`
+- `Profile.kt` now shows picture of the user: implemented with Coil
+- Users can now change the profile picture - which gets uploaded on Firebase Storage

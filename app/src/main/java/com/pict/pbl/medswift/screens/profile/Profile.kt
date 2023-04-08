@@ -1,35 +1,43 @@
 package com.pict.pbl.medswift.screens.profile
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.scrollable
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.pict.pbl.medswift.R
-import com.pict.pbl.medswift.auth.CurrentUser
+import androidx.lifecycle.MutableLiveData
+import coil.compose.SubcomposeAsyncImage
+import coil.request.ImageRequest
+import com.google.modernstorage.photopicker.PhotoPicker
+import com.pict.pbl.medswift.auth.CurrentUserDetails
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
 private val dateFormat = SimpleDateFormat( "E, dd MMM yyyy" , Locale.getDefault() )
-private val currentUser = CurrentUser().getUser()
+private val currentUserOptions = CurrentUserDetails()
+private val currentUser = currentUserOptions.getUser()
+private val userImage = MutableLiveData<Bitmap>()
 
 @Composable
 fun ProfileScreen() {
@@ -52,7 +60,7 @@ private fun ScreenUI() {
 }
 
 
-
+@androidx.annotation.OptIn(androidx.core.os.BuildCompat.PrereleaseSdkCheck::class)
 @Composable
 private fun UserBasicInfo() {
     Surface(
@@ -66,26 +74,17 @@ private fun UserBasicInfo() {
                 fontWeight = FontWeight.Bold ,
                 fontSize = 22.sp ,
                 modifier = Modifier
-                    .padding( 24.dp )
+                    .padding(24.dp)
                     .fillMaxWidth()
             )
             Divider(
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
-                    .padding( bottom = 8.dp )
+                    .padding(bottom = 8.dp)
                     .fillMaxWidth()
                     .width(1.dp)
             )
-            Image(
-                painter = painterResource(id = R.drawable.sample_avatar),
-                contentDescription = "Profile Photo" ,
-                contentScale = ContentScale.Crop ,
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .size(128.dp)
-                    .clip(CircleShape)
-                    .padding(top = 24.dp, bottom = 24.dp)
-            )
+            UserImage( )
             Text(
                 text = currentUser.firstName ,
                 fontWeight = FontWeight.Bold ,
@@ -106,6 +105,43 @@ private fun UserBasicInfo() {
         }
     }
 }
+@androidx.annotation.OptIn(androidx.core.os.BuildCompat.PrereleaseSdkCheck::class)
+@Composable
+private fun ColumnScope.UserImage() {
+    val context = LocalContext.current
+    val userImageBitmap by userImage.observeAsState()
+    val photoPicker = rememberLauncherForActivityResult( PhotoPicker() ) {
+        userImage.value = BitmapFactory.decodeStream( context.contentResolver.openInputStream( it[0] ) )
+        CoroutineScope( Dispatchers.IO ).launch {
+            currentUserOptions.uploadImage( userImage.value!! )
+        }
+    }
+    SubcomposeAsyncImage(
+        model = ImageRequest.Builder(LocalContext.current).run {
+            if( userImageBitmap != null ) {
+                data( userImageBitmap )
+            }
+            else {
+                data( currentUserOptions.getUserImage() )
+            }
+            crossfade(true)
+            build()
+        } ,
+        contentDescription = "Profile Photo" ,
+        loading = {
+            CircularProgressIndicator()
+        } ,
+        contentScale = ContentScale.Crop ,
+        modifier = Modifier
+            .align( Alignment.CenterHorizontally )
+            .size(200.dp)
+            .clip(RoundedCornerShape(100.dp))
+            .clickable {
+                photoPicker.launch(PhotoPicker.Args(PhotoPicker.Type.IMAGES_ONLY, 1))
+            } ,
+    )
+}
+
 
 
 @Composable

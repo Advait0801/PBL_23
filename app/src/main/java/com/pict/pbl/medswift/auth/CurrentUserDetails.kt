@@ -4,15 +4,20 @@ import android.graphics.Bitmap
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.pict.pbl.medswift.data.User
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
+import java.io.ByteArrayOutputStream
 
-class CurrentUser {
+class CurrentUserDetails {
 
     private val db = Firebase.firestore
     private val auth = Firebase.auth
+    private val storage = Firebase.storage
 
     fun getUser() : User = runBlocking( Dispatchers.IO ){
         val userDocument = db.collection( "users" )
@@ -28,13 +33,16 @@ class CurrentUser {
             .set( user )
     }
 
-    fun uploadImage( image : Bitmap) {
-        // TODO: Upload profile image to Storage here
+    suspend fun uploadImage( image : Bitmap ) = CoroutineScope( Dispatchers.IO ).launch {
+        val baos = ByteArrayOutputStream()
+        image.compress( Bitmap.CompressFormat.JPEG , 100 , baos )
+        val result = storage.getReference( "profilePictures/${auth.currentUser?.uid}.jpg" )
+            .putBytes( baos.toByteArray() ).await()
     }
 
-    fun getUserImage() : Bitmap? {
-        // TODO: Fetch user image
-        return null
+    fun getUserImage() : String = runBlocking( Dispatchers.IO ){
+        val url = storage.getReference( "profilePictures/${auth.currentUser?.uid}.jpg" ).downloadUrl.await()
+        return@runBlocking url.toString()
     }
 
 
