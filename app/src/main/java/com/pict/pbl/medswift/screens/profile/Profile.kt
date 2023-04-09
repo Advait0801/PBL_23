@@ -28,6 +28,7 @@ import coil.request.ImageRequest
 import com.google.modernstorage.photopicker.PhotoPicker
 import com.pict.pbl.medswift.auth.CurrentUserDetails
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
+import com.pict.pbl.medswift.ui.theme.ScreenTitle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -68,28 +69,12 @@ private fun UserBasicInfo() {
         color = Color.White
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
-            Text(
-                text = "Profile" ,
-                color = Color.Black ,
-                fontWeight = FontWeight.Bold ,
-                fontSize = 22.sp ,
-                modifier = Modifier
-                    .padding(24.dp)
-                    .fillMaxWidth()
-            )
-            Divider(
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier
-                    .padding(bottom = 8.dp)
-                    .fillMaxWidth()
-                    .width(1.dp)
-            )
+            ScreenTitle(title = "Profile" , icon=Icons.Default.Person)
             UserImage( )
             Text(
                 text = currentUser.firstName ,
                 fontWeight = FontWeight.Bold ,
                 fontSize = 24.sp ,
-
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(top = 16.dp)
@@ -133,7 +118,7 @@ private fun ColumnScope.UserImage() {
         } ,
         contentScale = ContentScale.Crop ,
         modifier = Modifier
-            .align( Alignment.CenterHorizontally )
+            .align(Alignment.CenterHorizontally)
             .size(200.dp)
             .clip(RoundedCornerShape(100.dp))
             .clickable {

@@ -2,4 +2,8 @@
     <string name="app_name">MedSwift</string>
     <string name="title_activity_login_screen">LoginScreen</string>
     <string name="title_activity_med_swift_icon">MedSwiftIcon</string>
+
+    <string name="filename_symptoms_blob">symptoms</string>
+
+    <string name="key_shared_pref_symptoms_store">symptoms</string>
 </resources>

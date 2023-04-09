@@ -26,6 +26,7 @@ import androidx.navigation.compose.rememberNavController
 import com.pict.pbl.medswift.api.UserDiagnosisHistory
 import com.pict.pbl.medswift.data.UserDiagnosis
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
+import com.pict.pbl.medswift.ui.theme.ScreenTitle
 import com.pict.pbl.medswift.viewmodels.HistoryViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -51,22 +52,7 @@ private fun ScreenUI( historyViewModel: HistoryViewModel ) {
             .background(Color.White)) {
             LazyColumn {
                 item {
-                    Text(
-                        text = "History" ,
-                        color = Color.Black ,
-                        fontWeight = FontWeight.Bold ,
-                        fontSize = 22.sp ,
-                        modifier = Modifier
-                            .padding( 24.dp )
-                            .fillMaxWidth()
-                    )
-                    Divider(
-                        color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier
-                            .padding( bottom = 8.dp )
-                            .fillMaxWidth()
-                            .width(1.dp)
-                    )
+                    ScreenTitle(title = "History")
                 }
                 items( history ) {
                     HistoryItem( diagnosis = it , historyViewModel )

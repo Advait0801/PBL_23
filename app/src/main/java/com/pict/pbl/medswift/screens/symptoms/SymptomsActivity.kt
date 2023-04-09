@@ -52,7 +52,7 @@ class SymptomsActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         SymptomsJSONReader(this).apply {
-            symptomsViewModel.symptomsList.value = parseSymptoms()
+            symptomsViewModel.symptomsList.value = getSymptoms()
         }
 
         val history = UserDiagnosisHistory().getHistory( )
@@ -106,26 +106,7 @@ class SymptomsActivity : ComponentActivity() {
                 ) {
                     Text(text = "Select Symptoms")
                 }
-                Button(onClick = {
-                    val client = OkHttpClient()
-                    symptomsViewModel.isLoading.value = true
-                    DiagnosisAPI(client).apply {
-                        val analyzeSymptomsList = symptomsViewModel.analyzeSymptomsList.value ?: ArrayList()
-                        mappedSymptoms = HashMap()
-                        analyzeSymptomsList.forEach{
-                            mappedSymptoms[ it.name ] = it
-                        }
-                        val result = getAnalysis( mappedSymptoms.values.toList() )
-                        if( result.size > 0 ) {
-                            symptomsViewModel.diagnosisResult = result
-                            symptomsViewModel.navController!!.navigate( "diagnosis" )
-                        }
-                        else {
-
-                        }
-
-                    }
-                } ,
+                Button(onClick = { initiateDiagnosis() } ,
                     modifier = Modifier
                         .weight(1f)
                         .padding(8.dp)
@@ -134,7 +115,7 @@ class SymptomsActivity : ComponentActivity() {
                     Text(text = "Analyze")
                 }
             }
-
+            AlertDialog()
             ProgressDialog()
         }
     }
@@ -179,6 +160,45 @@ class SymptomsActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    @Composable
+    private fun AlertDialog() {
+        val errorMessageFlag by symptomsViewModel.errorMessageFlag.observeAsState()
+        var openDialog by rememberSaveable{ mutableStateOf( true ) }
+        if( errorMessageFlag == true && openDialog ){
+            AlertDialog(
+                onDismissRequest = { openDialog = false } ,
+                title = { Text( "Error Message" ) } ,
+                text = { Text( symptomsViewModel.errorMessage.value ?: "" ) } ,
+                confirmButton = {
+                    Button(onClick = { openDialog = false } ){ Text(text = "CANCEL")} } ,
+            )
+        }
+    }
+
+    private fun initiateDiagnosis() {
+        try {
+            val client = OkHttpClient()
+            symptomsViewModel.isLoading.value = true
+            DiagnosisAPI(client).apply {
+                val analyzeSymptomsList = symptomsViewModel.analyzeSymptomsList.value ?: ArrayList()
+                mappedSymptoms = HashMap()
+                analyzeSymptomsList.forEach{
+                    mappedSymptoms[ it.name ] = it
+                }
+                val result = getAnalysis( mappedSymptoms.values.toList() )
+                if( result.size > 0 ) {
+                    symptomsViewModel.diagnosisResult = result
+                    symptomsViewModel.navController!!.navigate( "diagnosis" )
+                }
+            }
+        }
+        catch( e : Exception ) {
+            symptomsViewModel.errorMessageFlag.value = true
+            symptomsViewModel.errorMessage.value = e.message
+        }
+
     }
 
 }

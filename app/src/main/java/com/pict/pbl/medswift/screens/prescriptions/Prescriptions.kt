@@ -24,6 +24,7 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.pict.pbl.medswift.api.UserPrescriptions
 import com.pict.pbl.medswift.data.UserPrescription
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
+import com.pict.pbl.medswift.ui.theme.ScreenTitle
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,22 +48,7 @@ fun PrescriptionsScreen() {
 private fun ScreenUI() {
     LazyColumn {
         item {
-            Text(
-                text = "Prescriptions" ,
-                color = Color.Black ,
-                fontWeight = FontWeight.Bold ,
-                fontSize = 22.sp ,
-                modifier = Modifier
-                    .padding(24.dp)
-                    .fillMaxWidth()
-            )
-            Divider(
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier
-                    .padding(bottom = 8.dp)
-                    .fillMaxWidth()
-                    .width(1.dp)
-            )
+            ScreenTitle(title = "Prescriptions")
         }
         items( prescriptions ) {
             PrescriptionItem( it )

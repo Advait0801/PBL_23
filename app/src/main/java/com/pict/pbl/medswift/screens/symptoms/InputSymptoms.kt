@@ -4,6 +4,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Dialpad
+import androidx.compose.material.icons.filled.Numbers
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -12,11 +15,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.pict.pbl.medswift.data.AnalyzeSymptom
 import com.pict.pbl.medswift.data.Symptom
 import com.pict.pbl.medswift.data.SymptomChoiceType
+import com.pict.pbl.medswift.ui.theme.BubbleText
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
+import com.pict.pbl.medswift.ui.theme.TextInput
 import com.pict.pbl.medswift.viewmodels.SymptomsViewModel
 
 @Composable
@@ -38,7 +47,18 @@ private fun ScreenUI( symptomsViewModel: SymptomsViewModel ) {
         .padding(16.dp) ){
         if( symptomsViewModel.symptomsList.value != null ) {
             val symptom = symptomsViewModel.clickedSymptom!!
-            Text( text = symptom.laytext , modifier = Modifier.padding( bottom = 16.dp ) )
+            Text(
+                text = symptom.laytext ,
+                modifier = Modifier.padding( 16.dp ) ,
+                fontSize = 18.sp
+            )
+            Text(
+                text = symptom.text ,
+                modifier = Modifier.padding( 16.dp ) ,
+                color = Color.DarkGray ,
+                fontSize = 14.sp
+            )
+            BubbleText(text = symptom.text , textStyle = TextStyle( fontWeight = FontWeight.Normal ))
             when (symptom.type) {
                 SymptomChoiceType.integer -> {
                     IntegerInput(symptom = symptom, symptomsViewModel = symptomsViewModel)
@@ -56,65 +76,50 @@ private fun ScreenUI( symptomsViewModel: SymptomsViewModel ) {
 
 @Composable
 private fun IntegerInput(symptom : Symptom, symptomsViewModel: SymptomsViewModel) {
-    // TODO: Stylize integer-input (Ex. BMI)
-    var doubleValue by remember{ mutableStateOf( symptom.min ) }
     Row{
-        Text(
-            text = "Enter value" ,
-            modifier = Modifier
-                .weight(1.0f)
-                .fillMaxWidth()
-        )
-        BasicTextField(
-            value = doubleValue.toString(),
+        TextInput(
+            label = "Enter value",
             onValueChange = {
-                doubleValue = it.toDouble()
                 symptomsViewModel.addNewAnalyzeSymptom(
                     AnalyzeSymptom(
                         symptom.name,
-                        doubleValue.toString()
+                        it
                     )
                 )
             } ,
             modifier = Modifier
-                .weight(0.1f)
-                .fillMaxWidth()
+                .padding(8.dp)
+                .fillMaxWidth() ,
+            keyboardType = KeyboardType.Number ,
+            icon = Icons.Default.Dialpad
         )
     }
 }
 
 @Composable
 private fun DoubleInput(symptom : Symptom, symptomsViewModel: SymptomsViewModel) {
-    // TODO: Stylize double-input (Ex. BMI)
-    var doubleValue by remember{ mutableStateOf( symptom.min ) }
     Row{
-        Text(
-            text = "Enter value" ,
-            modifier = Modifier
-                .weight(1.0f)
-                .fillMaxWidth()
-        )
-        BasicTextField(
-            value = doubleValue.toString(),
+        TextInput(
+            label = "Enter value",
             onValueChange = {
-                doubleValue = it.toDouble()
                 symptomsViewModel.addNewAnalyzeSymptom(
                     AnalyzeSymptom(
                         symptom.name,
-                        doubleValue.toString()
+                        it
                     )
                 )
             } ,
             modifier = Modifier
-                .weight(0.1f)
-                .fillMaxWidth()
+                .padding(8.dp)
+                .fillMaxWidth() ,
+            keyboardType = KeyboardType.Decimal ,
+            icon = Icons.Default.Numbers
         )
     }
 }
 
 @Composable
 private fun CategoricalInput(symptom : Symptom, symptomsViewModel: SymptomsViewModel) {
-    // TODO: Stylize double-input (Ex. Systolic blood pressure)
     val options = symptom.choices!!.map { it.text }
     var selectedItem by remember{ mutableStateOf(options[0]) }
     Column(modifier = Modifier.selectableGroup()) {
@@ -137,13 +142,13 @@ private fun CategoricalInput(symptom : Symptom, symptomsViewModel: SymptomsViewM
                         },
                         role = Role.RadioButton
                     )
-                    .padding(horizontal = 16.dp , vertical = 16.dp),
+                    .padding(horizontal = 16.dp, vertical = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 RadioButton(
                     modifier = Modifier.padding(end = 16.dp),
                     selected = (selectedItem == label),
-                    onClick = null
+                    onClick = null ,
                 )
                 Text(text = label)
             }

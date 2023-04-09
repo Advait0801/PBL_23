@@ -1,2 +1,7 @@
-- `Profile.kt` now shows picture of the user: implemented with Coil
-- Users can now change the profile picture - which gets uploaded on Firebase Storage
+- Improved loading time for JSON file of symptoms. The JSON file now gets parsed one and is then
+stored in the app's internal storage (2380 ms vs 569 ms)
+- Added spring animation in bottom nav items
+- Improved UI of `ViewHistory.kt`
+- Added `AppWidgets.kt` which holds app-wide composables
+- Improved UI of `RegisterScreen.kt`
+- Improved UI of `InputSymptoms.kt`
