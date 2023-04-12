@@ -5,6 +5,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.pict.pbl.medswift.data.AnalyzeSymptom
 import com.pict.pbl.medswift.data.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,6 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.io.ByteArrayOutputStream
+import java.util.UUID
 
 class CurrentUserDetails {
 
@@ -43,6 +45,31 @@ class CurrentUserDetails {
     fun getUserImage() : String = runBlocking( Dispatchers.IO ){
         val url = storage.getReference( "profilePictures/${auth.currentUser?.uid}.jpg" ).downloadUrl.await()
         return@runBlocking url.toString()
+    }
+
+    suspend fun uploadDiagnosis( symptoms : List<AnalyzeSymptom> , predictions : HashMap<String,Float> ) =
+        CoroutineScope( Dispatchers.IO ).launch {
+            val symptomsCollection = db.collection( "users" )
+                .document( auth.currentUser!!.uid )
+                .collection( "diagnosis" )
+                .document( UUID.randomUUID().toString() )
+                .collection( "symptoms" )
+
+            for ( symptom in symptoms ) {
+                symptomsCollection
+                    .document( UUID.randomUUID().toString() )
+                    .set( symptom )
+            }
+            val predictionsCollection = db.collection( "users" )
+                .document( auth.currentUser!!.uid )
+                .collection( "diagnosis" )
+                .document( UUID.randomUUID().toString() )
+                .collection( "predictions" )
+            for( prediction in predictions ) {
+                predictionsCollection
+                    .document( UUID.randomUUID().toString() )
+                    .set( mapOf( "name" to prediction.key , "value" to prediction.value ) )
+            }
     }
 
 

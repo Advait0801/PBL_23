@@ -26,6 +26,7 @@ import androidx.lifecycle.MutableLiveData
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.google.modernstorage.photopicker.PhotoPicker
+import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.auth.CurrentUserDetails
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.ui.theme.ScreenTitle
@@ -107,7 +108,13 @@ private fun ColumnScope.UserImage() {
                 data( userImageBitmap )
             }
             else {
-                data( currentUserOptions.getUserImage() )
+                try {
+                    data( currentUserOptions.getUserImage() )
+                }
+                catch( e : Exception ) {
+                    // TODO: Add no profile image case here
+                    placeholder( R.drawable.ic_user_outline_24 )
+                }
             }
             crossfade(true)
             build()

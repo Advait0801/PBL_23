@@ -35,6 +35,7 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.api.DiagnosisAPI
 import com.pict.pbl.medswift.api.UserDiagnosisHistory
+import com.pict.pbl.medswift.auth.CurrentUserDetails
 import com.pict.pbl.medswift.data.AnalyzeSymptom
 import com.pict.pbl.medswift.data.Symptom
 import com.pict.pbl.medswift.symptoms.SymptomsJSONReader
@@ -47,6 +48,7 @@ class SymptomsActivity : ComponentActivity() {
     private lateinit var symptoms : ArrayList<Symptom>
     private val symptomsViewModel : SymptomsViewModel by viewModels()
     private var mappedSymptoms = HashMap<String,AnalyzeSymptom>()
+    private val currentUserDetails = CurrentUserDetails()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,9 +97,10 @@ class SymptomsActivity : ComponentActivity() {
             Row( verticalAlignment = Alignment.Bottom ){
                 Button(
                     onClick = {
-                    println( "SelectSymptoms - select symptoms" )
-                    println( symptomsViewModel.navController )
-                    symptomsViewModel.navController?.navigate( "selectSymptoms" )
+                        println( "SelectSymptoms - select symptoms" )
+                        println( symptomsViewModel.navController )
+
+                        symptomsViewModel.navController?.navigate( "selectSymptoms" )
                     } ,
                     modifier = Modifier
                         .weight(1f)

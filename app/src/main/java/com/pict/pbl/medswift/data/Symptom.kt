@@ -2,6 +2,7 @@ package com.pict.pbl.medswift.data
 
 import kotlinx.serialization.Transient
 
+@kotlinx.serialization.Serializable
 data class AnalyzeSymptom( val name : String , var value : String )
 
 @kotlinx.serialization.Serializable

@@ -42,7 +42,7 @@ class RegisterScreen : ComponentActivity() {
 
     private val currentUser = User()
     private val auth = Firebase.auth
-    private var password = ""
+    private var userPassword = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +58,9 @@ class RegisterScreen : ComponentActivity() {
         }
     }
 
-    private val modifier = Modifier.padding(vertical = 16.dp, horizontal = 16.dp).fillMaxWidth()
+    private val modifier = Modifier
+        .padding(vertical = 16.dp, horizontal = 16.dp)
+        .fillMaxWidth()
 
     @Preview
     @Composable
@@ -69,11 +71,13 @@ class RegisterScreen : ComponentActivity() {
             TextInput(
                 label = "First Name",
                 onValueChange = { currentUser.firstName = it } ,
+                keyboardType = KeyboardType.Text ,
                 modifier = modifier
             )
             TextInput(
                 label = "Last Name",
                 onValueChange = { currentUser.lastName = it } ,
+                keyboardType = KeyboardType.Text ,
                 modifier = modifier
             )
             TextInput(
@@ -90,17 +94,31 @@ class RegisterScreen : ComponentActivity() {
                 icon = Icons.Default.Email ,
                 modifier = modifier
             )
+            UserPassword(modifier = modifier)
             UserGender( modifier )
             UserBloodGroup( modifier )
-            UserHeight( modifier )
-            UserWeight( modifier )
+            TextInput(
+                label = "Weight",
+                onValueChange = { currentUser.weight = if( it.isNotEmpty() ) { it.toInt() } else { 0  } } ,
+                keyboardType = KeyboardType.Number ,
+                icon = Icons.Default.Accessibility ,
+                modifier = modifier
+            )
+            TextInput(
+                label = "Height",
+                onValueChange = { currentUser.height = if( it.isNotEmpty() ) { it.toFloat() } else { 0.0f } } ,
+                keyboardType = KeyboardType.Decimal ,
+                icon = Icons.Default.LinearScale ,
+                modifier = modifier
+            )
             Button(onClick = {
                 CoroutineScope( Dispatchers.IO ).launch {
-                    val result = auth.createUserWithEmailAndPassword( currentUser.email , password ).await()
+                    val result = auth.createUserWithEmailAndPassword( currentUser.email , userPassword ).await()
                     println( "User ID : " + result.user?.uid )
                     CurrentUserDetails().apply {
                         createUser( currentUser , result.user?.uid!! )
                     }
+                    finish()
                 }
             }) {
                 Text(text = "Register")
@@ -138,6 +156,35 @@ class RegisterScreen : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
+    private fun UserPassword( modifier : Modifier ){
+        var pass by rememberSaveable{ mutableStateOf( "" ) }
+        var passwordVisible by rememberSaveable { mutableStateOf(false) }
+        OutlinedTextField(
+            modifier = modifier,
+            value = pass,
+            singleLine = true,
+            onValueChange = {
+                pass = it
+                userPassword = pass
+            } ,
+            placeholder = { Text("Password") } ,
+            leadingIcon = { Icon( imageVector = Icons.Default.Lock , contentDescription = "Email Address" ) } ,
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                val image = if (passwordVisible)
+                    Icons.Filled.Visibility
+                else Icons.Filled.VisibilityOff
+                val description = if (passwordVisible) "Hide password" else "Show password"
+                IconButton(onClick = {passwordVisible = !passwordVisible}){
+                    Icon(imageVector  = image, description)
+                }
+            },
+            keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Password , imeAction = ImeAction.Done),
+        )
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
     private fun UserBloodGroup(
         modifier: Modifier = Modifier
     ){
@@ -163,57 +210,4 @@ class RegisterScreen : ComponentActivity() {
         )
     }
 
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    private fun UserWeight(
-        modifier: Modifier = Modifier
-    ){
-        var weight by remember { mutableStateOf("") }
-        val focusManager = LocalFocusManager.current
-        TextField(
-            modifier = modifier,
-            value = weight,
-            onValueChange = {
-                    it ->
-                currentUser.weight = it.toInt()
-                weight = it
-            },
-            placeholder = { Text(text = "Weight")},
-            colors = TextFieldDefaults.textFieldColors(
-                focusedLabelColor = MaterialTheme.colorScheme.primary,
-                unfocusedLabelColor = MaterialTheme.colorScheme.primaryContainer,
-                textColor = MaterialTheme.colorScheme.onPrimaryContainer
-            ),
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Next),
-            keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Next)})
-        )
-    }
-
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    private fun UserHeight(
-        modifier: Modifier = Modifier
-    ){
-        var height by remember { mutableStateOf("") }
-        val focusManager = LocalFocusManager.current
-        TextField(
-            modifier = modifier,
-            value = height,
-            onValueChange = {
-                    it ->
-                currentUser.height = it.toFloat()
-                height = it
-            },
-            placeholder = { Text(text = "Height")},
-            colors = TextFieldDefaults.textFieldColors(
-                focusedLabelColor = MaterialTheme.colorScheme.primary,
-                unfocusedLabelColor = MaterialTheme.colorScheme.primaryContainer,
-                textColor = MaterialTheme.colorScheme.onPrimaryContainer
-            ),
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Next),
-            keyboardActions = KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Next)})
-        )
-    }
 }
