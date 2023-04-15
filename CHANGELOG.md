@@ -1,1 +1,3 @@
-- Added functionality to upload diagnosis to Firebase
+- Added new font to app
+- Added typography to app
+- Added DatePicker in AppWidgets.kt

@@ -15,7 +15,7 @@
             android:name=".screens.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".screens.RegisterScreen"
+            android:name=".screens.user_auth.RegisterScreen"
             android:exported="true" />
 
         <activity

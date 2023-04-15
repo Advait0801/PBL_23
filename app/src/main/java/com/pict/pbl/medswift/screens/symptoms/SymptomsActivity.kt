@@ -40,6 +40,8 @@ import com.pict.pbl.medswift.data.AnalyzeSymptom
 import com.pict.pbl.medswift.data.Symptom
 import com.pict.pbl.medswift.symptoms.SymptomsJSONReader
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
+import com.pict.pbl.medswift.ui.theme.ScreenTitle
+import com.pict.pbl.medswift.ui.theme.ScreenTitleWithoutDivider
 import com.pict.pbl.medswift.viewmodels.SymptomsViewModel
 import okhttp3.OkHttpClient
 
@@ -84,12 +86,7 @@ class SymptomsActivity : ComponentActivity() {
     private fun ActivityUI() {
         // Improve UI of SymptomsActivity
         Column( Modifier.verticalScroll( rememberScrollState() ) ) {
-            Text(
-                text = "Diagnosis" ,
-                modifier = Modifier.padding( 32.dp ) ,
-                fontSize = 24.sp ,
-                fontWeight = FontWeight.Bold
-            )
+            ScreenTitleWithoutDivider(title = "Diagnosis")
             Box( contentAlignment = Alignment.Center ){
                 Image(painter = painterResource(id = R.drawable.symptoms_screen_pic), contentDescription = "Symptoms Screen" )
             }

@@ -14,7 +14,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LockClock
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -60,46 +62,53 @@ private fun ScreenUI() {
 @Composable
 private fun PrescriptionItem( prescription: UserPrescription ) {
     // TODO: Improve prescription UI item here
-    Surface(modifier = Modifier
-        .padding(vertical = 16.dp, horizontal = 8.dp)
-        .background(Color.White) ) {
-        Column {
-            Row {
+        Column(
+            modifier = Modifier
+                .padding( 32.dp )
+                .background( Color.LightGray , RoundedCornerShape( 16.dp ) ) ,
+        ) {
+            Row( verticalAlignment = Alignment.CenterVertically ,
+                modifier = Modifier.padding( vertical = 8.dp , horizontal = 16.dp ) ) {
                 Text(
                     text = prescription.name ,
                     modifier = Modifier
                         .weight(1.0f)
-                        .fillMaxWidth()
+                        .fillMaxWidth() ,
+                    fontSize = 24.sp
                 )
                 Text(
                     text = "Completed" ,
                     textAlign = TextAlign.End ,
                     modifier = Modifier
                         .weight(1.0f)
-                        .fillMaxWidth()
+                        .fillMaxWidth() ,
+                    color = Color.DarkGray
                 )
             }
-            Row {
+            Row( modifier = Modifier.padding( vertical = 8.dp , horizontal = 16.dp ) ){
                 Text(
                     text = "From:" ,
                     modifier = Modifier
                         .weight(1.0f)
-                        .fillMaxWidth()
+                        .fillMaxWidth() ,
+                    fontSize = 12.sp
                 )
                 Text(
                     text = dateFormat.format( prescription.startTime ) ,
                     textAlign = TextAlign.End ,
                     modifier = Modifier
                         .weight(1.0f)
-                        .fillMaxWidth()
+                        .fillMaxWidth() ,
+                    fontSize = 12.sp
                 )
             }
-            Row {
+            Row( modifier = Modifier.padding( vertical = 8.dp , horizontal = 16.dp ) ){
                 Text(
                     text = "To:" ,
                     modifier = Modifier
                         .weight(1.0f)
-                        .fillMaxWidth()
+                        .fillMaxWidth() ,
+                    fontSize = 12.sp
                 )
                 calendar.time = prescription.startTime
                 calendar.add( Calendar.DATE , prescription.courseLength )
@@ -109,7 +118,8 @@ private fun PrescriptionItem( prescription: UserPrescription ) {
                     textAlign = TextAlign.End ,
                     modifier = Modifier
                         .weight(1.0f)
-                        .fillMaxWidth()
+                        .fillMaxWidth() ,
+                    fontSize = 12.sp
                 )
             }
             FlowRow( modifier = Modifier
@@ -124,6 +134,5 @@ private fun PrescriptionItem( prescription: UserPrescription ) {
                 }
             }
         }
-    }
 
 }

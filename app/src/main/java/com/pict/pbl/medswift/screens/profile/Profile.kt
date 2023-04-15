@@ -74,15 +74,14 @@ private fun UserBasicInfo() {
             UserImage( )
             Text(
                 text = currentUser.firstName ,
-                fontWeight = FontWeight.Bold ,
-                fontSize = 24.sp ,
+                style = MaterialTheme.typography.titleLarge ,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(top = 16.dp)
             )
             Text(
                 text = currentUser.email ,
-                fontSize = 16.sp ,
+                style = MaterialTheme.typography.labelMedium ,
                 color = Color.Gray ,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
@@ -171,7 +170,8 @@ private fun OtherDetail( icon : ImageVector , value : String ) {
         Icon(imageVector = icon , contentDescription = value)
         Text(
             text = value ,
-            color = Color.Black
+            color = Color.Black ,
+            style = MaterialTheme.typography.labelLarge
         )
     }
 

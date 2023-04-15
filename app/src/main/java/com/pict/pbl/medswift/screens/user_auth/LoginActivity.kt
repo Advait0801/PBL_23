@@ -43,7 +43,6 @@ import androidx.lifecycle.MutableLiveData
 import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.auth.LoginManager
 import com.pict.pbl.medswift.screens.HomeScreen
-import com.pict.pbl.medswift.screens.RegisterScreen
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.viewmodels.LoginViewModel
 

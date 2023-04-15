@@ -7,6 +7,7 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Dialpad
 import androidx.compose.material.icons.filled.Numbers
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -55,10 +56,8 @@ private fun ScreenUI( symptomsViewModel: SymptomsViewModel ) {
             Text(
                 text = symptom.text ,
                 modifier = Modifier.padding( 16.dp ) ,
-                color = Color.DarkGray ,
-                fontSize = 14.sp
+                style = MaterialTheme.typography.labelSmall
             )
-            BubbleText(text = symptom.text , textStyle = TextStyle( fontWeight = FontWeight.Normal ))
             when (symptom.type) {
                 SymptomChoiceType.integer -> {
                     IntegerInput(symptom = symptom, symptomsViewModel = symptomsViewModel)

@@ -80,7 +80,8 @@ fun MedSwiftTheme(
   }
 
   MaterialTheme(
-    colorScheme = colors,
-    content = content
+      colorScheme = colors,
+      typography = Typography ,
+      content = content
   )
 }

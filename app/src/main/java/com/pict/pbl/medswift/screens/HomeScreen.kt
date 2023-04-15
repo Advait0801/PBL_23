@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.animation.core.SpringSpec
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -18,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,11 +26,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pict.pbl.medswift.screens.history.HistoryScreen
 import com.pict.pbl.medswift.screens.prescriptions.PrescriptionsScreen
 import com.pict.pbl.medswift.screens.profile.ProfileScreen
 import com.pict.pbl.medswift.screens.symptoms.SymptomsActivity
+import com.pict.pbl.medswift.screens.user_auth.RegisterScreen
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.viewmodels.HistoryViewModel
 
@@ -120,7 +118,7 @@ class HomeScreen : ComponentActivity() {
                             contentDescription = item.title ,
                         modifier = Modifier.scale( top ) )
                            } ,
-                    label = { Text(text = item.title) }
+                    label = {Text(text = item.title, style = MaterialTheme.typography.labelSmall) }
                 )
             }
         }
