@@ -22,10 +22,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.compose.NavHost
@@ -40,7 +38,6 @@ import com.pict.pbl.medswift.data.AnalyzeSymptom
 import com.pict.pbl.medswift.data.Symptom
 import com.pict.pbl.medswift.symptoms.SymptomsJSONReader
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
-import com.pict.pbl.medswift.ui.theme.ScreenTitle
 import com.pict.pbl.medswift.ui.theme.ScreenTitleWithoutDivider
 import com.pict.pbl.medswift.viewmodels.SymptomsViewModel
 import okhttp3.OkHttpClient

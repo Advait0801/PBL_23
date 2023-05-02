@@ -6,20 +6,16 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -29,7 +25,7 @@ import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.ui.theme.ScreenTitle
 import com.pict.pbl.medswift.viewmodels.HistoryViewModel
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 private val history = UserDiagnosisHistory().getHistory()
 private val dateFormat = SimpleDateFormat( "E, dd MMM yyyy" , Locale.getDefault() )

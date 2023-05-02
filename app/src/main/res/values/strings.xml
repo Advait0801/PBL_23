@@ -6,4 +6,5 @@
     <string name="filename_symptoms_blob">symptoms</string>
 
     <string name="key_shared_pref_symptoms_store">symptoms</string>
+    <string name="title_activity_nearby_doctors_screen">NearbyDoctorsScreen</string>
 </resources>

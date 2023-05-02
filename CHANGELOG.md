@@ -1,3 +1,3 @@
-- Added new font to app
-- Added typography to app
-- Added DatePicker in AppWidgets.kt
+- Added `NearbyDoctorsScreen` in `screens/nearby_doctors`
+- Added `CurrentLocation` in `location`
+- Optimized imports

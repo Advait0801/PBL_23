@@ -4,14 +4,10 @@ import android.util.Log
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.pict.pbl.medswift.data.UserDiagnosis
 import com.pict.pbl.medswift.data.UserPrescription
-import com.pict.pbl.medswift.data.UserSymptom
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
-import java.util.*
-import kotlin.collections.ArrayList
 
 class UserPrescriptions {
 

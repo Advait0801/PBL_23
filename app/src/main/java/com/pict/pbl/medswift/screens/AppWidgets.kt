@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -66,7 +64,7 @@ fun ScreenTitleWithoutDivider( title : String ) {
     Text(
         text = title ,
         color = Color.Black ,
-        style = MaterialTheme.typography.titleLarge ,
+        style = MaterialTheme.typography.displayLarge ,
         modifier = Modifier
             .padding(24.dp)
             .fillMaxWidth()

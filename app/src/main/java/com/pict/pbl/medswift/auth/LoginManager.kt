@@ -32,10 +32,8 @@ class LoginManager( private val loginViewModel: LoginViewModel ) {
                 result()
             }
             .addOnFailureListener {
-                if( loginViewModel != null ) {
-                    loginViewModel.errorMessage.value = it.message
-                    loginViewModel.errorMessageFlag.value = true
-                }
+                loginViewModel.errorMessage.value = it.message
+                loginViewModel.errorMessageFlag.value = true
             }
             .addOnCompleteListener {
                 loginViewModel.isLoading.value = false
@@ -49,10 +47,8 @@ class LoginManager( private val loginViewModel: LoginViewModel ) {
                 // TODO: Send verification email and create user in DB
             }
             .addOnFailureListener {
-                if( loginViewModel != null ) {
-                    loginViewModel.errorMessage.value = it.message
-                    loginViewModel.errorMessageFlag.value = true
-                }
+                loginViewModel.errorMessage.value = it.message
+                loginViewModel.errorMessageFlag.value = true
             }
     }
 

@@ -1,9 +1,7 @@
 package com.pict.pbl.medswift.viewmodels
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
-import com.pict.pbl.medswift.data.AnalyzeSymptom
 import com.pict.pbl.medswift.data.UserDiagnosis
 
 class HistoryViewModel : ViewModel() {
