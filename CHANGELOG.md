@@ -1,0 +1,2 @@
+- Added `random_offset` to locations in `export_hospital_locations.py`
+- Added custom distribution for rating generation in `export_ratings.py`
