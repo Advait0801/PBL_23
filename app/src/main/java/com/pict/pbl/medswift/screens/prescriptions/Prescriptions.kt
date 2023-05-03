@@ -1,6 +1,8 @@
 package com.pict.pbl.medswift.screens.prescriptions
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -51,14 +53,20 @@ private fun ScreenUI() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PrescriptionItem( prescription: UserPrescription ) {
     // TODO: Improve prescription UI item here
+    Surface(
+        shape = RoundedCornerShape( 16.dp ) ,
+        border = BorderStroke( 1.dp , Color.Black ) ,
+        modifier = Modifier
+            .padding(16.dp)
+            .background(Color.White)
+    ){
         Column(
             modifier = Modifier
-                .padding( 32.dp )
-                .background( Color.LightGray , RoundedCornerShape( 16.dp ) ) ,
+                .padding(8.dp)
+                .background(Color.White),
         ) {
             Row( verticalAlignment = Alignment.CenterVertically ,
                 modifier = Modifier.padding( vertical = 8.dp , horizontal = 16.dp ) ) {
@@ -116,16 +124,26 @@ private fun PrescriptionItem( prescription: UserPrescription ) {
                 )
             }
             FlowRow( modifier = Modifier
+                .background(Color.White)
                 .padding(4.dp)
                 .fillMaxWidth() ) {
                 for( it in prescription.times ) {
                     Row(
-                        modifier = Modifier.background( Color.White ).padding( vertical = 8.dp )) {
-                        Icon(imageVector = Icons.Default.LockClock, contentDescription = "Time")
-                        Text(text = it.toString())
+                        modifier = Modifier
+                            .background(Color.White)
+                            .padding(vertical = 8.dp)) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically ,
+                            modifier = Modifier
+                                .padding(4.dp)
+                                .background(Color.Blue, RoundedCornerShape(16.dp))
+                        ) {
+                            Icon(imageVector = Icons.Default.LockClock, contentDescription = "Time", tint = Color.White , modifier = Modifier.padding(8.dp))
+                            Text(text = it.toString() , color=Color.White, modifier = Modifier.padding(8.dp) )
+                        }
                     }
                 }
             }
         }
-
+    }
 }

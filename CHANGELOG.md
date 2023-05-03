@@ -1,3 +1,2 @@
-- Added `NearbyDoctorsScreen` in `screens/nearby_doctors`
-- Added `CurrentLocation` in `location`
-- Optimized imports
+- Added `NearbyDoctors` in `api` to get nearby doctors from Firestore
+- Added UI in `NearbyDoctorsScreen` for displaying list of doctors

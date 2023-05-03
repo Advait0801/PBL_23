@@ -11,6 +11,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -24,20 +26,26 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.app.ActivityCompat
+import com.pict.pbl.medswift.api.NearbyDoctors
+import com.pict.pbl.medswift.data.Doctor
 import com.pict.pbl.medswift.location.CurrentLocation
 import com.pict.pbl.medswift.screens.ui.theme.MedSwiftTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class NearbyDoctorsScreen : ComponentActivity() {
 
-    private val showLocationFetchProgress = mutableStateOf( false )
+    private val showProgress = mutableStateOf( false )
+    private val progressDialogText = mutableStateOf( "" )
+    private val nearbyDoctorsList = mutableStateOf( ArrayList<Doctor>() )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +60,6 @@ class NearbyDoctorsScreen : ComponentActivity() {
                 }
             }
         }
-
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED
@@ -78,14 +85,22 @@ class NearbyDoctorsScreen : ComponentActivity() {
         }
     }
 
+    private fun getNearbyDoctorsList( lat : Float , lng : Float ) {
+        progressDialogText.value = "Searching nearby doctors..."
+        CoroutineScope( Dispatchers.Main ).launch {
+            val doctors = NearbyDoctors().getNearbyDoctors( lat , lng ).await()
+            Log.e( "APP" , "Doctors are ${doctors.size}" )
+            showProgress.value = false
+            nearbyDoctorsList.value = doctors
+        }
+    }
+
     private fun startLocationRetrieval() {
-        showLocationFetchProgress.value = true
+        progressDialogText.value = "Fetching location..."
+        showProgress.value = true
         CoroutineScope( Dispatchers.Main ).launch {
             CurrentLocation( this@NearbyDoctorsScreen ).getCurrentLocation {
-                CoroutineScope( Dispatchers.Main ).launch {
-                    showLocationFetchProgress.value = false
-                    Log.e( "APP" , "Location received ${it.longitude} ${it.latitude}" )
-                }
+                getNearbyDoctorsList( it.latitude.toFloat() , it.longitude.toFloat() )
             }
         }
     }
@@ -93,24 +108,38 @@ class NearbyDoctorsScreen : ComponentActivity() {
     @Preview
     @Composable
     private fun ActivityUI() {
-        ProgressDialog()
+        Column {
+            DoctorsList()
+            ProgressDialog()
+        }
+
+    }
+
+    @Composable
+    private fun DoctorsList() {
+        val doctorsList by nearbyDoctorsList
+        // TODO: Display doctors list here
     }
 
     @Composable
     private fun ProgressDialog() {
-        val errorMessageFlag by showLocationFetchProgress
+        val progressFlag by showProgress
+        val progressMessage by progressDialogText
         var openDialog by rememberSaveable{ mutableStateOf( true ) }
-        if( errorMessageFlag && openDialog ){
+        if( progressFlag && openDialog ){
             Dialog(
                 onDismissRequest = { openDialog = false },
                 DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
             ) {
                 Column(
-                    modifier = Modifier.background(Color.White, shape = RoundedCornerShape(8.dp) )
+                    modifier = Modifier
+                        .background(Color.White, shape = RoundedCornerShape(8.dp) )
                 ) {
-                    Column( modifier = Modifier.padding( 32.dp ) , horizontalAlignment = Alignment.CenterHorizontally ) {
+                    Column( modifier = Modifier.padding( 16.dp ) , horizontalAlignment = Alignment.CenterHorizontally ) {
                         CircularProgressIndicator()
-                        Text(text = "Fetching current location..." , modifier = Modifier.padding( 16.dp ) )
+                        Text(text = progressMessage , modifier = Modifier
+                            .width(250.dp)
+                            .padding(16.dp) , textAlign = TextAlign.Center )
                     }
                 }
             }
