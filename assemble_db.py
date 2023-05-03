@@ -9,7 +9,7 @@ ratings = pickle.load( open( "ratings.pkl" , "rb" ) )
 specialities = pickle.load( open( "specialities.pkl" , "rb" ) )
 degrees = pickle.load( open( "degrees.pkl" , "rb" ) )
 
-for _ in range( 91 ):
+for _ in range( 500 - len( locations ) ):
     locations.append( random.choice( locations ) )
 locations = np.array( locations )
 

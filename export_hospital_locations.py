@@ -24,7 +24,7 @@ def process_location( location : str ):
 def get_lat_lng( address ):
     url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(address) + '?format=json'
     response = requests.get( url ).json()[0]
-    return response[ "lat" ] + random_offset() , response["lon"] + random_offset()
+    return float(response[ "lat" ]) + random_offset() , float(response["lon"]) + random_offset()
 
 locations = [ process_location( location ) for location in locations ]
 locations = locations[ 0 : 500 ]
@@ -37,7 +37,8 @@ for loc in locations:
         coord = get_lat_lng( loc )
         coordinates.append( coord )
         print( "Placed fetched:" , count )
-    except:
+    except Exception as e:
+        print( e )
         continue
 
 print( "Locations length:" , len( locations ) )
