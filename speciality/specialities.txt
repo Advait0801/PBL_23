@@ -1,0 +1,19 @@
+Family medicine
+Internal Medicine
+Pediatrician
+Gynecologist
+Cardiologist
+Oncologist
+Gastroenterologist
+Pulmonologist
+Infectious disease
+Nephrologist
+Endocrinologist
+Ophthalmologist
+Otolaryngologist
+Dermatologist
+Psychiatrist
+Neurologist
+Radiologist
+Anesthesiologist
+Surgeon

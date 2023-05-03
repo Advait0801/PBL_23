@@ -1,0 +1,501 @@
+name,latitude,longitude,speciality,degree,rating
+Ramila Bai,18.532248199999998,73.84990967997429,Gynecologist,MD,2
+Rumeet Kumar,18.532248199999998,73.84990967997429,Ophthalmologist,MBBS,4
+Sumit Rathi,18.1444142,74.5657861,Otolaryngologist,MBBS,2
+Km Reena,18.1444142,74.5657861,Family medicine,BHMS,3
+Roshini Praveen,18.4820444,73.8001705,Pulmonologist,MBBS,2
+Madan Singh,18.1444142,74.5657861,Ophthalmologist,BAMS,1
+Reshma Ahari,18.532248199999998,73.84990967997429,Otolaryngologist,BAMS,1
+Garib Das,18.1444142,74.5657861,Radiologist,BAMS,5
+Prashant Jain,18.1444142,74.5657861,Radiologist,BHMS,4
+Banty Babu,18.4820444,73.8001705,Cardiologist,MD,2
+Sahdev Tiwari,18.532248199999998,73.84990967997429,Surgeon,BHMS,3
+Varun Chandela,18.4694904,73.8309722,Family medicine,BAMS,4
+Suresh Kumar,18.532248199999998,73.84990967997429,Psychiatrist,MD,1
+Naisi Ram,18.1444142,74.5657861,Radiologist,MBBS,2
+Jafar Ali,18.1444142,74.5657861,Neurologist,BAMS,1
+Hemant Kumar,18.532248199999998,73.84990967997429,Gastroenterologist,BAMS,5
+Janki Kumari,18.5656319,73.8865762,Otolaryngologist,BAMS,4
+Mohd Sahil,18.5348981,73.8767104,Gynecologist,MBBS,5
+Sushri Manju,18.4694904,73.8309722,Ophthalmologist,MD,2
+Neetu Kumari,18.4694904,73.8309722,Infectious disease,BAMS,1
+Geeta Devi,18.4820444,73.8001705,Gastroenterologist,MD,4
+Utpana Davi,18.4694904,73.8309722,Psychiatrist,BAMS,3
+Lokesh Kumar,18.1444142,74.5657861,Infectious disease,BHMS,4
+Sukka Singh,18.1444142,74.5657861,Neurologist,BHMS,2
+Nasir Husain,18.4694904,73.8309722,Ophthalmologist,MD,1
+Manish Ahuja,18.1444142,74.5657861,Neurologist,MBBS,3
+Baban Tiwari,18.1444142,74.5657861,Radiologist,BAMS,2
+Ruchendra Rana,18.1444142,74.5657861,Internal Medicine,BHMS,4
+Rampher Pathak,18.526967,73.9278252,Cardiologist,MD,4
+Kumari Khalida,18.1444142,74.5657861,Gastroenterologist,BAMS,2
+Moral Bai,18.1444142,74.5657861,Gastroenterologist,BAMS,5
+Bunda Ram,18.532248199999998,73.84990967997429,Neurologist,BAMS,2
+Kishan Dutt,18.1444142,74.5657861,Dermatologist,MBBS,2
+Aman Puri,18.532248199999998,73.84990967997429,Neurologist,BAMS,1
+Kumari Farhin,18.532248199999998,73.84990967997429,Neurologist,BHMS,1
+Raj Kumar,18.1444142,74.5657861,Radiologist,MBBS,1
+कु0 भावना,18.4820444,73.8001705,Endocrinologist,MBBS,2
+Sachin Kumar,18.4820444,73.8001705,Anesthesiologist,BHMS,4
+Kum  Mamta,18.1444142,74.5657861,Neurologist,BHMS,2
+Dhodi  Devi,18.1444142,74.5657861,Surgeon,BHMS,2
+Tinvkal Sharma,18.5038889,73.807673,Gastroenterologist,BAMS,5
+Keli Devi,18.4694904,73.8309722,Otolaryngologist,BAMS,1
+Deepika Jain,18.1444142,74.5657861,Infectious disease,MBBS,3
+Ashik Pathak,18.4694904,73.8309722,Anesthesiologist,BHMS,3
+Leela  Kanwar,18.1444142,74.5657861,Anesthesiologist,BAMS,4
+Mohd Sadique,18.5348981,73.8767104,Endocrinologist,BAMS,1
+Som Dutt,18.1444142,74.5657861,Gynecologist,BAMS,4
+Saroj Verma,18.5348981,73.8767104,Anesthesiologist,BHMS,2
+Jyoti Devi,18.4820444,73.8001705,Gynecologist,BHMS,4
+Sundar Singh,18.1444142,74.5657861,Pulmonologist,BHMS,4
+Sania Parveen,18.1444142,74.5657861,Nephrologist,BAMS,5
+Badri Ram,18.4820444,73.8001705,Dermatologist,BAMS,5
+Arshi Bisht,18.532248199999998,73.84990967997429,Pulmonologist,MBBS,3
+Rajesh Naydu,18.532248199999998,73.84990967997429,Nephrologist,MBBS,1
+Rajender Nath,18.1444142,74.5657861,Dermatologist,BHMS,5
+Pooja Verma,18.1444142,74.5657861,Dermatologist,BAMS,2
+Vikramjeet Sharma,18.5038889,73.807673,Neurologist,MBBS,5
+Kanta Kumari,18.5656319,73.8865762,Neurologist,MBBS,1
+Uma Yadav,18.1444142,74.5657861,Anesthesiologist,MD,4
+Parveen Kumar,18.1444142,74.5657861,Psychiatrist,MBBS,2
+Kulvinder Kour,18.532248199999998,73.84990967997429,Dermatologist,MBBS,5
+Smt Komal,18.5038889,73.807673,Pediatrician,BAMS,5
+Tanya Chopra,18.4820444,73.8001705,Family medicine,BHMS,1
+Smt Rajkumaree,18.1444142,74.5657861,Pediatrician,BHMS,2
+Mahender Singh,18.526967,73.9278252,Psychiatrist,BAMS,5
+Praveen Kumar,18.5656319,73.8865762,Gastroenterologist,MBBS,4
+Sunita Kumari,18.5038889,73.807673,Pulmonologist,BAMS,2
+Nigar Khan,18.5348981,73.8767104,Psychiatrist,MD,1
+Raj Karan,18.5038889,73.807673,Cardiologist,MD,4
+Meera Devi,18.532248199999998,73.84990967997429,Ophthalmologist,BHMS,4
+Trepti Aggarwal,18.4820444,73.8001705,Dermatologist,BHMS,3
+Kumari Seema,18.5656319,73.8865762,Cardiologist,BAMS,1
+Vijay Wati,18.1444142,74.5657861,Pulmonologist,MD,1
+Sanjeev S/O,18.4694904,73.8309722,Internal Medicine,MBBS,3
+Renu Parcha,18.532248199999998,73.84990967997429,Gastroenterologist,MD,1
+Sona Sarkar,18.532248199999998,73.84990967997429,Gastroenterologist,BHMS,5
+Tripti Rawat,18.526967,73.9278252,Psychiatrist,MBBS,5
+Chtarpal Singh,18.5348981,73.8767104,Otolaryngologist,BAMS,2
+Lakshman Singh,18.5348981,73.8767104,Surgeon,BAMS,1
+Shaturughyan Chaudhary,18.532248199999998,73.84990967997429,Nephrologist,MBBS,3
+Smt Mamata,18.526967,73.9278252,Dermatologist,MD,3
+Km0 Usha,18.532248199999998,73.84990967997429,Neurologist,BHMS,5
+Brijnandan Mehato,18.532248199999998,73.84990967997429,Psychiatrist,BHMS,5
+Jai Singh,18.532248199999998,73.84990967997429,Gynecologist,MBBS,4
+Devinder Sunar,18.532248199999998,73.84990967997429,Oncologist,BAMS,1
+Mukesh Agarwal,18.1444142,74.5657861,Gynecologist,BHMS,1
+Mushir Ahmed,18.532248199999998,73.84990967997429,Dermatologist,BHMS,1
+Siya Kandwal,18.4820444,73.8001705,Psychiatrist,BAMS,3
+Jeenat D/O,18.532248199999998,73.84990967997429,Cardiologist,BHMS,3
+Ku. Syama,18.4694904,73.8309722,Pediatrician,MBBS,2
+Aastha Thakur,18.532248199999998,73.84990967997429,Endocrinologist,MD,3
+Sanjay Mandal,18.5038889,73.807673,Radiologist,BHMS,4
+Shabreen Fatima,18.4694904,73.8309722,Neurologist,MBBS,1
+क़ष्‍णकान्‍त उर्फ,18.4694904,73.8309722,Infectious disease,BHMS,2
+Hini Bibi,18.4820444,73.8001705,Pediatrician,MBBS,1
+Smt Gulista,18.5038889,73.807673,Gynecologist,BAMS,1
+Sandhya Sharma,18.532248199999998,73.84990967997429,Otolaryngologist,BAMS,4
+Nitin Mohan,18.526967,73.9278252,Psychiatrist,MD,1
+Sanjay Kumar,18.1444142,74.5657861,Infectious disease,MD,4
+Smt. Noorjahan,18.532248199999998,73.84990967997429,Ophthalmologist,BAMS,5
+Suhana Baano,18.5038889,73.807673,Pulmonologist,BAMS,1
+Natasha Bhan,18.526967,73.9278252,Dermatologist,MBBS,5
+Ganga Devi,18.526967,73.9278252,Pulmonologist,MBBS,3
+Munna Lal,18.5038889,73.807673,Neurologist,BHMS,5
+Subhash Chand,18.1444142,74.5657861,Oncologist,MD,2
+Shyam Kishn,18.5514833,73.8951167,Oncologist,MD,3
+Sabina Bano,18.4820444,73.8001705,Family medicine,BAMS,3
+Mohit Bhatia,18.4820444,73.8001705,Surgeon,MD,5
+Victor Singlai,18.526967,73.9278252,Internal Medicine,BAMS,5
+Karan Singh,18.4820444,73.8001705,Oncologist,BAMS,2
+Smt.Nosar Devi,18.4694904,73.8309722,Family medicine,MD,2
+Vijay Bahadur,18.5618834,73.8101957,Ophthalmologist,BHMS,5
+Smt. Mamata,18.526967,73.9278252,Neurologist,BAMS,2
+Mohd Sarfraj,18.532248199999998,73.84990967997429,Anesthesiologist,BAMS,4
+Km0 Komal,18.5514833,73.8951167,Infectious disease,BHMS,4
+Ashman Praveen,18.4694904,73.8309722,Neurologist,MD,4
+Kavita Manchanda,18.526967,73.9278252,Internal Medicine,BAMS,1
+Smt.Beena Chouhan,18.5348981,73.8767104,Internal Medicine,BAMS,2
+Phol Kumari,18.5514833,73.8951167,Family medicine,BHMS,5
+Padma Devi,18.532248199999998,73.84990967997429,Dermatologist,MD,1
+Rani Devi,18.1444142,74.5657861,Ophthalmologist,BHMS,1
+Ankit Kumar,18.5618834,73.8101957,Cardiologist,MD,2
+Ashok Kumar,18.4820444,73.8001705,Radiologist,BHMS,5
+Abdul Salam,18.532248199999998,73.84990967997429,Nephrologist,BAMS,2
+Nagma Khan,18.532248199999998,73.84990967997429,Endocrinologist,MBBS,1
+Gopal Dhakad,18.5618834,73.8101957,Infectious disease,BHMS,1
+Rohit Agrawal,18.532248199999998,73.84990967997429,Nephrologist,BHMS,1
+Babita Pandey,18.5514833,73.8951167,Gynecologist,BHMS,1
+Roopa Kumar,18.5038889,73.807673,Nephrologist,BAMS,5
+Prem Lata,18.5038889,73.807673,Otolaryngologist,MBBS,5
+Pooja Devi,18.532248199999998,73.84990967997429,Radiologist,BHMS,4
+Shyam Lal,18.526967,73.9278252,Anesthesiologist,MBBS,4
+Veerpal Singh,18.1444142,74.5657861,Endocrinologist,MBBS,1
+Vasuki Thakur,18.4694904,73.8309722,Pediatrician,MD,3
+Smt Sampat,18.5656319,73.8865762,Cardiologist,MBBS,1
+Parvesh Kumar,18.4694904,73.8309722,Otolaryngologist,BAMS,2
+Roshan Lal,18.532248199999998,73.84990967997429,Gastroenterologist,BAMS,1
+Krishana Kumar,18.526967,73.9278252,Psychiatrist,MBBS,5
+Reena Devi,18.4779905,73.8940627,Pediatrician,BHMS,1
+Dinesh Kumar,18.526967,73.9278252,Dermatologist,MD,2
+Km Neha,18.4820444,73.8001705,Cardiologist,MD,2
+Km Poonam,18.1444142,74.5657861,Family medicine,MBBS,2
+Nursa Khatoon,18.526967,73.9278252,Anesthesiologist,BHMS,1
+Soni Devi,18.5514833,73.8951167,Otolaryngologist,MD,1
+Ranjeet Kumar,18.532248199999998,73.84990967997429,Endocrinologist,BHMS,4
+Alam Aara,18.5038889,73.807673,Gastroenterologist,BHMS,3
+Ashish Vajpay,18.4820444,73.8001705,Ophthalmologist,BHMS,3
+Nisha Khurshid,18.5038889,73.807673,Psychiatrist,BHMS,1
+Bhupender Pal,18.4820444,73.8001705,Cardiologist,MBBS,2
+Ishawar Singh,18.532248199999998,73.84990967997429,Pediatrician,MBBS,5
+Smt Sudha,18.4694904,73.8309722,Neurologist,MBBS,1
+Diksha Rani,18.532248199999998,73.84990967997429,Radiologist,BAMS,2
+Gunjan Upadhayay,18.4694904,73.8309722,Oncologist,MD,2
+Meenu Rani,18.1444142,74.5657861,Cardiologist,MD,3
+Mahesh Pal,18.1444142,74.5657861,Infectious disease,BAMS,2
+Parwati Balai,18.5038889,73.807673,Endocrinologist,MD,5
+Saroj Devi,18.1444142,74.5657861,Dermatologist,MBBS,1
+Killo Kumari,18.4694904,73.8309722,Nephrologist,BAMS,5
+Vaijanti Devi,18.5656319,73.8865762,Psychiatrist,MBBS,5
+Rita Gupta,18.5038889,73.807673,Ophthalmologist,MD,1
+Smt Meena,18.4779905,73.8940627,Surgeon,BHMS,4
+Mohit  Thakur,18.1444142,74.5657861,Internal Medicine,BAMS,4
+Taj Mohd,18.5656319,73.8865762,Psychiatrist,BAMS,5
+Vishal Raghav,18.4779905,73.8940627,Nephrologist,BAMS,4
+Kumari Radha,18.4694904,73.8309722,Infectious disease,BHMS,5
+Bhanwari Devi,18.4820444,73.8001705,Infectious disease,MBBS,3
+Ajay Kumar,18.4694904,73.8309722,Radiologist,BHMS,1
+Rahul Drall,18.5514833,73.8951167,Radiologist,MD,2
+Guddi Bai,18.4820444,73.8001705,Family medicine,BAMS,5
+Umakant Tiwari,18.4820444,73.8001705,Endocrinologist,MD,5
+Shyan Bahadur,18.4779905,73.8940627,Anesthesiologist,BAMS,3
+Sehdev Mukhiya,18.4779905,73.8940627,Ophthalmologist,MBBS,2
+Pandu Rang,18.5348981,73.8767104,Internal Medicine,MBBS,2
+Ashish Solanki,18.1444142,74.5657861,Nephrologist,BAMS,1
+Nayana Kumari,18.4694904,73.8309722,Internal Medicine,BAMS,1
+Rajbir Singh,18.5038889,73.807673,Endocrinologist,BAMS,2
+Satyanarayan Lohar,18.5038889,73.807673,Otolaryngologist,BAMS,4
+Narayan Singh,18.5348981,73.8767104,Gastroenterologist,MD,1
+Vibha Bassi,18.532248199999998,73.84990967997429,Gastroenterologist,MD,2
+Chand Mundari@Geeta,18.532248199999998,73.84990967997429,Radiologist,BHMS,3
+Ashok Bairwa,18.1444142,74.5657861,Family medicine,MBBS,1
+Bijender Singh,18.4820444,73.8001705,Psychiatrist,BAMS,4
+Pushpa Jha,18.5038889,73.807673,Ophthalmologist,MD,2
+Pardeep Kumar,18.1444142,74.5657861,Infectious disease,MD,4
+Uday Singh,18.532248199999998,73.84990967997429,Gastroenterologist,BAMS,5
+Sunita Yadav,18.4820444,73.8001705,Nephrologist,MBBS,5
+Suraj Bhan,18.5514833,73.8951167,Nephrologist,BHMS,1
+Vikram Singh,18.5514833,73.8951167,Otolaryngologist,BHMS,4
+Hudi Bai,18.5038889,73.807673,Surgeon,MD,3
+Poonam Yadav,18.526967,73.9278252,Nephrologist,BHMS,1
+Karma Yadav,18.1444142,74.5657861,Gastroenterologist,MBBS,4
+Kiran Gupta,18.5038889,73.807673,Anesthesiologist,MD,3
+Krishan Pal,18.526967,73.9278252,Gynecologist,BAMS,5
+Deepa Saini,18.4779905,73.8940627,Anesthesiologist,BHMS,1
+Vidha Devi,18.526967,73.9278252,Cardiologist,BAMS,4
+Harbhajan Singh,18.1444142,74.5657861,Ophthalmologist,BAMS,5
+Nathu Singh,18.4694904,73.8309722,Nephrologist,MBBS,5
+Kumari Hirawati,18.5656319,73.8865762,Oncologist,BAMS,2
+Laxmi Bai,18.526967,73.9278252,Infectious disease,BHMS,2
+Vikram Singh,18.1444142,74.5657861,Pulmonologist,BAMS,5
+Mohd Shahid,18.5038889,73.807673,Pediatrician,BHMS,5
+Seema Chauhan,18.5348981,73.8767104,Gastroenterologist,MD,5
+Chhidu Ali,18.5038889,73.807673,Otolaryngologist,MD,5
+Pankaj Kumar,18.4694904,73.8309722,Radiologist,BAMS,5
+Priti Gujrati,18.5348981,73.8767104,Internal Medicine,MBBS,2
+Ajay Kumar,18.4694904,73.8309722,Cardiologist,MBBS,5
+Shashi Seni,18.4694904,73.8309722,Psychiatrist,MBBS,2
+Manoj Kumar,18.5038889,73.807673,Gastroenterologist,BAMS,5
+Smt Seema,18.5348981,73.8767104,Pulmonologist,BHMS,3
+Banwari Soni,18.4779905,73.8940627,Ophthalmologist,BAMS,3
+Rajendar Sen,18.5514833,73.8951167,Gynecologist,BAMS,3
+Urmila Bai,18.5618834,73.8101957,Pulmonologist,BHMS,1
+Jogender Singh,18.5514833,73.8951167,Anesthesiologist,BHMS,4
+Kunj Bihari,18.5348981,73.8767104,Ophthalmologist,MD,3
+Mairy Kumari,18.5618834,73.8101957,Family medicine,BHMS,1
+Bundel Sahni,18.5656319,73.8865762,Dermatologist,MD,1
+Dimpal @Doli,18.526967,73.9278252,Surgeon,BAMS,1
+Sarsawati Devi,18.1444142,74.5657861,Endocrinologist,BHMS,3
+Kaifiya Siddaki,18.4820444,73.8001705,Endocrinologist,BAMS,4
+Pardeep Kumar,18.5514833,73.8951167,Internal Medicine,BHMS,3
+Yogesh Shukla,18.1444142,74.5657861,Oncologist,MBBS,3
+Sonika Brahmin,18.526967,73.9278252,Ophthalmologist,BAMS,5
+Mukesh Kanwar,18.4820444,73.8001705,Psychiatrist,BAMS,1
+Anju Devi,18.532248199999998,73.84990967997429,Endocrinologist,BAMS,5
+Kumari Kajal,18.4820444,73.8001705,Nephrologist,MBBS,1
+Kavit Goyar,18.5038889,73.807673,Psychiatrist,BHMS,3
+Mithlesh Mishra,18.1444142,74.5657861,Anesthesiologist,BHMS,2
+Ranjan Devi,18.5038889,73.807673,Gynecologist,MD,4
+Manju Bai,18.4820444,73.8001705,Ophthalmologist,BHMS,3
+Asish Agarwal,18.5038889,73.807673,Psychiatrist,BHMS,2
+Surender Mandal,18.5656319,73.8865762,Family medicine,BHMS,1
+Ishwar Singh,18.526967,73.9278252,Internal Medicine,MBBS,1
+Km Dipali,18.5618834,73.8101957,Psychiatrist,BAMS,1
+Om Prakash,18.532248199999998,73.84990967997429,Infectious disease,MD,3
+Sakshi Vaid,18.526967,73.9278252,Radiologist,MD,3
+Anil Sen,18.4779905,73.8940627,Internal Medicine,MD,5
+Om Parkash,18.5656319,73.8865762,Neurologist,MBBS,5
+Harender Kumar,18.5618834,73.8101957,Radiologist,BHMS,3
+Aarti Devi,18.1444142,74.5657861,Neurologist,MD,4
+Jitender Kumar,18.532248199999998,73.84990967997429,Oncologist,BAMS,5
+Sanjai Sharma,18.4820444,73.8001705,Pediatrician,MBBS,2
+Sanjeev Kumar,18.5348981,73.8767104,Ophthalmologist,MD,1
+Raja Kumar,18.5618834,73.8101957,Neurologist,BAMS,4
+Kanchan Dev,18.532248199999998,73.84990967997429,Infectious disease,MBBS,4
+Parkash Kumar,18.5618834,73.8101957,Anesthesiologist,MBBS,3
+Phoolo Passwan,18.5656319,73.8865762,Surgeon,BAMS,4
+Paramjeet Kour,18.5514833,73.8951167,Radiologist,MD,3
+Laxmi Devi,18.5348981,73.8767104,Family medicine,BHMS,2
+Rajo Dalal,18.1444142,74.5657861,Gynecologist,MD,5
+Manpreet Kaur,18.4820444,73.8001705,Dermatologist,BHMS,4
+Sheh Nawaz,18.5514833,73.8951167,Internal Medicine,BHMS,1
+Mukhtar Khan,18.4820444,73.8001705,Oncologist,MBBS,2
+Bhanwar Singh,18.532248199999998,73.84990967997429,Nephrologist,BAMS,1
+Km Barkha,18.5656319,73.8865762,Anesthesiologist,MBBS,5
+Prem Kumar,18.4820444,73.8001705,Pediatrician,MBBS,5
+Anjana Kumari,18.1444142,74.5657861,Family medicine,MBBS,5
+Nagma Khatun,18.5514833,73.8951167,Psychiatrist,BHMS,3
+Sania Parveen,18.5038889,73.807673,Nephrologist,BAMS,3
+Kiran Pande,18.5514833,73.8951167,Dermatologist,MD,5
+Rajiya Bano,18.4779905,73.8940627,Gastroenterologist,BHMS,3
+Shiva Bai,18.5514833,73.8951167,Ophthalmologist,MD,2
+Pooja Saini,18.4694904,73.8309722,Psychiatrist,MD,2
+Suman Nagar,18.5618834,73.8101957,Gynecologist,MBBS,1
+Miss Kanchan,18.5618834,73.8101957,Endocrinologist,MD,2
+Manesh Chadda,18.526967,73.9278252,Cardiologist,BHMS,4
+Savita Sharma,18.532248199999998,73.84990967997429,Gastroenterologist,BHMS,4
+Manoj Kumar,18.532248199999998,73.84990967997429,Ophthalmologist,BAMS,2
+Mohd Tausif,18.4694904,73.8309722,Surgeon,BAMS,2
+Sita Devi,18.526967,73.9278252,Radiologist,BAMS,1
+Ragwender Sharma,18.5656319,73.8865762,Nephrologist,MD,1
+Reena Jain,18.526967,73.9278252,Endocrinologist,BHMS,4
+Lila Kumari,18.1444142,74.5657861,Cardiologist,MBBS,5
+Gopal Sharma,18.5038889,73.807673,Psychiatrist,MBBS,5
+Srita Devi,18.4694904,73.8309722,Ophthalmologist,BAMS,3
+Munni Devi,18.4820444,73.8001705,Internal Medicine,MD,3
+Shahid Khan,18.532248199999998,73.84990967997429,Otolaryngologist,MD,3
+Beeuty Kumari,18.5348981,73.8767104,Cardiologist,BHMS,3
+Mohd. Arafaat,18.5038889,73.807673,Nephrologist,MD,5
+Md Hassan,18.526967,73.9278252,Oncologist,BHMS,1
+Priyanka Chauhan,18.4779905,73.8940627,Internal Medicine,MD,2
+Balbir Singh,18.5514833,73.8951167,Endocrinologist,BHMS,1
+Mohan Swaroop,18.5038889,73.807673,Anesthesiologist,MBBS,5
+Neetu Kapoor,18.5348981,73.8767104,Neurologist,BAMS,1
+Laxmi Deve,18.532248199999998,73.84990967997429,Gastroenterologist,MD,1
+Ghanshyam Kushwah,18.532248199999998,73.84990967997429,Psychiatrist,MD,4
+Smt Maheswari,18.5038889,73.807673,Ophthalmologist,MBBS,3
+Sukhbeer Singh,18.5656319,73.8865762,Pulmonologist,BHMS,5
+Usha Devi,18.532248199999998,73.84990967997429,Radiologist,MD,2
+Pear Bano,18.5038889,73.807673,Neurologist,BHMS,3
+Maya Devi,18.5514833,73.8951167,Anesthesiologist,BAMS,1
+Hari Uraown,18.5618834,73.8101957,Dermatologist,MBBS,3
+Bijali Devi,18.4694904,73.8309722,Internal Medicine,BAMS,2
+Poonam Mishra,18.5514833,73.8951167,Dermatologist,MBBS,1
+Sunil Sharma,18.5656319,73.8865762,Surgeon,MBBS,5
+Anu Jain,18.4694904,73.8309722,Endocrinologist,BHMS,3
+Chandra Kanwar,18.4779905,73.8940627,Surgeon,BAMS,3
+Smt Bhavana,18.5618834,73.8101957,Psychiatrist,MBBS,5
+Khushi  Kumari,18.4694904,73.8309722,Anesthesiologist,MD,4
+Smt. Dipika,18.526967,73.9278252,Oncologist,BAMS,2
+Sohan Lal,18.5656319,73.8865762,Oncologist,BHMS,2
+Smt. Anju,18.4779905,73.8940627,Gastroenterologist,MBBS,5
+Pintu Kumar,18.1444142,74.5657861,Ophthalmologist,MD,1
+Dhurav Goyel,18.532248199999998,73.84990967997429,Neurologist,BAMS,3
+Neeraj Kumari,18.4694904,73.8309722,Pediatrician,BAMS,5
+Sneh Lata,18.5348981,73.8767104,Psychiatrist,BAMS,3
+Kanta Sharma,18.5038889,73.807673,Anesthesiologist,BHMS,2
+Sanjay Mashi,18.5514833,73.8951167,Radiologist,BAMS,2
+Sonu Gupta,18.532248199999998,73.84990967997429,Anesthesiologist,BAMS,2
+Kumari Pallavi,18.5038889,73.807673,Neurologist,MD,5
+Gulam Rashul,18.532248199999998,73.84990967997429,Neurologist,BHMS,1
+Kumari Suman,18.5038889,73.807673,Anesthesiologist,BAMS,1
+Nand Kishore,18.5656319,73.8865762,Anesthesiologist,BAMS,3
+Mohd. Ali,18.1444142,74.5657861,Family medicine,MBBS,3
+Kamla Pardad,18.5618834,73.8101957,Endocrinologist,MBBS,3
+Heena Parveen,18.5514833,73.8951167,Ophthalmologist,MBBS,5
+Brij Raj,18.532248199999998,73.84990967997429,Infectious disease,BAMS,1
+Pooja Gupta,18.5348981,73.8767104,Psychiatrist,BAMS,4
+Nisha Thakur,18.526967,73.9278252,Ophthalmologist,BHMS,2
+Pooja Verma,18.1444142,74.5657861,Gynecologist,BHMS,1
+Rohit Ahlawat,18.532248199999998,73.84990967997429,Radiologist,MBBS,4
+Rajesh Kumar,18.5038889,73.807673,Family medicine,MBBS,2
+Mohd. Sajid,18.4820444,73.8001705,Cardiologist,BAMS,2
+Manish Kumar,18.5514833,73.8951167,Surgeon,BAMS,5
+Sanjay Kumar,18.5348981,73.8767104,Dermatologist,MD,4
+Kumari Manjeet,18.526967,73.9278252,Radiologist,BHMS,3
+Pooja Rani,18.5656319,73.8865762,Internal Medicine,MD,5
+Chander Mani,18.5348981,73.8767104,Surgeon,MBBS,3
+Prasant Tiwari,18.4694904,73.8309722,Pulmonologist,BAMS,4
+Rajesh Kuwar,18.4694904,73.8309722,Gynecologist,MBBS,1
+Ajay @Mannu,18.4779905,73.8940627,Internal Medicine,BHMS,1
+Brijesh Kumar,18.532248199999998,73.84990967997429,Gastroenterologist,BAMS,3
+Gyan Prakash,18.1444142,74.5657861,Dermatologist,MD,4
+Jiya Lal,18.532248199999998,73.84990967997429,Anesthesiologist,BHMS,4
+Vishal Kumar,18.532248199999998,73.84990967997429,Family medicine,BAMS,4
+Satbir Singh,18.5348981,73.8767104,Cardiologist,MD,2
+Smt Puja,18.4694904,73.8309722,Neurologist,BAMS,5
+Priya  Chturvedi,18.5038889,73.807673,Pulmonologist,MD,4
+Avdesh Sharma,18.5618834,73.8101957,Radiologist,MD,1
+Jagpati Jha,18.526967,73.9278252,Neurologist,MD,2
+Juneb Bano,18.5348981,73.8767104,Otolaryngologist,MBBS,5
+Mahaveer Jain,18.526967,73.9278252,Dermatologist,MD,2
+Prayatan Prabhas,18.4820444,73.8001705,Nephrologist,BHMS,1
+Indal Paswan,18.4694904,73.8309722,Otolaryngologist,MD,3
+Rakesh  Singh,18.4694904,73.8309722,Endocrinologist,BHMS,2
+Harish Arora,18.4779905,73.8940627,Gastroenterologist,BAMS,1
+Lakhmi Chand,18.1444142,74.5657861,Gynecologist,MBBS,4
+Dhapu Bai,18.5618834,73.8101957,Anesthesiologist,BAMS,3
+Sarika Mishra,18.1444142,74.5657861,Pulmonologist,MD,4
+Rajanti Meena,18.5514833,73.8951167,Neurologist,MBBS,1
+Ashwani Kumar,18.5618834,73.8101957,Surgeon,MBBS,4
+Miss Heera,18.532248199999998,73.84990967997429,Dermatologist,BAMS,4
+Sonal Seth,18.1444142,74.5657861,Dermatologist,MD,4
+Swadhin Beswal,18.5348981,73.8767104,Infectious disease,BHMS,2
+Awedhesh Kumar,18.5348981,73.8767104,Nephrologist,MBBS,4
+Phooli Devi,18.4820444,73.8001705,Internal Medicine,BAMS,4
+Rekha Vays,18.5618834,73.8101957,Family medicine,MBBS,4
+Mohani Bai,18.4820444,73.8001705,Endocrinologist,BAMS,3
+Poonam Kumari,18.5514833,73.8951167,Endocrinologist,BAMS,5
+Navneet Kaur,18.1444142,74.5657861,Cardiologist,MBBS,2
+Traun Kumar,18.5656319,73.8865762,Radiologist,BAMS,4
+Sarif Mohammed,18.4779905,73.8940627,Radiologist,MBBS,5
+Ganga Devi,18.1444142,74.5657861,Family medicine,MBBS,3
+Vipin Kumar,18.1444142,74.5657861,Ophthalmologist,MBBS,3
+Vijay Kumar,18.1444142,74.5657861,Oncologist,MBBS,4
+Munajir Alam,18.1444142,74.5657861,Gynecologist,MD,2
+Umashankar Prajapatti,18.5618834,73.8101957,Anesthesiologist,BHMS,2
+Kiran Devi,18.532248199999998,73.84990967997429,Dermatologist,BAMS,1
+Divya Mishra,18.4694904,73.8309722,Surgeon,BHMS,4
+Ramesh Kuamar,18.5348981,73.8767104,Surgeon,MBBS,5
+Sharwan Singh,18.532248199999998,73.84990967997429,Internal Medicine,BAMS,5
+Mamta Bai,18.5348981,73.8767104,Endocrinologist,MD,1
+Suraj Kumar,18.4820444,73.8001705,Surgeon,BAMS,5
+Bheem Pal,18.4779905,73.8940627,Otolaryngologist,MBBS,5
+Lalita Gameti,18.532248199999998,73.84990967997429,Cardiologist,MBBS,3
+Trilok Agrawal,18.4779905,73.8940627,Neurologist,MBBS,4
+Rajvi Kumar,18.5618834,73.8101957,Gynecologist,MD,1
+Momita Dass,18.4779905,73.8940627,Otolaryngologist,BAMS,1
+Smt Monika,18.5618834,73.8101957,Gastroenterologist,BAMS,5
+Rakesh Kumar,18.5514833,73.8951167,Ophthalmologist,BHMS,5
+Budhan Yadav,18.4694904,73.8309722,Pulmonologist,MD,5
+Mohan Kumar,18.4694904,73.8309722,Family medicine,MBBS,5
+Manisha Rani,18.5038889,73.807673,Ophthalmologist,BHMS,5
+Durga Pathik,18.1444142,74.5657861,Pediatrician,MBBS,1
+Anjali Kiski,18.526967,73.9278252,Gynecologist,BAMS,1
+Sunita Das,18.5514833,73.8951167,Cardiologist,BHMS,3
+Afsana Khatoon,18.1444142,74.5657861,Oncologist,MBBS,5
+Kanti Devi,18.1444142,74.5657861,Anesthesiologist,MBBS,3
+Shobha Wati,18.4694904,73.8309722,Surgeon,MBBS,4
+Kaushalya Devi,18.5038889,73.807673,Psychiatrist,MBBS,3
+Radheyshyam Saini,18.5038889,73.807673,Otolaryngologist,MD,1
+Km. Sonali,18.526967,73.9278252,Neurologist,MD,2
+Shahib Kumar,18.526967,73.9278252,Oncologist,MD,3
+Manita Uraw,18.5514833,73.8951167,Gastroenterologist,MD,3
+Himanshu Sahu,18.4820444,73.8001705,Pediatrician,MBBS,1
+Sikandar Sahu,18.4779905,73.8940627,Ophthalmologist,BAMS,1
+Asha Devi,18.5514833,73.8951167,Psychiatrist,BAMS,5
+Mohd Shubhan,18.1444142,74.5657861,Neurologist,MBBS,4
+Vijay Kumar,18.1444142,74.5657861,Nephrologist,MBBS,3
+Priya Dhingra,18.4820444,73.8001705,Pulmonologist,BAMS,4
+Ratul Viswas,18.5038889,73.807673,Nephrologist,BAMS,1
+Rishi Kakdia,18.4694904,73.8309722,Pediatrician,BAMS,5
+Akhilesh Kumar,18.5618834,73.8101957,Radiologist,MD,2
+Pooja Garg,18.532248199999998,73.84990967997429,Ophthalmologist,MBBS,2
+Bhupendra Singh,18.5038889,73.807673,Oncologist,MD,5
+Manoj Kumar,18.5038889,73.807673,Internal Medicine,BHMS,4
+Kumari Jyothi,18.526967,73.9278252,Surgeon,BAMS,1
+Asgar Khan,18.4820444,73.8001705,Internal Medicine,BAMS,5
+Naresh Kuamr,18.4694904,73.8309722,Gynecologist,BHMS,2
+Stephen Topo,18.526967,73.9278252,Oncologist,MBBS,3
+Deepa Devi,18.5514833,73.8951167,Otolaryngologist,MBBS,4
+Rajiv Kumar,18.1444142,74.5657861,Pulmonologist,MD,1
+Km Tanjeem,18.4779905,73.8940627,Radiologist,MD,4
+Kumari Lata,18.4820444,73.8001705,Neurologist,MBBS,2
+Smt. Shakuntala,18.4694904,73.8309722,Pulmonologist,BHMS,5
+Sagar Goswami,18.526967,73.9278252,Pediatrician,MD,3
+Mukesh Panjara,18.5656319,73.8865762,Infectious disease,BAMS,2
+Jitender Singh,18.4694904,73.8309722,Oncologist,BHMS,4
+Tanuj Kandpal,18.5514833,73.8951167,Infectious disease,MD,3
+Kalu Ram,18.5514833,73.8951167,Otolaryngologist,BAMS,3
+Sushil Kumar,18.4694904,73.8309722,Pulmonologist,MD,4
+Rajam Singh,18.1444142,74.5657861,Cardiologist,MD,5
+Madhuri Sharma,18.1444142,74.5657861,Anesthesiologist,MBBS,2
+Ram Siroman,18.1444142,74.5657861,Surgeon,MBBS,2
+Sonu Morya,18.4779905,73.8940627,Gynecologist,BHMS,4
+Nikhil Chopra,18.4779905,73.8940627,Ophthalmologist,BHMS,3
+Avinash Jha,18.4820444,73.8001705,Pulmonologist,BAMS,3
+Shobha Ram,18.532248199999998,73.84990967997429,Cardiologist,MD,4
+Apsana Parveen,18.532248199999998,73.84990967997429,Cardiologist,BAMS,4
+Km Priyanka,18.5618834,73.8101957,Anesthesiologist,BHMS,1
+Roshan Bai,18.532248199999998,73.84990967997429,Pulmonologist,MD,4
+Neeraj Kandari,18.5038889,73.807673,Pulmonologist,BHMS,2
+Raju Kashyap,18.4820444,73.8001705,Neurologist,BHMS,2
+Anju Devi,18.4694904,73.8309722,Anesthesiologist,BHMS,1
+Akhilesh Gupta,18.4820444,73.8001705,Nephrologist,MD,2
+Kumari Mona,18.532248199999998,73.84990967997429,Gastroenterologist,MD,5
+Rahis Ahmed,18.5038889,73.807673,Internal Medicine,MD,2
+Anil Kumar,18.4779905,73.8940627,Nephrologist,BAMS,3
+Munni Devi,18.5514833,73.8951167,Pulmonologist,MBBS,5
+Mohd Shakeeb,18.5514833,73.8951167,Pulmonologist,BAMS,1
+Kumari Rohini,18.526967,73.9278252,Endocrinologist,BAMS,1
+Garima Sharma,18.532248199999998,73.84990967997429,Infectious disease,BAMS,5
+Shama Parveen,18.4694904,73.8309722,Family medicine,BHMS,2
+Mohd  Ashlam,18.5618834,73.8101957,Surgeon,MD,1
+Rozi Sharma,18.532248199999998,73.84990967997429,Dermatologist,MD,4
+Dhram Sigh,18.5038889,73.807673,Infectious disease,MBBS,2
+Lata Mandal,18.532248199999998,73.84990967997429,Gynecologist,MD,2
+Smt Hina,18.5038889,73.807673,Gynecologist,MD,3
+Krishan Kumar,18.5514833,73.8951167,Neurologist,MD,2
+Jodhi Kumar,18.5038889,73.807673,Endocrinologist,BAMS,1
+Dilip Singh,18.5514833,73.8951167,Pulmonologist,BHMS,4
+Manisha Kumari,18.526967,73.9278252,Nephrologist,MBBS,3
+Hem Lata,18.5514833,73.8951167,Surgeon,BHMS,4
+Vipin Sharma,18.4694904,73.8309722,Neurologist,BHMS,3
+Sosan Devi,18.526967,73.9278252,Nephrologist,MD,3
+Sarika Panjawani,18.4820444,73.8001705,Nephrologist,MD,2
+Preeti Wadhva,18.532248199999998,73.84990967997429,Otolaryngologist,BAMS,4
+Rahul Jain,18.532248199999998,73.84990967997429,Psychiatrist,BHMS,2
+Santok Luhar,18.4694904,73.8309722,Surgeon,MBBS,3
+Rakesh Kumar,18.5618834,73.8101957,Family medicine,BAMS,3
+Sanoj Kumar,18.5514833,73.8951167,Pediatrician,MBBS,1
+Neha Pandey,18.532248199999998,73.84990967997429,Psychiatrist,BAMS,4
+Pawan Kumar,18.5514833,73.8951167,Ophthalmologist,MD,4
+Neeraj Kumar,18.1444142,74.5657861,Dermatologist,MD,5
+Vikas Kumar,18.526967,73.9278252,Dermatologist,MBBS,1
+Pushpa Devi,18.532248199999998,73.84990967997429,Anesthesiologist,MD,5
+Salma Biwi,18.5618834,73.8101957,Dermatologist,MBBS,5
+Gurdarshan Singh,18.526967,73.9278252,Radiologist,BHMS,5
+Suman Lata,18.5348981,73.8767104,Psychiatrist,MD,3
+Maya Devi,18.4694904,73.8309722,Ophthalmologist,MD,5
+Anita Kumari,18.532248199999998,73.84990967997429,Anesthesiologist,MD,3
+Smt Itvarya,18.532248199999998,73.84990967997429,Oncologist,BHMS,2
+Kumari Sonam,18.4820444,73.8001705,Surgeon,MD,4
+Nitin Shukla,18.4694904,73.8309722,Infectious disease,BAMS,2
+Shama Rani,18.5514833,73.8951167,Infectious disease,MBBS,2
+Rupendra Ubas,18.532248199999998,73.84990967997429,Endocrinologist,MD,3
+Mamta Bhandari,18.5656319,73.8865762,Cardiologist,BAMS,3
+Satish Sindhi,18.5514833,73.8951167,Ophthalmologist,BAMS,3
+Laxmi Bai,18.4820444,73.8001705,Psychiatrist,BAMS,4
+Kuldeep Singh,18.1444142,74.5657861,Oncologist,BHMS,1
+Vinay Kumar,18.4694904,73.8309722,Oncologist,BHMS,5
+Sunil Garg,18.526967,73.9278252,Family medicine,MD,1
+Anita Gop,18.5038889,73.807673,Nephrologist,BAMS,5
+Poonam Devi,18.4820444,73.8001705,Internal Medicine,BHMS,2
+Khushboo Kumari,18.4820444,73.8001705,Gynecologist,MD,5
+Jabir Hussain,18.4694904,73.8309722,Surgeon,BAMS,1
+Rinku Devi,18.1444142,74.5657861,Dermatologist,MD,1
+Sanjay Singh,18.532248199999998,73.84990967997429,Anesthesiologist,BHMS,1
+Rajesh Agarwal,18.5038889,73.807673,Gynecologist,MD,2
+Snah Lata,18.5038889,73.807673,Pediatrician,BAMS,1
+Punam Mishra,18.5348981,73.8767104,Ophthalmologist,MBBS,5
+Sonu Sharma,18.4820444,73.8001705,Pulmonologist,MD,1
+Aakash Dabral,18.5038889,73.807673,Infectious disease,BAMS,5
+Sudesh Rani,18.4779905,73.8940627,Ophthalmologist,MD,4
+Kalu Luhar,18.1444142,74.5657861,Gynecologist,BAMS,3
+अशोक राव,18.4694904,73.8309722,Pediatrician,BHMS,5
+Dariya Kanwar,18.4694904,73.8309722,Cardiologist,BAMS,3
+Sanjey Kumar,18.4820444,73.8001705,Infectious disease,MD,1
+Mahendra Salani,18.526967,73.9278252,Neurologist,BAMS,4
+Smt. Seeta,18.5038889,73.807673,Otolaryngologist,MBBS,5
+Kum Nidhi,18.1444142,74.5657861,Radiologist,BAMS,4
