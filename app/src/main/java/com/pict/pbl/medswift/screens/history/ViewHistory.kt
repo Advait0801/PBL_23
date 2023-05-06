@@ -20,9 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pict.pbl.medswift.data.UserSymptom
-import com.pict.pbl.medswift.ui.theme.BubbleText
+import com.pict.pbl.medswift.screens.BubbleText
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
-import com.pict.pbl.medswift.ui.theme.ScreenTitleWithoutDivider
+import com.pict.pbl.medswift.screens.ScreenTitleWithoutDivider
 import com.pict.pbl.medswift.viewmodels.HistoryViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale

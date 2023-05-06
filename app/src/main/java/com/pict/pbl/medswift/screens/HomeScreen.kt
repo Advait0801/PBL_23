@@ -27,6 +27,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.pict.pbl.medswift.screens.history.HistoryScreen
+import com.pict.pbl.medswift.screens.nearby_doctors.NearbyDoctorsScreen
 import com.pict.pbl.medswift.screens.prescriptions.PrescriptionsScreen
 import com.pict.pbl.medswift.screens.profile.ProfileScreen
 import com.pict.pbl.medswift.screens.symptoms.SymptomsActivity
@@ -63,7 +64,13 @@ class HomeScreen : ComponentActivity() {
             bottomBar = { BottomNav(navController) } ,
             floatingActionButton = {
                 FloatingActionButton(onClick = {
+                    /*
                     Intent( context , SymptomsActivity::class.java ).apply {
+                        startActivity( this )
+                    }
+
+                     */
+                    Intent( context , NearbyDoctorsScreen::class.java ).apply {
                         startActivity( this )
                     }
                 }) {

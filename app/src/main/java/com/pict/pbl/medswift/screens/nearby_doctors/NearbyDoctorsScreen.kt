@@ -7,12 +7,16 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -35,10 +39,11 @@ import androidx.core.app.ActivityCompat
 import com.pict.pbl.medswift.api.NearbyDoctors
 import com.pict.pbl.medswift.data.Doctor
 import com.pict.pbl.medswift.location.CurrentLocation
-import com.pict.pbl.medswift.screens.ui.theme.MedSwiftTheme
+import com.pict.pbl.medswift.screens.RatingBar
+import com.pict.pbl.medswift.screens.ScreenTitle
+import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class NearbyDoctorsScreen : ComponentActivity() {
@@ -109,16 +114,42 @@ class NearbyDoctorsScreen : ComponentActivity() {
     @Composable
     private fun ActivityUI() {
         Column {
+            ScreenTitle(title = "Nearby Doctors")
             DoctorsList()
             ProgressDialog()
         }
-
     }
 
     @Composable
     private fun DoctorsList() {
         val doctorsList by nearbyDoctorsList
-        // TODO: Display doctors list here
+        LazyColumn {
+            items( doctorsList ) {
+                DoctorItem(doctor = it)
+            }
+        }
+    }
+
+    @Composable
+    private fun DoctorItem( doctor : Doctor ) {
+        Surface(
+            shape = RoundedCornerShape( 10.dp ) ,
+            border = BorderStroke( 1.dp , MaterialTheme.colorScheme.primary ) ,
+            modifier = Modifier
+                .padding( 8.dp )
+                .clickable {
+
+                }
+        ) {
+            Column( modifier = Modifier
+                .padding(24.dp)
+                .fillMaxWidth() ) {
+                Text(text = doctor.name, style=MaterialTheme.typography.bodyLarge)
+                Text(text = doctor.degree, style=MaterialTheme.typography.bodySmall)
+                RatingBar(rating = doctor.rating.toDouble())
+            }
+        }
+
     }
 
     @Composable

@@ -22,7 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import com.pict.pbl.medswift.api.UserDiagnosisHistory
 import com.pict.pbl.medswift.data.UserDiagnosis
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
-import com.pict.pbl.medswift.ui.theme.ScreenTitle
+import com.pict.pbl.medswift.screens.ScreenTitle
 import com.pict.pbl.medswift.viewmodels.HistoryViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale

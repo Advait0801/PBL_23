@@ -30,7 +30,7 @@ import com.pict.pbl.medswift.data.AnalyzeSymptom
 import com.pict.pbl.medswift.data.Symptom
 import com.pict.pbl.medswift.data.SymptomChoiceType
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
-import com.pict.pbl.medswift.ui.theme.TextInput
+import com.pict.pbl.medswift.screens.TextInput
 import com.pict.pbl.medswift.viewmodels.SymptomsViewModel
 
 @Composable

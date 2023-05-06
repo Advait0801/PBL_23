@@ -2,7 +2,6 @@ package com.pict.pbl.medswift.screens.prescriptions
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -21,7 +20,7 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.pict.pbl.medswift.api.UserPrescriptions
 import com.pict.pbl.medswift.data.UserPrescription
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
-import com.pict.pbl.medswift.ui.theme.ScreenTitle
+import com.pict.pbl.medswift.screens.ScreenTitle
 import java.text.SimpleDateFormat
 import java.util.*
 

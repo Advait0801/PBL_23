@@ -18,6 +18,10 @@ class CurrentLocation( private val context : Context ) {
         removeListener()
     }
 
+    fun isLocationEnabled() : Boolean {
+        return locationManager.isProviderEnabled( LocationManager.FUSED_PROVIDER )
+    }
+
     suspend fun getCurrentLocation( result : ((Location) -> Unit) ) {
         if (ActivityCompat.checkSelfPermission(
                 context,

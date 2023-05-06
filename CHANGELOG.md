@@ -1,2 +1,1 @@
-- Added `NearbyDoctors` in `api` to get nearby doctors from Firestore
-- Added UI in `NearbyDoctorsScreen` for displaying list of doctors
+- Added `LazyColumn` in `NearbyDoctorsScreen.kt`

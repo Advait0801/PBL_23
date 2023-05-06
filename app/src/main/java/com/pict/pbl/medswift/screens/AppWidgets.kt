@@ -1,4 +1,4 @@
-package com.pict.pbl.medswift.ui.theme
+package com.pict.pbl.medswift.screens
 
 import android.app.DatePickerDialog
 import android.widget.DatePicker
@@ -8,6 +8,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Star
+import androidx.compose.material.icons.outlined.StarHalf
+import androidx.compose.material.icons.outlined.StarOutline
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -164,6 +168,37 @@ fun DropDownInput(
     }
 }
 
+@Composable
+fun RatingBar(
+    modifier: Modifier = Modifier,
+    rating: Double = 0.0,
+    numStars: Int = 5,
+    starFillColor: Color = Color.Green,
+    starOutlineColor: Color = Color.Black
+) {
+    val filledStars = kotlin.math.floor(rating).toInt()
+    val unfilledStars = (numStars - kotlin.math.ceil(rating)).toInt()
+    val halfStar = !(rating.rem(1).equals(0.0))
+    Row(modifier = modifier) {
+        repeat(filledStars) {
+            Icon(imageVector = Icons.Outlined.Star, contentDescription = null, tint = starFillColor)
+        }
+        if (halfStar) {
+            Icon(
+                imageVector = Icons.Outlined.StarHalf,
+                contentDescription = null,
+                tint = starFillColor
+            )
+        }
+        repeat(unfilledStars) {
+            Icon(
+                imageVector = Icons.Outlined.StarOutline,
+                contentDescription = null,
+                tint = starOutlineColor
+            )
+        }
+    }
+}
 
 @Composable
 fun BubbleText( text : String ,

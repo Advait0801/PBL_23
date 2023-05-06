@@ -38,7 +38,7 @@ import com.pict.pbl.medswift.data.AnalyzeSymptom
 import com.pict.pbl.medswift.data.Symptom
 import com.pict.pbl.medswift.symptoms.SymptomsJSONReader
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
-import com.pict.pbl.medswift.ui.theme.ScreenTitleWithoutDivider
+import com.pict.pbl.medswift.screens.ScreenTitleWithoutDivider
 import com.pict.pbl.medswift.viewmodels.SymptomsViewModel
 import okhttp3.OkHttpClient
 

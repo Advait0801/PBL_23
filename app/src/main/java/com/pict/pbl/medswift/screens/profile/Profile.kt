@@ -27,7 +27,7 @@ import com.google.modernstorage.photopicker.PhotoPicker
 import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.auth.CurrentUserDetails
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
-import com.pict.pbl.medswift.ui.theme.ScreenTitle
+import com.pict.pbl.medswift.screens.ScreenTitle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
