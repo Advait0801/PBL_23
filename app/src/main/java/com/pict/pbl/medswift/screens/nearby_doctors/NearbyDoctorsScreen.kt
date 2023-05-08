@@ -134,7 +134,7 @@ class NearbyDoctorsScreen : ComponentActivity() {
     private fun DoctorItem( doctor : Doctor ) {
         Surface(
             shape = RoundedCornerShape( 10.dp ) ,
-            border = BorderStroke( 1.dp , MaterialTheme.colorScheme.primary ) ,
+            border = BorderStroke( 1.dp , MaterialTheme.colorScheme.secondary ) ,
             modifier = Modifier
                 .padding( 8.dp )
                 .clickable {
@@ -168,8 +168,9 @@ class NearbyDoctorsScreen : ComponentActivity() {
                 ) {
                     Column( modifier = Modifier.padding( 16.dp ) , horizontalAlignment = Alignment.CenterHorizontally ) {
                         CircularProgressIndicator()
-                        Text(text = progressMessage , modifier = Modifier
-                            .width(250.dp)
+                        Text(text = progressMessage , style = MaterialTheme.typography.labelLarge,
+                            modifier = Modifier
+                            .fillMaxWidth()
                             .padding(16.dp) , textAlign = TextAlign.Center )
                     }
                 }

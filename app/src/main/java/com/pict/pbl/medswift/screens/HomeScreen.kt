@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.animation.core.SpringSpec
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -18,8 +19,10 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -34,6 +37,7 @@ import com.pict.pbl.medswift.screens.symptoms.SymptomsActivity
 import com.pict.pbl.medswift.screens.user_auth.RegisterScreen
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.viewmodels.HistoryViewModel
+import java.time.format.TextStyle
 
 class HomeScreen : ComponentActivity() {
 
@@ -63,7 +67,10 @@ class HomeScreen : ComponentActivity() {
         Scaffold(
             bottomBar = { BottomNav(navController) } ,
             floatingActionButton = {
-                FloatingActionButton(onClick = {
+                FloatingActionButton(
+                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    onClick = {
+
                     /*
                     Intent( context , SymptomsActivity::class.java ).apply {
                         startActivity( this )
@@ -73,10 +80,19 @@ class HomeScreen : ComponentActivity() {
                     Intent( context , NearbyDoctorsScreen::class.java ).apply {
                         startActivity( this )
                     }
-                }) {
-                    Row( modifier = Modifier.padding( 8.dp ) ) {
+                    }
+                ) {
+                    Row( modifier = Modifier.padding( 8.dp )
+                    ) {
                         Icon( Icons.Default.LocalHospital , contentDescription = "Diagnosis" )
-                        Text(text = "Diagnosis" , modifier = Modifier.padding( 8.dp ) )
+                        Text(
+                            text = "Diagnosis" ,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer,
+                            style = androidx.compose.ui.text.TextStyle(
+                                fontWeight = FontWeight.Bold
+                            ),
+                            modifier = Modifier.padding( 8.dp )
+                        )
                     }
                 }
             }
@@ -134,7 +150,7 @@ class HomeScreen : ComponentActivity() {
 
     @Composable
     private fun BottomNavGraph( navController: NavHostController ) {
-        NavHost(navController = navController, startDestination = BottomNavItem.HomeScreenItem.screenRoute ) {
+        NavHost(navController = navController, startDestination = BottomNavItem.ProfileScreenItem.screenRoute ) {
             composable( BottomNavItem.HomeScreenItem.screenRoute ) { RegisterScreen() }
             composable( BottomNavItem.ProfileScreenItem.screenRoute ) { ProfileScreen() }
             composable( BottomNavItem.HistoryScreenItem.screenRoute ) { HistoryScreen( historyViewModel ) }

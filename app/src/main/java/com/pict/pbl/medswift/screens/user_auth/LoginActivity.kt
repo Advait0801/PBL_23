@@ -2,6 +2,7 @@ package com.pict.pbl.medswift.screens.user_auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -30,6 +31,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -37,6 +39,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.MutableLiveData
@@ -89,10 +92,7 @@ class LoginActivity : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 val image = painterResource(id = R.drawable.app_icon)
-                Image(
-                    painter = image ,
-                    contentDescription = "App Icon"
-                )
+                MedSwiftLogo()
                 EmailId( modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 32.dp, end = 32.dp)
@@ -114,7 +114,7 @@ class LoginActivity : ComponentActivity() {
             }
             LoginButton(
                 modifier = Modifier
-                    .padding(top = 50.dp, end = 10.dp)
+                    .padding(top = 35.dp, end = 10.dp)
             )
             AlertDialog()
             ProgressDialog()
@@ -239,14 +239,23 @@ class LoginActivity : ComponentActivity() {
         val context = LocalContext.current
         Button(
             onClick = {
-                loginManager.loginUser( userEmail.value , userPassword.value ) {
-                    Intent( context , HomeScreen::class.java ).apply {
-                        startActivity( this )
+                if (userEmail.value.isNotEmpty() ){
+                    loginManager.loginUser( userEmail.value , userPassword.value ) {
+                        Intent( context , HomeScreen::class.java ).apply {
+                            startActivity( this )
+                        }
                     }
+                }
+                else{
+                    Toast.makeText(
+                        context,
+                        "Email can't be empty",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             } ,
             modifier = modifier
-                .defaultMinSize(minHeight = 0.2.dp , minWidth = 0.2.dp),
+                .defaultMinSize(minHeight = 0.4.dp , minWidth = 0.4.dp),
             contentPadding = PaddingValues(8.dp),
             border = BorderStroke(width = 2.dp, color = MaterialTheme.colorScheme.background)
         ) {
@@ -268,8 +277,9 @@ class LoginActivity : ComponentActivity() {
         ){
             Text(
                 "MedSwift",
-                color = MaterialTheme.colorScheme.onTertiaryContainer,
-                style = MaterialTheme.typography.headlineLarge.copy(
+                color = Color.Red,
+                style = TextStyle(
+                    fontSize = 38.sp,
                     fontWeight = FontWeight.Bold
                 )
             )
@@ -277,8 +287,9 @@ class LoginActivity : ComponentActivity() {
                 imageVector = Icons.Default.Add,
                 contentDescription = null,
                 modifier = Modifier
-                    .size(40.dp)
-                    .offset(x = 30.dp, y = -25.dp),
+                    .size(50.dp)
+                    .offset(x = 35.dp, y = -25.dp),
+                tint = Color.Red
                 )
         }
     }

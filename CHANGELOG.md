@@ -1,1 +1,2 @@
-- Added `LazyColumn` in `NearbyDoctorsScreen.kt`
+- Fixed Logo and Login Button in "LoginScreen.kt"
+- Improvised Diagnosis Button in "HomeScreen.kt"
