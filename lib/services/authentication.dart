@@ -88,6 +88,7 @@ class Authentication {
         throw Exception('User is null');
       } else {
         useString = _auth.currentUser!.uid;
+        print(useString);
       }
       return useString;
     } catch (e) {
@@ -97,10 +98,10 @@ class Authentication {
   }
 
   Future<bool> getUserStatus({required BuildContext context}) async {
-      if (_auth.currentUser == null) {
-        return false;
-      } else {
-        return true;
-      }
+    if (_auth.currentUser == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }

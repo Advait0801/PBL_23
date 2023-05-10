@@ -13,6 +13,8 @@ class UserModel {
   String? profilePhoto;
   String? uid;
   int? rating;
+  List<List<String>>? pastDiagnoses;
+  List<List<String>>? pendingDiagnoses;
 
   UserModel(
       {required this.age,
@@ -26,7 +28,10 @@ class UserModel {
       this.location,
       this.phoneNumber,
       this.profilePhoto,
-      this.rating});
+      this.rating,
+      this.pastDiagnoses,
+      this.pendingDiagnoses,
+      });
 
   Map<String, dynamic> toMap() {
     return {
@@ -42,6 +47,8 @@ class UserModel {
       'uid': uid,
       'profilePhoto': profilePhoto,
       'rating': rating,
+      'pastDiagnoses': pastDiagnoses,
+      'pendingDiagnoses': pendingDiagnoses,
     };
   }
 
@@ -59,6 +66,8 @@ class UserModel {
       profilePhoto: map['profilePhoto'] ?? '',
       uid: map['uid'] ?? '',
       rating: map['rating'],
+      pastDiagnoses: map['pastDiagnoses'] ?? [],
+      pendingDiagnoses: map['pendingDiagnosis'] ?? [],
     );
   }
 
