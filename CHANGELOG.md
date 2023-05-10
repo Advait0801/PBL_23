@@ -1,2 +1,1 @@
-- Fixed Logo and Login Button in "LoginScreen.kt"
-- Improvised Diagnosis Button in "HomeScreen.kt"
+- Improved ProfileScreen in 'Profile.kt'

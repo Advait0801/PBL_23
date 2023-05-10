@@ -26,6 +26,7 @@ class UserPrescriptions {
                 .await()
                 .documents.forEach {
                     Log.e( "APP" , "Doc: ${it.id}" )
+                    // TODO: handle exception here
                     val prescriptions = it.reference.collection( "prescription" ).get().await()
                     val pres = prescriptions.documents.first().toObject( UserPrescription::class.java )
                     userPrescriptions.add( pres ?: UserPrescription() )

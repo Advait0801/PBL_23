@@ -33,13 +33,13 @@ import java.util.*
 fun ScreenTitle( title : String , icon : ImageVector? = null ) {
     if ( icon != null ) {
         Row( verticalAlignment = Alignment.CenterVertically ){
-            Icon(imageVector = icon, contentDescription = title , modifier = Modifier.padding( start = 24.dp ) )
+            Icon(imageVector = icon, contentDescription = title , modifier = Modifier.padding( start = 24.dp, top = 24.dp, bottom = 18.dp) )
             Text(
                 text = title ,
                 color = Color.Black ,
                 style = MaterialTheme.typography.displayLarge ,
                 modifier = Modifier
-                    .padding(24.dp)
+                    .padding( start = 24.dp, bottom = 18.dp,top = 24.dp, end = 24.dp)
                     .fillMaxWidth()
             )
         }
@@ -50,17 +50,18 @@ fun ScreenTitle( title : String , icon : ImageVector? = null ) {
             color = Color.Black ,
             style = MaterialTheme.typography.displayLarge ,
             modifier = Modifier
-                .padding(24.dp)
+                .padding(start = 24.dp,bottom = 18.dp, end = 24.dp, top = 24.dp)
                 .fillMaxWidth()
         )
     }
     Divider(
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier
-            .padding(bottom = 8.dp)
+            .padding(bottom = 12.dp)
             .fillMaxWidth()
             .width(1.dp)
     )
+
 }
 
 @Composable
