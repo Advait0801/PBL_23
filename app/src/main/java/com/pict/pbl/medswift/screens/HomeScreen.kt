@@ -67,23 +67,12 @@ class HomeScreen : ComponentActivity() {
         Scaffold(
             bottomBar = { BottomNav(navController) } ,
             floatingActionButton = {
-                FloatingActionButton(
-                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                    onClick = {
-
-                    /*
+                FloatingActionButton(onClick = {
                     Intent( context , SymptomsActivity::class.java ).apply {
                         startActivity( this )
                     }
-
-                     */
-                    Intent( context , NearbyDoctorsScreen::class.java ).apply {
-                        startActivity( this )
-                    }
-                    }
-                ) {
-                    Row( modifier = Modifier.padding( 8.dp )
-                    ) {
+                }) {
+                    Row( modifier = Modifier.padding( 8.dp ) ) {
                         Icon( Icons.Default.LocalHospital , contentDescription = "Diagnosis" )
                         Text(
                             text = "Diagnosis" ,

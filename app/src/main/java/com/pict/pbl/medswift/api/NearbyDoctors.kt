@@ -1,5 +1,7 @@
 package com.pict.pbl.medswift.api
 
+import android.content.Context
+import android.location.Geocoder
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -13,8 +15,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.util.Locale
 
-class NearbyDoctors {
+class NearbyDoctors(){
 
     private val auth = Firebase.auth
     private val tolerance = 0.02f
