@@ -67,7 +67,9 @@ class HomeScreen : ComponentActivity() {
         Scaffold(
             bottomBar = { BottomNav(navController) } ,
             floatingActionButton = {
-                FloatingActionButton(onClick = {
+                FloatingActionButton(
+                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    onClick = {
                     Intent( context , SymptomsActivity::class.java ).apply {
                         startActivity( this )
                     }

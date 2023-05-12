@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
@@ -53,10 +54,14 @@ fun ProfileScreen() {
 
 @Composable
 private fun ScreenUI() {
-    Column( modifier = Modifier.verticalScroll( rememberScrollState() ) ) {
-        UserBasicInfo()
-        OtherDetailsDrawer()
+    Column {
+        ScreenTitle(title = "Profile" , icon=Icons.Default.Person)
+        Column( modifier = Modifier.verticalScroll( rememberScrollState() ) ) {
+            UserBasicInfo()
+            OtherDetailsDrawer()
+        }
     }
+
 }
 
 
@@ -68,7 +73,6 @@ private fun UserBasicInfo() {
         color = Color.White
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
-            ScreenTitle(title = "Profile" , icon=Icons.Default.Person)
             UserImage( )
             Text(
                 text = currentUser.firstName ,
@@ -162,10 +166,17 @@ private fun OtherDetail( icon : ImageVector , value : String ) {
                 shape = RoundedCornerShape(24.dp)
             )
             .fillMaxWidth()
+            .height(IntrinsicSize.Min)
             .padding(16.dp) ,
         horizontalArrangement = Arrangement.spacedBy( 8.dp )
     ) {
         Icon(imageVector = icon , contentDescription = value)
+        Divider(
+            color = Color.Black,
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(1.dp)
+        )
         Text(
             text = value ,
             color = Color.Black ,
