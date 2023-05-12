@@ -36,6 +36,8 @@ import com.pict.pbl.medswift.api.UserDiagnosisHistory
 import com.pict.pbl.medswift.auth.CurrentUserDetails
 import com.pict.pbl.medswift.data.AnalyzeSymptom
 import com.pict.pbl.medswift.data.Symptom
+import com.pict.pbl.medswift.data.UserPrediction
+import com.pict.pbl.medswift.data.UserSymptom
 import com.pict.pbl.medswift.symptoms.SymptomsJSONReader
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.screens.ScreenTitleWithoutDivider
@@ -47,7 +49,7 @@ class SymptomsActivity : ComponentActivity() {
     private lateinit var symptoms : ArrayList<Symptom>
     private val symptomsViewModel : SymptomsViewModel by viewModels()
     private var mappedSymptoms = HashMap<String,AnalyzeSymptom>()
-    private val currentUserDetails = CurrentUserDetails()
+    private val userDiagnosisHistory = UserDiagnosisHistory()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -177,7 +179,7 @@ class SymptomsActivity : ComponentActivity() {
     private fun initiateDiagnosis() {
         try {
             val client = OkHttpClient()
-            symptomsViewModel.isLoading.value = true
+            //symptomsViewModel.isLoading.value = true
             DiagnosisAPI(client).apply {
                 val analyzeSymptomsList = symptomsViewModel.analyzeSymptomsList.value ?: ArrayList()
                 mappedSymptoms = HashMap()
@@ -186,6 +188,10 @@ class SymptomsActivity : ComponentActivity() {
                 }
                 val result = getAnalysis( mappedSymptoms.values.toList() )
                 if( result.size > 0 ) {
+                    userDiagnosisHistory.insertDiagnosis(
+                        result.map{ UserPrediction( it.key , it.value ) }.toTypedArray() ,
+                        analyzeSymptomsList.map { UserSymptom( it.name , it.value.toInt() ) }.toTypedArray()
+                    )
                     symptomsViewModel.diagnosisResult = result
                     symptomsViewModel.navController!!.navigate( "diagnosis" )
                 }

@@ -27,8 +27,10 @@ class UserPrescriptions {
                 .documents.forEach {
                     Log.e( "APP" , "Doc: ${it.id}" )
                     val prescriptions = it.reference.collection( "prescription" ).get().await()
-                    val pres = prescriptions.documents.first().toObject( UserPrescription::class.java )
-                    userPrescriptions.add( pres ?: UserPrescription() )
+                    if( prescriptions.documents.isNotEmpty() ) {
+                        val pres = prescriptions.documents.first().toObject( UserPrescription::class.java )
+                        userPrescriptions.add( pres ?: UserPrescription() )
+                    }
                 }
             return@runBlocking userPrescriptions
         }

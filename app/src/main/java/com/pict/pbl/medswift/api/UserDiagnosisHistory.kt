@@ -54,4 +54,32 @@ class UserDiagnosisHistory {
 
     }
 
+    fun insertDiagnosis( predictions : Array<UserPrediction> , symptoms : Array<UserSymptom> ) = runBlocking( Dispatchers.IO ) {
+        if( auth.currentUser?.uid != null ) {
+            val database = Firebase.firestore
+            val diagnosis = database
+                .collection( "users" )
+                .document( auth.currentUser!!.uid )
+                .collection( "diagnoses" )
+                .document()
+            for( prediction in predictions ) {
+                diagnosis
+                    .collection( "predictions" )
+                    .document()
+                    .set( prediction )
+            }
+            for( symptom in symptoms ) {
+                diagnosis
+                    .collection( "symptoms" )
+                    .document()
+                    .set( symptom )
+            }
+            diagnosis.set( mapOf(
+                "lat" to 3.4f ,
+                "lon" to 2.3f ,
+                "time" to Date()
+            ))
+        }
+    }
+
 }

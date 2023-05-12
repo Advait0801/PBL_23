@@ -1,2 +1,3 @@
-- Fixed Logo and Login Button in "LoginScreen.kt"
-- Improvised Diagnosis Button in "HomeScreen.kt"
+- Added title in `DiagnosisScreen.kt`
+- `SymptomsActivity.kt` uploads diagnosis to Firestore
+- `UserPrescriptions.kt` checks for empty prescriptions now

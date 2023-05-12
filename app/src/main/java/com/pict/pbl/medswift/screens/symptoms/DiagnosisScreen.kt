@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pict.pbl.medswift.screens.ScreenTitle
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.viewmodels.SymptomsViewModel
 import kotlin.math.roundToInt
@@ -38,6 +39,9 @@ private fun ScreenUI( symptomsViewModel: SymptomsViewModel ) {
     //val max = result.maxOf{ it.second }
     //println( "Max Min: $min $max")
     LazyColumn{
+        item {
+            ScreenTitle(title = "Predictions")
+        }
         items( result ) {
             //DiseaseItem(name = it.first, confidence = ( ( it.second - min ) / ( max - min ) ) * 100 )
             DiseaseItem(name = it.first, confidence = ( it.second * 100 ) )
