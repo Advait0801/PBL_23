@@ -1,1 +1,3 @@
-- Improved ProfileScreen in 'Profile.kt'
+- Added title in `DiagnosisScreen.kt`
+- `SymptomsActivity.kt` uploads diagnosis to Firestore
+- `UserPrescriptions.kt` checks for empty prescriptions now
