@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,7 +25,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -36,12 +39,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.app.ActivityCompat
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.pict.pbl.medswift.api.NearbyDoctors
 import com.pict.pbl.medswift.data.Doctor
 import com.pict.pbl.medswift.location.CurrentLocation
 import com.pict.pbl.medswift.screens.RatingBar
 import com.pict.pbl.medswift.screens.ScreenTitle
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
+import com.pict.pbl.medswift.viewmodels.NearbyDoctorsViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,20 +57,19 @@ class NearbyDoctorsScreen : ComponentActivity() {
 
     private val showProgress = mutableStateOf( false )
     private val progressDialogText = mutableStateOf( "" )
-    private val nearbyDoctorsList = mutableStateOf( ArrayList<Doctor>() )
+    private val nearbyDoctorsList = mutableStateListOf<Doctor>()
+    private val nearbyDoctorsViewModel by viewModels<NearbyDoctorsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MedSwiftTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    ActivityUI()
-                }
+            val navController = rememberNavController()
+            NavHost( navController , startDestination = "main") {
+                composable("main") { ActivityUI() }
+                composable("viewNearbyDoctor" ) { ViewDoctorScreen( nearbyDoctorsViewModel ) }
             }
+            nearbyDoctorsViewModel.nearbyDoctorsNavController = navController
         }
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -96,7 +102,7 @@ class NearbyDoctorsScreen : ComponentActivity() {
             val doctors = NearbyDoctors().getNearbyDoctors( lat , lng ).await()
             Log.e( "APP" , "Doctors are ${doctors.size}" )
             showProgress.value = false
-            nearbyDoctorsList.value = doctors
+            nearbyDoctorsList.addAll( doctors )
         }
     }
 
@@ -113,18 +119,24 @@ class NearbyDoctorsScreen : ComponentActivity() {
     @Preview
     @Composable
     private fun ActivityUI() {
-        Column {
-            ScreenTitle(title = "Nearby Doctors")
-            DoctorsList()
-            ProgressDialog()
+        MedSwiftTheme {
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colorScheme.background
+            ) {
+                Column {
+                    ScreenTitle(title = "Nearby Doctors")
+                    DoctorsList()
+                    ProgressDialog()
+                }
+            }
         }
     }
 
     @Composable
     private fun DoctorsList() {
-        val doctorsList by nearbyDoctorsList
         LazyColumn {
-            items( doctorsList ) {
+            items( nearbyDoctorsList ) {
                 DoctorItem(doctor = it)
             }
         }
@@ -138,7 +150,10 @@ class NearbyDoctorsScreen : ComponentActivity() {
             modifier = Modifier
                 .padding( 8.dp )
                 .clickable {
-
+                    nearbyDoctorsViewModel.clickedNearbyDoctor.value = doctor
+                    if( nearbyDoctorsViewModel.nearbyDoctorsNavController != null ) {
+                        nearbyDoctorsViewModel.nearbyDoctorsNavController?.navigate( "viewNearbyDoctor" )
+                    }
                 }
         ) {
             Column( modifier = Modifier

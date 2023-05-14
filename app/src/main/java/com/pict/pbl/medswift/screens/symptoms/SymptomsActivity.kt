@@ -58,9 +58,6 @@ class SymptomsActivity : ComponentActivity() {
             symptomsViewModel.symptomsList.value = getSymptoms()
         }
 
-        val history = UserDiagnosisHistory().getHistory( )
-        Log.e( "APP" , "History $history")
-
         setContent {
             MedSwiftTheme {
                 Surface(

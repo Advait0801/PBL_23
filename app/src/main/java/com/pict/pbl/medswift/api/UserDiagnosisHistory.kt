@@ -7,16 +7,22 @@ import com.google.firebase.ktx.Firebase
 import com.pict.pbl.medswift.data.UserDiagnosis
 import com.pict.pbl.medswift.data.UserPrediction
 import com.pict.pbl.medswift.data.UserSymptom
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.util.Date
 
 class UserDiagnosisHistory {
 
     private val auth = Firebase.auth
 
-    fun getHistory() = runBlocking( Dispatchers.IO ){
+    fun getHistory(
+        resultCallback : ( (List<UserDiagnosis>) -> Unit ) ,
+        errorCallback : ( (String) -> Unit )
+    ) = CoroutineScope( Dispatchers.IO ).launch{
         if( auth.currentUser?.uid != null ) {
             val database = Firebase.firestore
             val diagnosis = database
@@ -46,10 +52,21 @@ class UserDiagnosisHistory {
                     val time = it.get( "time" , Date::class.java ) ?: Date()
                     allUserDiagnosis.add( UserDiagnosis( userPredictions , userSymptoms , lat , lng , time ) )
                 }
-            return@runBlocking allUserDiagnosis.toList()
+            if( allUserDiagnosis.isEmpty() ) {
+                withContext( Dispatchers.Main ) {
+                    errorCallback( ErrorMessages.DIAGNOSIS_NOT_FOUND.message )
+                }
+            }
+            else {
+                withContext( Dispatchers.Main ) {
+                    resultCallback( allUserDiagnosis )
+                }
+            }
         }
         else {
-            return@runBlocking emptyList()
+            withContext( Dispatchers.Main ) {
+                errorCallback( ErrorMessages.AUTH_USER_ERROR.message )
+            }
         }
 
     }

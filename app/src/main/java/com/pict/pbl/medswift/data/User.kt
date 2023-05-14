@@ -13,7 +13,20 @@ data class User(
     var phoneNumber : String ,
     var weight : Int
 ) {
+
     constructor() : this( "" , Date() , "" , "" , "" , 0.0f , "" , "" , 0 )
+
+    fun validateDetails() : Boolean {
+        return bldGrp.isNotEmpty() &&
+                email.isNotEmpty() &&
+                firstName.isNotEmpty() &&
+                lastName.isNotEmpty() &&
+                weight > 0 &&
+                height > 0.0f &&
+                gender.isNotEmpty() &&
+                (phoneNumber.isNotEmpty() && phoneNumber.length == 10 )
+    }
+
 }
 
 data class UserPrescription(

@@ -1,5 +1,6 @@
 package com.pict.pbl.medswift.screens.prescriptions
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -10,6 +11,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LockClock
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,10 +30,22 @@ import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.screens.ScreenTitle
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
-private val prescriptions = UserPrescriptions().getPrescriptions()
+private val prescriptionsState = mutableStateOf( ArrayList<UserPrescription>().toList() )
 private val dateFormat = SimpleDateFormat( "dd/MM/yyyy" , Locale.getDefault() )
 private val calendar = Calendar.getInstance()
+private val errorFlag = mutableStateOf( false )
+private val errorMessage = mutableStateOf( "" )
+
+private val resultCallback : ( (List<UserPrescription>) -> Unit ) = { it ->
+    prescriptionsState.value = it
+}
+
+private val errorCallback : ( (String) -> Unit ) = { it ->
+    errorMessage.value = it
+    errorFlag.value = true
+}
 
 @Composable
 fun PrescriptionsScreen() {
@@ -38,18 +57,28 @@ fun PrescriptionsScreen() {
             ScreenUI()
         }
     }
+    UserPrescriptions().getPrescriptions( resultCallback , errorCallback )
 }
 
 @Composable
 private fun ScreenUI() {
-    LazyColumn {
-        item {
-            ScreenTitle(title = "Prescriptions")
-        }
-        items( prescriptions ) {
-            PrescriptionItem( it )
+    val prescriptions = remember{ prescriptionsState }
+    AnimatedVisibility(visible = prescriptions.value.isNotEmpty()) {
+        LazyColumn {
+            item {
+                ScreenTitle(title = "Prescriptions")
+            }
+            items( prescriptions.value ) {
+                PrescriptionItem( it )
+            }
         }
     }
+    AnimatedVisibility(visible = prescriptions.value.isEmpty()) {
+        Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center ) {
+            CircularProgressIndicator()
+        }
+    }
+    AlertDialog()
 }
 
 @Composable
@@ -144,5 +173,26 @@ private fun PrescriptionItem( prescription: UserPrescription ) {
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun AlertDialog() {
+    val errorMessageFlag = remember{ errorFlag }
+    val errorMessage = remember{ errorMessage }
+    var openDialog by rememberSaveable{ mutableStateOf( true ) }
+    if(errorMessageFlag.value && openDialog){
+        AlertDialog(
+            onDismissRequest = { openDialog = false } ,
+            title = { Text( "Error Message" ) } ,
+            text = { Text( errorMessage.value ) } ,
+            confirmButton = {
+                Button(onClick = {
+                    openDialog = false
+                    errorMessageFlag.value = false
+                } ){
+                    Text(text = "CANCEL")
+                } } ,
+        )
     }
 }

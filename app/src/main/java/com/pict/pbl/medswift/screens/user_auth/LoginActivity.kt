@@ -44,6 +44,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.MutableLiveData
 import com.pict.pbl.medswift.R
+import com.pict.pbl.medswift.auth.CurrentUserDetails
 import com.pict.pbl.medswift.auth.LoginManager
 import com.pict.pbl.medswift.screens.HomeScreen
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
@@ -62,20 +63,27 @@ class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContent {
-            // A surface container using the 'background' color from the theme
-            MedSwiftTheme() {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = Color.White
-                ) {
-                    ActivityUI()
+        if( CurrentUserDetails().isUserAuthenticated() ) {
+            setContent {
+                // A surface container using the 'background' color from the theme
+                MedSwiftTheme() {
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = Color.White
+                    ) {
+                        ActivityUI()
+                    }
                 }
             }
+
+            loginManager = LoginManager( loginViewModel )
         }
-
-        loginManager = LoginManager( loginViewModel )
-
+        else {
+            Intent( this , HomeScreen::class.java ).apply {
+                startActivity( this )
+            }
+            finish()
+        }
 
     }
 
@@ -239,7 +247,7 @@ class LoginActivity : ComponentActivity() {
         val context = LocalContext.current
         Button(
             onClick = {
-                if (userEmail.value.isNotEmpty() ){
+                if (userEmail.value.isNotEmpty() && userPassword.value.isNotEmpty() ){
                     loginManager.loginUser( userEmail.value , userPassword.value ) {
                         Intent( context , HomeScreen::class.java ).apply {
                             startActivity( this )
@@ -249,7 +257,7 @@ class LoginActivity : ComponentActivity() {
                 else{
                     Toast.makeText(
                         context,
-                        "Email can't be empty",
+                        "Email or password couldn't be empty.",
                         Toast.LENGTH_LONG
                     ).show()
                 }

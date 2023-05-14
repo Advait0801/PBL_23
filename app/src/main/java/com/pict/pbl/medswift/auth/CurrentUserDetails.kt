@@ -5,6 +5,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.pict.pbl.medswift.api.ErrorMessages
 import com.pict.pbl.medswift.data.AnalyzeSymptom
 import com.pict.pbl.medswift.data.User
 import kotlinx.coroutines.CoroutineScope
@@ -12,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.util.UUID
 
@@ -21,12 +23,35 @@ class CurrentUserDetails {
     private val auth = Firebase.auth
     private val storage = Firebase.storage
 
-    fun getUser() : User = runBlocking( Dispatchers.IO ){
-        val userDocument = db.collection( "users" )
-            .document( auth.currentUser!!.uid )
-            .get().await()
-        val user = userDocument.toObject( User::class.java )
-        return@runBlocking user!!
+    fun getUser(
+        resultCallback : ( (User) -> Unit ) ,
+        errorCallback : ( (String) -> Unit )
+    ) = CoroutineScope( Dispatchers.IO ).launch{
+        try {
+            val userDocument = db.collection( "users" )
+                .document( auth.currentUser!!.uid )
+                .get().await()
+            val user = userDocument.toObject( User::class.java )
+            if( user != null ) {
+                withContext( Dispatchers.Main ) {
+                    resultCallback( user )
+                }
+            }
+            else {
+                withContext( Dispatchers.Main ) {
+                    errorCallback( ErrorMessages.USER_DETAILS_NOT_FOUND.message )
+                }
+            }
+        }
+        catch( e : Exception ) {
+            withContext( Dispatchers.Main ) {
+                errorCallback( e.message ?: ErrorMessages.UNKNOWN.message )
+            }
+        }
+    }
+
+    fun isUserAuthenticated() : Boolean {
+        return auth.currentUser == null
     }
 
     fun createUser( user : User , uid : String ) = runBlocking( Dispatchers.IO ){

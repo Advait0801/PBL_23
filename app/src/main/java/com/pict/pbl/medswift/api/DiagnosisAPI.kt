@@ -22,6 +22,28 @@ class DiagnosisAPI( private val client : OkHttpClient ) {
     @kotlinx.serialization.Serializable
     private data class StatusResult(var status : String )
 
+    fun getAnalysis( symptoms : List<AnalyzeSymptom> ) = runBlocking( Dispatchers.IO ) {
+        Log.e( "DiagnosisAPI" , "Making calls on: ${Thread.currentThread().name}")
+        // TODO: Handle exceptions in networking here
+        val sessionResponse = getSessionId()
+        var result = HashMap<String,Float>()
+        if(sessionResponse.status == "ok") {
+            val sessionID = sessionResponse.SessionID
+            val acceptTOUStatus = acceptTermsOfUse( sessionID )
+            if( acceptTOUStatus.status == "ok" ) {
+                for( symptom in symptoms ) {
+                    uploadSymptom( symptom , sessionID )
+                }
+                result = HashMap( analyze( sessionID ) )
+                Log.e( "DiagnosisAPI" , "Diagnosis Result: $result" )
+            }
+        }
+        else {
+            Log.d( "DiagnosisAPI" , "Session status not ok" )
+        }
+        return@runBlocking result
+    }
+
     private fun getSessionId() : SessionResult {
         val request = Request.Builder().run {
             url( HttpUrl.Builder().run {
@@ -117,29 +139,6 @@ class DiagnosisAPI( private val client : OkHttpClient ) {
         }
         return output
     }
-
-    fun getAnalysis( symptoms : List<AnalyzeSymptom> ) = runBlocking( Dispatchers.IO ) {
-        Log.e( "DiagnosisAPI" , "Making calls on: ${Thread.currentThread().name}")
-        // TODO: Handle exceptions in networking here
-        val sessionResponse = getSessionId()
-        var result = HashMap<String,Float>()
-        if(sessionResponse.status == "ok") {
-            val sessionID = sessionResponse.SessionID
-            val acceptTOUStatus = acceptTermsOfUse( sessionID )
-            if( acceptTOUStatus.status == "ok" ) {
-                for( symptom in symptoms ) {
-                    uploadSymptom( symptom , sessionID )
-                }
-                result = HashMap( analyze( sessionID ) )
-                Log.e( "DiagnosisAPI" , "Diagnosis Result: $result" )
-            }
-        }
-        else {
-            Log.d( "DiagnosisAPI" , "Session status not ok" )
-        }
-        return@runBlocking result
-    }
-
     
 }
 

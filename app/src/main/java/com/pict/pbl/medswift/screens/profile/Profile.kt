@@ -3,6 +3,7 @@ package com.pict.pbl.medswift.screens.profile
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,8 +11,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,6 +33,8 @@ import coil.request.ImageRequest
 import com.google.modernstorage.photopicker.PhotoPicker
 import com.pict.pbl.medswift.R
 import com.pict.pbl.medswift.auth.CurrentUserDetails
+import com.pict.pbl.medswift.data.User
+import com.pict.pbl.medswift.data.UserPrescription
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.screens.ScreenTitle
 import kotlinx.coroutines.CoroutineScope
@@ -37,8 +45,21 @@ import java.util.*
 
 private val dateFormat = SimpleDateFormat( "E, dd MMM yyyy" , Locale.getDefault() )
 private val currentUserOptions = CurrentUserDetails()
-private val currentUser = currentUserOptions.getUser()
+private val currentUserState = mutableStateOf( User() )
 private val userImage = MutableLiveData<Bitmap>()
+
+private val errorFlag = mutableStateOf( false )
+private val errorMessage = mutableStateOf( "" )
+
+private val resultCallback : ( (User) -> Unit ) = { it ->
+    currentUserState.value = it
+}
+
+private val errorCallback : ( (String) -> Unit ) = { it ->
+    errorMessage.value = it
+    errorFlag.value = true
+    println( "EXCEPTION!!! $it" )
+}
 
 @Composable
 fun ProfileScreen() {
@@ -50,30 +71,39 @@ fun ProfileScreen() {
             ScreenUI()
         }
     }
+    CurrentUserDetails().getUser( resultCallback , errorCallback )
 }
 
 @Composable
 private fun ScreenUI() {
-    Column {
-        ScreenTitle(title = "Profile" , icon=Icons.Default.Person)
-        Column( modifier = Modifier.verticalScroll( rememberScrollState() ) ) {
-            UserBasicInfo()
-            OtherDetailsDrawer()
+    val currentUser = remember{ currentUserState }
+    AnimatedVisibility( currentUser.value.firstName.isNotEmpty() ) {
+        Column {
+            ScreenTitle(title = "Profile" , icon=Icons.Default.Person)
+            Column( modifier = Modifier.verticalScroll( rememberScrollState() ) ) {
+                UserBasicInfo( currentUser.value )
+                OtherDetailsDrawer( currentUser.value )
+            }
         }
     }
-
+    AnimatedVisibility( currentUser.value.firstName.isEmpty() ) {
+        Box(modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center ) {
+            CircularProgressIndicator()
+        }
+    }
+    AlertDialog()
 }
 
 
 @androidx.annotation.OptIn(androidx.core.os.BuildCompat.PrereleaseSdkCheck::class)
 @Composable
-private fun UserBasicInfo() {
+private fun UserBasicInfo( currentUser : User ) {
     Surface(
         modifier = Modifier.fillMaxWidth() ,
         color = Color.White
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
-            UserImage( )
+            UserImage()
             Text(
                 text = currentUser.firstName ,
                 style = MaterialTheme.typography.titleLarge ,
@@ -138,7 +168,7 @@ private fun ColumnScope.UserImage() {
 
 
 @Composable
-private fun OtherDetailsDrawer() {
+private fun OtherDetailsDrawer( currentUser: User ) {
     Surface(
         modifier = Modifier.fillMaxWidth() ,
         color = MaterialTheme.colorScheme.primary
@@ -184,4 +214,25 @@ private fun OtherDetail( icon : ImageVector , value : String ) {
         )
     }
 
+}
+
+@Composable
+private fun AlertDialog() {
+    val errorMessageFlag = remember{ errorFlag }
+    val errorMessage = remember{ errorMessage }
+    var openDialog by rememberSaveable{ mutableStateOf( true ) }
+    if(errorMessageFlag.value && openDialog){
+        AlertDialog(
+            onDismissRequest = { openDialog = false } ,
+            title = { Text( "Error Message" ) } ,
+            text = { Text( errorMessage.value ) } ,
+            confirmButton = {
+                Button(onClick = {
+                    openDialog = false
+                    errorMessageFlag.value = false
+                } ){
+                    Text(text = "CANCEL")
+                } } ,
+        )
+    }
 }

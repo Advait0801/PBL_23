@@ -1,6 +1,7 @@
 package com.pict.pbl.medswift.screens.user_auth
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -13,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -69,7 +71,7 @@ class RegisterScreen : ComponentActivity() {
     @Preview
     @Composable
     private fun ActivityUI() {
-        // TODO: Add register screen UI here
+        val context = LocalContext.current
         Column( modifier = Modifier.verticalScroll( rememberScrollState() ) ){
             ScreenTitle(title = "Register", icon = Icons.Default.PersonAdd)
             TextInput(
@@ -130,14 +132,22 @@ class RegisterScreen : ComponentActivity() {
                 modifier = modifier
             )
             Button(onClick = {
-                CoroutineScope( Dispatchers.IO ).launch {
-                    val result = auth.createUserWithEmailAndPassword( currentUser.email , userPassword ).await()
-                    println( "User ID : " + result.user?.uid )
-                    CurrentUserDetails().apply {
-                        createUser( currentUser , result.user?.uid!! )
+                if( currentUser.validateDetails() ) {
+                    CoroutineScope( Dispatchers.IO ).launch {
+                        val result = auth.createUserWithEmailAndPassword( currentUser.email , userPassword ).await()
+                        println( "User ID : " + result.user?.uid )
+                        CurrentUserDetails().apply {
+                            createUser( currentUser , result.user?.uid!! )
+                        }
+                        finish()
                     }
-                    finish()
                 }
+                else {
+                    Toast
+                        .makeText( context , "Check your details. An invalid detail was found." , Toast.LENGTH_LONG )
+                        .show()
+                }
+
             }) {
                 Text(text = "Register")
             }
@@ -173,5 +183,4 @@ class RegisterScreen : ComponentActivity() {
             keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Password , imeAction = ImeAction.Done),
         )
     }
-
 }
