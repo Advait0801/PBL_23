@@ -1,10 +1,1 @@
-- Updated `NearbyDoctors.kt` to fetch nearby doctors with `GeoPoint`
-- Added `ViewDoctorScreen.kt`
-- Added `NavController` in `NearbyDoctorsScreen.kt`
-- `LoginActivity` now checks if user is authenticated, and opens `HomeScreen.kt`
-- `LoginActivity` now checks input details
-- Added user detail validation in `RegisterScreen.kt` and `User.kt`
-- Changed `android:label` attribute to `strings/app_name` in `Manifest.xml`
-- Updated `UserPrescriptions.kt` and `Prescriptions.kt` to manage Firebase exceptions
-- Updated `CurrentUserDetails.kt` and `Profile.kt` to manage Firebase exceptions
-- Updated `UserDiagnosisHistory.kt` and `History.kt` to manage Firebase exceptions
+- Improved UI in "SymptomsActivity.kt"

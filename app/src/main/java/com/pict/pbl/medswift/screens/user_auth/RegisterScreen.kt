@@ -42,12 +42,14 @@ class RegisterScreen : ComponentActivity() {
     private var userPassword = ""
     private val genderOptions = listOf( "Male" , "Female" )
     private val bloodGroupOptions = listOf(
+        "A +ve" ,
+        "A -ve" ,
         "B +ve" ,
         "B -ve" ,
-        "O +ve" ,
-        "O -ve" ,
         "AB +ve" ,
-        "AB -ve"
+        "AB -ve" ,
+        "O +ve" ,
+        "O -ve"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
