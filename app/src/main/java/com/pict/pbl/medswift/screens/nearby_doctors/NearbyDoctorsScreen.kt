@@ -58,7 +58,7 @@ class NearbyDoctorsScreen : ComponentActivity() {
     private val showProgress = mutableStateOf( false )
     private val progressDialogText = mutableStateOf( "" )
     private val nearbyDoctorsList = mutableStateListOf<Doctor>()
-    private val nearbyDoctorsViewModel by viewModels<NearbyDoctorsViewModel>()
+    private val nearbyDoctorsViewModel : NearbyDoctorsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

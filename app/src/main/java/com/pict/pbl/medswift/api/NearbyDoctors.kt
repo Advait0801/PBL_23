@@ -17,6 +17,8 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.Locale
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 class NearbyDoctors{
 
@@ -40,12 +42,19 @@ class NearbyDoctors{
             query.get()
                 .await()
                 .documents.forEach{ it ->
-                    nearbyDoctors.add( it.toObject( Doctor::class.java )!! )
+                    val doctor = Doctor(
+                        it.getString( "degree" ) ?: "" ,
+                        it.getGeoPoint( "location" )?.latitude?.toFloat() ?: 0.0f ,
+                        it.getGeoPoint( "location" )?.longitude?.toFloat() ?: 0.0f ,
+                        it.getString( "name" ) ?: "" ,
+                        (it.get( "rating" ) as Long).toInt() ,
+                        it.getString( "speciality" ) ?: ""
+                    )
+                    nearbyDoctors.add( doctor )
                 }
-            nearbyDoctors.filter{ it ->
-                it.longitude < userLng + tolerance && it.longitude > userLng - tolerance
+            nearbyDoctors.sortByDescending {
+                sqrt((it.latitude - userLat).pow(2) + (it.longitude - userLng).pow(2))
             }
-
             return@async nearbyDoctors
         }
         else {
