@@ -22,8 +22,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.compose.NavHost
@@ -95,20 +98,40 @@ class SymptomsActivity : ComponentActivity() {
 
                         symptomsViewModel.navController?.navigate( "selectSymptoms" )
                     } ,
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    ),
                     modifier = Modifier
                         .weight(1f)
                         .padding(8.dp)
                         .fillMaxWidth()
                 ) {
-                    Text(text = "Select Symptoms")
+                    Text(
+                        text = "Select Symptoms",
+                        style = TextStyle(
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 22.sp
+                        )
+                    )
                 }
                 Button(onClick = { initiateDiagnosis() } ,
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    ),
                     modifier = Modifier
                         .weight(1f)
                         .padding(8.dp)
                         .fillMaxWidth()
                 ) {
-                    Text(text = "Analyze")
+                    Text(
+                        text = "Analyze",
+                        style = TextStyle(
+                            fontSize = 26.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                    )
                 }
             }
             AlertDialog()

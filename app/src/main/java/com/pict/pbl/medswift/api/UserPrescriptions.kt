@@ -27,7 +27,7 @@ class UserPrescriptions {
                 val diagnosis = database
                     .collection( "users" )
                     .document( auth.currentUser!!.uid )
-                    .collection( "diagnoses1" )
+                    .collection( "diagnoses" )
                 val userPrescriptions = ArrayList<UserPrescription>()
                 diagnosis
                     .get()
