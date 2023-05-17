@@ -30,13 +30,13 @@ import androidx.compose.ui.unit.sp
 import java.util.*
 
 @Composable
-fun ScreenTitle( title : String , icon : ImageVector? = null ) {
+fun ScreenTitle( title : String , icon : ImageVector? = null, color: Color = Color.Black ) {
     if ( icon != null ) {
         Row( verticalAlignment = Alignment.CenterVertically ){
             Icon(imageVector = icon, contentDescription = title , modifier = Modifier.padding( start = 24.dp, top = 24.dp, bottom = 18.dp) )
             Text(
                 text = title ,
-                color = Color.Black ,
+                color = color ,
                 style = MaterialTheme.typography.displayLarge ,
                 modifier = Modifier
                     .padding( start = 24.dp, bottom = 18.dp,top = 24.dp, end = 24.dp)
@@ -65,10 +65,10 @@ fun ScreenTitle( title : String , icon : ImageVector? = null ) {
 }
 
 @Composable
-fun ScreenTitleWithoutDivider( title : String ) {
+fun ScreenTitleWithoutDivider( title : String , color: Color = Color.Black ) {
     Text(
         text = title ,
-        color = Color.Black ,
+        color = color ,
         style = MaterialTheme.typography.displayLarge ,
         modifier = Modifier
             .padding(24.dp)

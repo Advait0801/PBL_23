@@ -1,2 +1,1 @@
-- Added OpenStreetMap in `ViewDoctorScreen.kt`
-- Fixed `Doctor` object parsing in `NearbyDoctors.kt`
+- Completed Symptoms UI in "SymptomsActivity.kt"

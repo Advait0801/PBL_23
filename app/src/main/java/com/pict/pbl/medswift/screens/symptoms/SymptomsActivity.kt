@@ -65,7 +65,7 @@ class SymptomsActivity : ComponentActivity() {
             MedSwiftTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color.White
+                    color = MaterialTheme.colorScheme.tertiaryContainer
                 ) {
                     val navController = rememberNavController()
                     NavHost(navController, startDestination = "main") {
@@ -85,7 +85,7 @@ class SymptomsActivity : ComponentActivity() {
     private fun ActivityUI() {
         // Improve UI of SymptomsActivity
         Column( Modifier.verticalScroll( rememberScrollState() ) ) {
-            ScreenTitleWithoutDivider(title = "Diagnosis")
+            ScreenTitleWithoutDivider(title = "Diagnosis" , color = MaterialTheme.colorScheme.onTertiaryContainer)
             Box( contentAlignment = Alignment.Center ){
                 Image(painter = painterResource(id = R.drawable.symptoms_screen_pic), contentDescription = "Symptoms Screen" )
             }
@@ -99,8 +99,8 @@ class SymptomsActivity : ComponentActivity() {
                         symptomsViewModel.navController?.navigate( "selectSymptoms" )
                     } ,
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                        containerColor = MaterialTheme.colorScheme.tertiary,
+                        contentColor = MaterialTheme.colorScheme.onTertiary
                     ),
                     modifier = Modifier
                         .weight(1f)
@@ -117,13 +117,14 @@ class SymptomsActivity : ComponentActivity() {
                 }
                 Button(onClick = { initiateDiagnosis() } ,
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                        containerColor = MaterialTheme.colorScheme.tertiary,
+                        contentColor = MaterialTheme.colorScheme.onTertiary
                     ),
                     modifier = Modifier
                         .weight(1f)
                         .padding(8.dp)
                         .fillMaxWidth()
+                        .height(75.dp)
                 ) {
                     Text(
                         text = "Analyze",
