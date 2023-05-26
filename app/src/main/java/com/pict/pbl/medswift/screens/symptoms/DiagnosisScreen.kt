@@ -34,7 +34,8 @@ fun DiagnosisScreen( symptomsViewModel: SymptomsViewModel ) {
 private fun ScreenUI( symptomsViewModel: SymptomsViewModel ) {
     // TODO: Improve the UI of DiagnosisScreen
     symptomsViewModel.isLoading.value = false
-    val result = symptomsViewModel.diagnosisResult.toList()
+    var result = symptomsViewModel.diagnosisResult.toList()
+    result = result.sortedByDescending { it.second }
     //val min = result.minOf{ it.second }
     //val max = result.maxOf{ it.second }
     //println( "Max Min: $min $max")
@@ -44,7 +45,7 @@ private fun ScreenUI( symptomsViewModel: SymptomsViewModel ) {
         }
         items( result ) {
             //DiseaseItem(name = it.first, confidence = ( ( it.second - min ) / ( max - min ) ) * 100 )
-            DiseaseItem(name = it.first, confidence = ( it.second * 100 ) )
+            DiseaseItem(name = it.first, confidence = ( it.second * 100.0f ) )
         }
     }
 }
@@ -59,7 +60,7 @@ private fun DiseaseItem( name : String , confidence : Float ) {
                 .weight(1.0f)
                 .padding(16.dp)
         )
-        Text(text = confidence.roundToInt().toString() ,
+        Text(text = confidence.toString() ,
             fontSize = 14.sp ,
             modifier = Modifier
                 .background(Color.White)

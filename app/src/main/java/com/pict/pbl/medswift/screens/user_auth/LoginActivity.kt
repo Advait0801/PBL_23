@@ -87,6 +87,7 @@ class LoginActivity : ComponentActivity() {
 
     }
 
+    @Preview
     @Composable
     private fun ActivityUI(){
         val context = LocalContext.current

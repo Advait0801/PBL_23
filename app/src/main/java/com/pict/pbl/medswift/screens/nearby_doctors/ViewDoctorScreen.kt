@@ -55,7 +55,7 @@ fun Map( doctor : Doctor ) {
                 setTileSource( TileSourceFactory.MAPNIK )
                 setMultiTouchControls( true )
 
-                val doctorLocation = GeoPoint( doctor.latitude.toDouble() , doctor.longitude.toDouble() )
+                val doctorLocation = GeoPoint( doctor.latitude.toDouble() + 0.001 , doctor.longitude.toDouble() + 0.003 )
 
                 val mapController : IMapController = this.controller
                 mapController.setZoom( 18.0 )

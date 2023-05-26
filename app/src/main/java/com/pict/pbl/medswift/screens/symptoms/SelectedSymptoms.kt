@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
@@ -140,7 +141,7 @@ private fun SelectedSymptomItem( symptom: Symptom , symptomsViewModel: SymptomsV
                     .padding(16.dp)
             )
             Icon(
-                Icons.Default.Person,
+                Icons.Default.Delete,
                 contentDescription = "Remove Selection" ,
                 modifier = Modifier
                     .background(Color.White)

@@ -1,5 +1,6 @@
 package com.pict.pbl.medswift.screens.symptoms
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -21,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -44,6 +46,7 @@ import com.pict.pbl.medswift.data.UserSymptom
 import com.pict.pbl.medswift.symptoms.SymptomsJSONReader
 import com.pict.pbl.medswift.ui.theme.MedSwiftTheme
 import com.pict.pbl.medswift.screens.ScreenTitleWithoutDivider
+import com.pict.pbl.medswift.screens.nearby_doctors.NearbyDoctorsScreen
 import com.pict.pbl.medswift.viewmodels.SymptomsViewModel
 import okhttp3.OkHttpClient
 
@@ -134,6 +137,27 @@ class SymptomsActivity : ComponentActivity() {
                         )
                     )
                 }
+            }
+            Button(onClick = {
+                Intent( this@SymptomsActivity , NearbyDoctorsScreen::class.java ).apply {
+                    startActivity( this )
+                }
+            } ,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.tertiary,
+                    contentColor = MaterialTheme.colorScheme.onTertiary
+                ),
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    text = "Nearby Doctors",
+                    style = TextStyle(
+                        fontSize = 26.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                )
             }
             AlertDialog()
             ProgressDialog()
