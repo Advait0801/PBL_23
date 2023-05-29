@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:pbl/screens/LandingPage.dart';
+import 'package:pbl/screens/log_in_page.dart';
+import 'package:pbl/screens/past_diagnosis.dart';
+import 'package:pbl/screens/pending_diagnosis.dart';
+import 'package:pbl/screens/sign_up_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -25,6 +29,18 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', title: 'Home', page: () => landingPage()),
+        GetPage(name: '/logInPage', title: 'Log In', page: () => LogInPage()),
+        GetPage(
+            name: '/signUpPage', title: 'Sign Up', page: () => SignUpPage()),
+        //GetPage(name: '/eachDiagnosis', title: 'Home', page: () => landingPage()),
+        GetPage(
+            name: '/pastDiagnosesPage',
+            title: 'Past Diagnoses',
+            page: () => pastDiagnosesPage()),
+        GetPage(
+            name: '/pendingDiagnosesPage',
+            title: 'Pending Diagnoses',
+            page: () => pendingDiagnosesPage()),
       ],
     );
   }

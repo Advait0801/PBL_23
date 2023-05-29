@@ -13,8 +13,8 @@ class UserModel {
   String? profilePhoto;
   String? uid;
   int? rating;
-  List<List<String>>? pastDiagnoses;
-  List<List<String>>? pendingDiagnoses;
+  List<Map<String, String>>? pastDiagnoses;
+  List<Map<String, String>>? pendingDiagnoses;
 
   UserModel(
       {required this.age,
