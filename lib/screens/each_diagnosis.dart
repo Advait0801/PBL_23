@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pbl/models/user_model.dart';
 import 'package:pbl/screens/pending_diagnosis.dart';
 import 'package:pbl/services/authentication.dart';
@@ -21,6 +22,7 @@ class EachDiagnosis extends StatefulWidget {
 }
 
 class _EachDiagnosisState extends State<EachDiagnosis> {
+  TextEditingController reportCtr = TextEditingController();
   // @override
   // initState() {
   //   super.initState();
@@ -28,8 +30,13 @@ class _EachDiagnosisState extends State<EachDiagnosis> {
   // }
 
   @override
+  void dispose() {
+    reportCtr.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController reportCtr = TextEditingController();
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
@@ -38,33 +45,71 @@ class _EachDiagnosisState extends State<EachDiagnosis> {
               },
               icon: Icon(Icons.home)),
           title: Text('Diagnosis')),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        showBottomSheet(
-            context: context,
-            builder: (_) {
-              return Container(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (_) {
+                return Container(
                   height: MediaQuery.of(context).size.height / 2,
                   width: double.infinity,
                   color: Colors.blue,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Text('Draft your report:'),
                       TextFormField(
                         controller: reportCtr,
                       ),
                       ElevatedButton(
-                          onPressed: () async {
-                            await dbObj.submitDiagnosisReport(
-                                diagnosisUid: widget.diagnosisUid,
-                                context: context,
-                                content: reportCtr.text,
-                                patientUid: widget.userUid);
-                          },
-                          child: Text('Submit'))
+                        onPressed: () async {
+                          print(
+                              '                        {$widget.diagnosisUid}    and patient uid is       {$widget.userUid}');
+                          await dbObj.submitDiagnosisReport(
+                            diagnosisUid: widget.diagnosisUid,
+                            context: context,
+                            content: reportCtr.text,
+                            patientUid: widget.userUid,
+                          );
+                        },
+                        child: Text('Submit'),
+                      ),
                     ],
-                  ));
-            });
-      }),
+                  ),
+                );
+              });
+          // showBottomSheet(
+          //   context: context,
+          //   builder: (_) {
+          //     return Container(
+          //       height: MediaQuery.of(context).size.height / 2,
+          //       width: double.infinity,
+          //       color: Colors.blue,
+          //       child: Column(
+          //         mainAxisAlignment: MainAxisAlignment.center,
+          //         children: [
+          //           Text('Draft your report:'),
+          //           TextFormField(
+          //             controller: reportCtr,
+          //           ),
+          //           ElevatedButton(
+          //             onPressed: () async {
+          //               await dbObj.submitDiagnosisReport(
+          //                 diagnosisUid: widget.diagnosisUid,
+          //                 context: context,
+          //                 content: reportCtr.text,
+          //                 patientUid: widget.userUid,
+          //               );
+          //             },
+          //             child: Text('Submit'),
+          //           ),
+          //         ],
+          //       ),
+          //     );
+          //   },
+          // );
+        },
+      ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -96,6 +141,9 @@ class _EachDiagnosisState extends State<EachDiagnosis> {
                   if (snapshot.hasData) {
                     //String patientName = snapshot.data.toString();
                     Map<String, dynamic> useMap = snapshot.data!;
+                    DateTime dateTime = useMap['dateOfBirth'].toDate();
+                    String formattedDateTime =
+                        DateFormat('MMM dd, yyyy - hh:mm a').format(dateTime);
                     return Column(
                       children: [
                         Row(children: [
@@ -104,7 +152,7 @@ class _EachDiagnosisState extends State<EachDiagnosis> {
                         ]),
                         Row(children: [
                           Text('DOB:  '),
-                          Text(useMap['dateOfBirth']),
+                          Text(formattedDateTime),
                         ]),
                         Row(children: [
                           Text("Sex:  "),
@@ -116,11 +164,11 @@ class _EachDiagnosisState extends State<EachDiagnosis> {
                         ]),
                         Row(children: [
                           Text('Height:  '),
-                          Text(useMap['height']),
+                          Text(useMap['height'].toString()),
                         ]),
                         Row(children: [
                           Text('Weight:  '),
-                          Text(useMap['weight']),
+                          Text(useMap['weight'].toString()),
                         ]),
                       ],
                     );

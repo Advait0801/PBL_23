@@ -4,6 +4,7 @@ import 'dart:convert';
 //import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:pbl/global/widgets.dart';
 import 'package:pbl/models/user_model.dart';
 import 'package:pbl/services/authentication.dart';
@@ -78,6 +79,26 @@ class database {
     }
   }
 
+  Future<Map<String, dynamic>> getMyData({
+    //required String userUid,
+    required BuildContext context,
+  }) async {
+    try {
+      String myUid = await _auth.getUserUid(context: context);
+      DocumentSnapshot docSnap = await _firestore.doc("doctors/$myUid").get();
+      if (docSnap.exists) {
+        Map<String, dynamic> doc = docSnap.data() as Map<String, dynamic>;
+        //String useString = doc['firstName'] + doc['lastName'];
+        return doc;
+      } else {
+        throw Exception("Account not found");
+      }
+    } catch (e) {
+      showSnackBar(context, e.toString());
+      return {};
+    }
+  }
+
   Future<String> getTimestamp({
     required String diagnosisUid,
     required String userUid,
@@ -88,11 +109,16 @@ class database {
           await _firestore.doc("users/$userUid/diagnoses/$diagnosisUid").get();
       if (docSnap.exists) {
         Map<String, dynamic> doc = docSnap.data() as Map<String, dynamic>;
-        String useString = '';
+        //String useString = '';
         if (doc.containsKey('time') && doc['time'] != null) {
-          useString = doc['time'].toString();
+          //useString = doc['time'].toString();
+          Timestamp timestamp = doc['time'] as Timestamp;
+          DateTime dateTime = timestamp.toDate();
+          String formattedDateTime =
+              DateFormat('MMM dd, yyyy - hh:mm a').format(dateTime);
+          return formattedDateTime;
         }
-        return useString;
+        throw Exception("Document is invalid");
       } else {
         throw Exception("Patient or Diagnosis not found");
       }
@@ -109,7 +135,7 @@ class database {
       required String patientUid}) async {
     try {
       await _firestore
-          .doc("users/$patientUid/diagnosis/$diagnosisUid/report")
+          .doc("users/$patientUid/diagnoses/$diagnosisUid")
           .update({'content': content});
     } catch (e) {
       showSnackBar(context, e.toString());
@@ -253,10 +279,10 @@ class database {
       DocumentSnapshot docSnap = await _firestore.doc('doctors/$muid').get();
       if (docSnap.exists) {
         Map<String, dynamic> doc = docSnap.data() as Map<String, dynamic>;
-        if (doc.containsKey('pendingDiagnoses')) {
+        if (doc.containsKey('pastDiagnoses')) {
           List<dynamic> useList = [];
-          if (doc['pendingDiagnoses'] != null) {
-            useList = doc['pendingDiagnoses'];
+          if (doc['pastDiagnoses'] != null) {
+            useList = doc['pastDiagnoses'];
           }
           Map<String, String> addMap = {
             'patientUid': puid,
@@ -272,7 +298,7 @@ class database {
 
           await _firestore
               .doc('doctors/$muid')
-              .update({'pendingDiagnoses': serializedList});
+              .update({'pastDiagnoses': serializedList});
         } else {
           throw Exception('Pending Diagnoses field does not exist');
         }

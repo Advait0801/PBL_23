@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:pbl/models/user_model.dart';
+import 'package:pbl/screens/each_diagnosis.dart';
 import 'package:pbl/services/authentication.dart';
 import 'package:pbl/services/database.dart';
 
@@ -32,9 +33,9 @@ class _pastDiagnosesPageState extends State<pastDiagnosesPage> {
 
   Future<void> setListValues() async {
     List<String> res1 = await databaseObj.getPatientUids(
-        context: context, diagnosesType: 'pastDiagnosis');
+        context: context, diagnosesType: 'pastDiagnoses');
     List<String> res2 = await databaseObj.getDiagnosisUids(
-        context: context, diagnosesType: 'pastDiagnosis');
+        context: context, diagnosesType: 'pastDiagnoses');
     List<String> res3 = [];
     List<String> res4 = [];
 
@@ -61,21 +62,20 @@ class _pastDiagnosesPageState extends State<pastDiagnosesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Get.toNamed('/');
-            },
-            icon: Icon(Icons.home)),
-        title: Text('past Diagnoses'),
-      ),
-      body: ListView.builder(itemBuilder: (BuildContext context, int index) {
-        return ListTile(
-          title: Text('Patient: ' + patientNames[index]),
-          subtitle: Text('At: ' + timeStamps[index]),
-        );
-      }),
-    );
+    return ListView.builder(itemBuilder: (BuildContext context, int index) {
+      return ListTile(
+        title: Text('Patient: ' + patientNames[index]),
+        subtitle: Text('At: ' + timeStamps[index]),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => EachDiagnosis(
+                    diagnosisUid: diagnosisUids[index],
+                    userUid: patientUids[index])),
+          );
+        },
+      );
+    });
   }
 }

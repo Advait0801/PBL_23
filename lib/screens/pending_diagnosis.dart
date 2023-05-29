@@ -125,30 +125,20 @@ class _pendingDiagnosesPageState extends State<pendingDiagnosesPage> {
         children: [],
       ),
     );*/
-        Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Get.toNamed('/');
-            },
-            icon: Icon(Icons.home)),
-        title: Text('Pending Diagnoses'),
-      ),
-      body: ListView.builder(itemBuilder: (BuildContext context, int index) {
-        return ListTile(
-          title: Text('Patient: ' + patientNames[index]),
-          subtitle: Text('At: ' + timeStamps[index]),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => EachDiagnosis(
-                      diagnosisUid: diagnosisUids[index],
-                      userUid: patientUids[index])),
-            );
-          },
-        );
-      }),
-    );
+        ListView.builder(itemBuilder: (BuildContext context, int index) {
+      return ListTile(
+        title: Text('Patient: ' + patientNames[index]),
+        subtitle: Text('At: ' + timeStamps[index]),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => EachDiagnosis(
+                    diagnosisUid: diagnosisUids[index],
+                    userUid: patientUids[index])),
+          );
+        },
+      );
+    });
   }
 }
